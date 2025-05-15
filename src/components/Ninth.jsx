@@ -7,18 +7,21 @@ import { FaGoogle } from "react-icons/fa";
 
 const Ninth = () => {
   return (
-    <div className="flex justify-center">
-      <div className=" w-full lg:w-400 h-40 bg-orange-500 lg:flex lg:justify-center lg:items-center lg:space-x-30">
-        <div className="lg:text-4xl font-extrabold text-white">
+    <div className="flex justify-center bg-orange-500 px-10 py-10">
+      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-5">
+        {/* Footer Text */}
+        <div className="text-center lg:text-left text-white font-extrabold text-sm sm:text-lg lg:text-4xl leading-snug">
           <p>©2022 परम् पूज्य परमादर्श आचार्य महामंडलेश्वर स्वामी श्री</p>
-          <p className="ml-12">अभयानंद सरस्वती जी | ALL RIGHTS RESERVED</p>
+          <p>अभयानंद सरस्वती जी | ALL RIGHTS RESERVED</p>
         </div>
-        <div className="text-white flex lg:space-x-5">
-          <FaFacebookF className="lg:size-8" />
-          <FaTwitter className="lg:size-8" />
-          <FaLinkedinIn className="lg:size-8" />
-          <LuMapPinned className="lg:size-8" />
-          <FaGoogle className="lg:size-8" />
+
+        {/* Social Icons */}
+        <div className="flex space-y-15 space-x-5 text-white text-3xl ">
+          <FaFacebookF className="hover:text-gray-200 transition duration-200" />
+          <FaTwitter className="hover:text-gray-200 transition duration-200" />
+          <FaLinkedinIn className="hover:text-gray-200 transition duration-200" />
+          <LuMapPinned className="hover:text-gray-200 transition duration-200" />
+          <FaGoogle className="hover:text-gray-200 transition duration-200" />
         </div>
       </div>
     </div>

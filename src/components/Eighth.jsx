@@ -4,15 +4,19 @@ import { LiaMailBulkSolid } from "react-icons/lia";
 
 const Eighth = () => {
   return (
-    <div className="lg:flex lg:items-center lg:justify-center mt-8">
-      <div className="w-120 h-70 bg-white shadow-2xl shadow-orange-400">
-        <div className="flex justify-center mt-10">
-          <img src="https://swamiabhyanand.com/images/cropped-logo.png"></img>
+    <div className="flex flex-wrap justify-center items-stretch gap-6 mt-8 px-4">
+      {/* Main Bio Card */}
+      <div className="flex-1 min-w-[480px] max-w-[480px] bg-white shadow-2xl shadow-orange-400 p-5">
+        <div className="flex justify-center mt-4">
+          <img
+            src="https://swamiabhyanand.com/images/cropped-logo.png"
+            alt="Logo"
+          />
         </div>
-        <div className="flex justify-center font-bold mt-8">
+        <div className="text-center font-bold mt-6 lg:text-xl">
           <p>आचार्य महामंडलेश्वर स्वामी श्री अभयानंद सरस्वती जी</p>
         </div>
-        <div className="flex justify-center font-bold mt-5">
+        <div className="text-center font-bold mt-5 text-xl leading-relaxed">
           <p>
             ॥श्री गुरूवे नमः॥ (परम् पूज्य महामंडलेश्वर स्वामी श्री अभयानन्द
             सरस्वती जी महराज) कुलं पवित्रं जननी कृतार्था वसुन्धरा पुण्यवती च
@@ -21,94 +25,34 @@ const Eighth = () => {
           </p>
         </div>
       </div>
-      <div className="w-70 h-70 bg-white shadow-2xl shadow-orange-400 text-black font-semibold">
-        <div className="flex justify-center mt-5 font-semibold">
-          <p className="mt-5 text-black">LUCKNOW ASHRAM</p>
+
+      {/* Reusable Ashram Cards */}
+      {["LUCKNOW", "MEERUT", "SITAPUR", "HARIDWAR"].map((city, i) => (
+        <div
+          key={i}
+          className="flex-1 min-w-[280px] max-w-[360px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
+        >
+          <div className="text-center font-semibold text-xl">{city} ASHRAM</div>
+          <div className="flex justify-center items-center mt-5 gap-2">
+            <FaPhoneAlt className="text-orange-500" />
+            <p>+91-9956578080</p>
+          </div>
+          <div className="flex justify-center items-center mt-4 gap-2">
+            <LiaMailBulkSolid className="text-orange-500 size-5" />
+            <p>info@swamiabhayanand.com</p>
+          </div>
+          <div className="flex justify-center items-center gap-4 ">
+            <button className="w-40 h-12 bg-orange-900 text-white rounded hover:scale-105 transition-transform duration-300">
+              CLICK HERE
+            </button>
+            <img
+              src="https://swamiabhyanand.com/images/pic9.png"
+              alt="Ashram"
+              className="w-20 h-20 mt-5"
+            />
+          </div>
         </div>
-        <div className="flex justify-center mt-5">
-          <FaPhoneAlt className="text-orange-500 lg:mt-2 space-x-2" />
-          <p>+91-9956578080</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <LiaMailBulkSolid className="text-orange-500 lg:mt-2 space-x-2 size-5" />
-          <p>nfo@swamiabhayanand.com</p>
-        </div>
-        <div className="lg:flex lg:justify-center lg:items-center lg:space-x-2.5 mt-5">
-          <button className="w-30 h-10 bg-orange-600 text-white">
-            CLICK HERE
-          </button>
-          <img
-            className="size-20 lg:mt-5 "
-            src="https://swamiabhyanand.com/images/pic9.png"
-          ></img>
-        </div>
-      </div>
-      <div className="w-70 h-70 bg-white shadow-2xl shadow-orange-400 text-black font-semibold">
-        <div className="flex justify-center mt-5 font-semibold">
-          <p className="mt-5 text-black">MEERUT ASHRAM</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <FaPhoneAlt className="text-orange-500 lg:mt-2 space-x-2" />
-          <p>+91-9956578080</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <LiaMailBulkSolid className="text-orange-500 lg:mt-2 space-x-2 size-5" />
-          <p>nfo@swamiabhayanand.com</p>
-        </div>
-        <div className="lg:flex lg:justify-center lg:items-center lg:space-x-2.5 mt-5">
-          <button className="w-30 h-10 bg-orange-600 text-white">
-            CLICK HERE
-          </button>
-          <img
-            className="size-20 lg:mt-5 "
-            src="https://swamiabhyanand.com/images/pic9.png"
-          ></img>
-        </div>
-      </div>
-      <div className="w-70 h-70 bg-white shadow-2xl shadow-orange-400 text-black font-semibold">
-        <div className="flex justify-center mt-5 font-semibold">
-          <p className="mt-5 text-black">SITAPUR ASHRAM</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <FaPhoneAlt className="text-orange-500 lg:mt-2 space-x-2" />
-          <p>+91-9956578080</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <LiaMailBulkSolid className="text-orange-500 lg:mt-2 space-x-2 size-5" />
-          <p>nfo@swamiabhayanand.com</p>
-        </div>
-        <div className="lg:flex lg:justify-center lg:items-center lg:space-x-2.5 mt-5">
-          <button className="w-30 h-10 bg-orange-600 text-white">
-            CLICK HERE
-          </button>
-          <img
-            className="size-20 lg:mt-5 "
-            src="https://swamiabhyanand.com/images/pic9.png"
-          ></img>
-        </div>
-      </div>
-      <div className="w-70 h-70 bg-white shadow-2xl shadow-orange-400 text-black font-semibold">
-        <div className="flex justify-center mt-5 font-semibold">
-          <p className="mt-5 text-black">HARIDWAR ASHRAM</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <FaPhoneAlt className="text-orange-500 lg:mt-2 space-x-2" />
-          <p>+91-9956578080</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <LiaMailBulkSolid className="text-orange-500 lg:mt-2 space-x-2 size-5" />
-          <p>nfo@swamiabhayanand.com</p>
-        </div>
-        <div className="lg:flex lg:justify-center lg:items-center lg:space-x-2.5 mt-5">
-          <button className="w-30 h-10 bg-orange-600 text-white">
-            CLICK HERE
-          </button>
-          <img
-            className="size-20 lg:mt-5 "
-            src="https://swamiabhyanand.com/images/pic9.png"
-          ></img>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

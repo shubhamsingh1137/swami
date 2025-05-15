@@ -1,6 +1,10 @@
 import React from "react";
-
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 const Nav = () => {
+  const { pathname } = useLocation();
+
+  console.log(pathname, "this is pathname");
+  const navigate = useNavigate();
   return (
     <div>
       <div>
@@ -19,15 +23,71 @@ const Nav = () => {
               />
             </div>
 
-            <ul className="flex flex-wrap justify-center gap-5 text-gray-600 font-normal text-lg lg:text-[30px]">
-              <li className="text-black font-semibold">Home</li>
-              <li>About</li>
-              <li>Blog</li>
-              <li>Gallery</li>
-              <li>Donate</li>
-              <li>Event</li>
-              <li>E-Books</li>
-              <li>Contact Us</li>
+            <ul className="flex flex-wrap justify-center gap-8 cursor-pointer text-gray-600 font-normal text-lg lg:text-[25px] ">
+              <li
+                onClick={() => navigate("/")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/" && "text-black  font-semibold"
+                }`}
+              >
+                Home
+              </li>
+              <li
+                onClick={() => navigate("/about")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/about" && "text-black  font-semibold"
+                }`}
+              >
+                About
+              </li>
+              <li
+                onClick={() => navigate("/blog")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/blog" && "text-black  font-semibold"
+                }`}
+              >
+                Blog
+              </li>
+              <li
+                onClick={() => navigate("/gallary")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/gallary" && "text-black  font-semibold"
+                }`}
+              >
+                Gallery
+              </li>
+              <li
+                onClick={() => navigate("/donate")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/donate" && "text-black  font-semibold"
+                }`}
+              >
+                Donate
+              </li>
+              <li
+                onClick={() => navigate("/event")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/event" && "text-black  font-semibold"
+                }`}
+              >
+                Event
+              </li>
+              <li
+                onClick={() => navigate("/ebooks")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/ebooks" && "text-black  font-semibold"
+                }`}
+              >
+                E-Books
+              </li>
+              <li
+                onClick={() => navigate("/contact")}
+                className={`hover:text-orange-500   ${
+                  pathname === "/contact" && "text-black  font-semibold"
+                }`}
+              >
+                Contact Us
+              </li>
             </ul>
           </div>
         </div>

@@ -1,12 +1,17 @@
 import React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const Second = () => {
   return (
     <div>
       <div className="bg-[#FEFDE5] w-full py-10 px-4 text-center">
-        {/* Title Section */}
         <img
-          src="https://swamiabhyanand.com/images/pic1.png" // Replace with actual image
+          src="https://swamiabhyanand.com/images/pic1.png"
           alt="Symbol"
           className="mx-auto mb-4 w-12 h-12 lg:w-30 lg:h-30"
         />
@@ -14,7 +19,6 @@ const Second = () => {
           परम पूज्य आचार्य महामंडलेश्वर स्वामी अभयानन्द सरस्वती जी महाराज
         </h1>
 
-        {/* Description */}
         <p className="text-md lg:text-3xl md:text-lg text-black mt-6 max-w-4xl mx-auto font-semibold leading-relaxed">
           ‘आचार्य मां विजानीयात’ गुरु को मेरा रूप ही जानो अर्थात गुरु और भगवान
           में कोई भेद नहीं है। जो गुरु-वचनों में दृढ़ विश्वास रखता है, गुरुदेव
@@ -23,14 +27,12 @@ const Second = () => {
           बाँच्छाकल्पद्रृक्ष हैं।
         </p>
 
-        {/* Button */}
         <div className="mt-6">
           <button className="border border-red-500 text-red-500 px-10 py-5 cursor-pointer rounded lg:text-3xl hover:bg-red-500 hover:text-white transition">
             Know More
           </button>
         </div>
 
-        {/* Second Logo and Section Header */}
         <div className="mt-10">
           <img
             src="https://swamiabhyanand.com/images/pic1.png" // Replace with actual image
@@ -40,16 +42,6 @@ const Second = () => {
           <h2 className="text-3xl lg:text-5xl font-semibold text-gray-600">
             हमारे बारे में
           </h2>
-        </div>
-
-        {/* Floating Box (Bottom Right) */}
-        <div className="fixed bottom-4 right-4 bg-gradient-to-r from-orange-300 to-cyan-300 shadow-md px-4 py-2 rounded">
-          <p className="text-xs lg:text-2xl font-bold uppercase">
-            LATEST EVENTS
-          </p>
-          <p className="text-sm lg:text-2xl font-semibold">
-            नवीनतम कार्यक्रम ▼
-          </p>
         </div>
       </div>
     </div>

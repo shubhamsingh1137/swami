@@ -3,7 +3,7 @@ import React from "react";
 const Sixth = () => {
   return (
     <div className="lg:flex lg:items-center lg:justify-center">
-      <div className="lg:w-170 lg:h-290 border-2 border-gray-900 lg:ml-20 shadow-2xl shadow-gray-900 ">
+      <div className="lg:w-170 lg:h-290 border-2 border-gray-900 lg:ml-20 shadow-2xl shadow-gray-900 mb-10 lg:mt-10 ">
         <div className="flex items-center justify-center mt-10">
           <div>
             <img
@@ -12,10 +12,10 @@ const Sixth = () => {
             ></img>
           </div>
         </div>
-        <div className="flex justify-center text-6xl mt-10 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-6xl mt-10 font-semibold">
           <p>स्वामी अभयानंद गौशाला</p>
         </div>
-        <div className="flex justify-center text-6xl mt-5 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-6xl mt-5 font-semibold">
           <p>समिति</p>
         </div>
         <div className="flex items-center mt-15 text-3xl ml-5 text-gray-700">
@@ -27,7 +27,7 @@ const Sixth = () => {
             हमारे गौशाला के अंतर्गत गौरक्षा, संरक्षण एवं संवर्धन किया जाता है।
           </p>
         </div>
-        <div className="flex justify-center items-center mt-20">
+        <div className="flex justify-center items-center lg:mt-20 ">
           <button className="text-orange-500 w-35 h-20 border-2 border-orange-500 text-3xl hover:text-white hover:bg-orange-200 cursor-pointer">
             और पढ़ें
           </button>
@@ -42,10 +42,10 @@ const Sixth = () => {
             ></img>
           </div>
         </div>
-        <div className="flex justify-center text-6xl mt-10 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-6xl mt-10 font-semibold">
           <p>स्वामी अभयानंद संस्कृत</p>
         </div>
-        <div className="flex justify-center text-6xl mt-5 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-6xl mt-5 font-semibold">
           <p>विद्यालय</p>
         </div>
         <div className="flex items-center mt-15 text-3xl ml-5 text-gray-700">
