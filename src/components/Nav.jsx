@@ -9,7 +9,7 @@ const Nav = () => {
     <div>
       <div>
         <div className="w-full">
-          <div className="bg-orange-500 text-white flex justify-between lg:justify-around  items-center px-4 py-2 lg:text-[25px] font-extrabold shadow-2xl shadow-white">
+          <div className="bg-orange-500 text-white flex justify-between lg:justify-around  items-center px-4 py- lg:text-[22px] font-extrabold shadow-2xl shadow-white">
             <p>Email: swamiabhyanand@gmail.com</p>
             <p>Call Now! 8881810100</p>
           </div>

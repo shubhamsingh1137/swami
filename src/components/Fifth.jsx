@@ -1,6 +1,8 @@
-import React from "react";
+import React, { use } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Fifth = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <section className="bg-[#fefee9] py-10 px-4">
@@ -35,7 +37,7 @@ const Fifth = () => {
             <h3 className="text-xl lg:text-4xl font-bold text-black">
               श्रीमद्भगवद गीता अध्याय-9 | भाग-7
             </h3>
-            <p className="text-base lg:text-4xl leading-relaxed">
+            <p className="text-base lg:text-3xl leading-relaxed">
               श्रीमद्भगवद्गीता अध्याय- 9 (राजविद्याराजगुह्ययोग), भाग -7, अनंत
               श्री विभूषित महामण्डलेश्वर स्वामी अभयानंद सरस्वती जी महाराज (श्री
               पंचायती अखाड़ा महानिर्वाणी) “ अध्यक्ष ” अखिल भारतीय संत समिति
@@ -47,7 +49,10 @@ const Fifth = () => {
 
         {/* Watch All Button */}
         <div className="mt-8 flex justify-center">
-          <button className="border lg:text-5xl cursor-pointer border-red-500 text-red-600 px-6 py-2 rounded-md hover:bg-red-600 hover:text-white transition">
+          <button
+            onClick={() => navigate("/event")}
+            className="border lg:text-3xl cursor-pointer border-red-500 text-red-600 px-6 py-2 rounded-md hover:bg-red-600 hover:text-white transition"
+          >
             सभी वीडियो देखें
           </button>
         </div>

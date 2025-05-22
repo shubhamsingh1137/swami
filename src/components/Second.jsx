@@ -5,8 +5,11 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { useNavigate } from "react-router-dom";
+import { use } from "react";
 
 const Second = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="bg-[#FEFDE5] w-full py-10 px-4 text-center">
@@ -28,7 +31,10 @@ const Second = () => {
         </p>
 
         <div className="mt-6">
-          <button className="border border-red-500 text-red-500 px-10 py-5 cursor-pointer rounded lg:text-3xl hover:bg-red-500 hover:text-white transition">
+          <button
+            onClick={() => navigate("/about")}
+            className="border border-red-500 text-red-500 px-8 py-4 cursor-pointer rounded lg:text-2xl hover:bg-red-500 hover:text-white transition"
+          >
             Know More
           </button>
         </div>
@@ -39,9 +45,15 @@ const Second = () => {
             alt="Symbol"
             className="mx-auto mb-2 w-10 h-10 lg:w-30 lg:h-30"
           />
-          <h2 className="text-3xl lg:text-5xl font-semibold text-gray-600">
-            हमारे बारे में
-          </h2>
+          <button>
+            {" "}
+            <h2
+              onClick={() => navigate("/about")}
+              className="text-3xl lg:text-5xl font-semibold text-gray-600 cursor-pointer"
+            >
+              हमारे बारे में
+            </h2>
+          </button>
         </div>
       </div>
     </div>

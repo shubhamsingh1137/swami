@@ -7,15 +7,15 @@ const Sixth = () => {
         <div className="flex items-center justify-center mt-10">
           <div>
             <img
-              className="w-150 h-90"
+              className="w-140 h-90  transition duration-300  hover:scale-105"
               src="https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/pic5.png"
             ></img>
           </div>
         </div>
-        <div className="flex justify-center text-3xl lg:text-6xl mt-10 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-5xl mt-10 font-semibold">
           <p>स्वामी अभयानंद गौशाला</p>
         </div>
-        <div className="flex justify-center text-3xl lg:text-6xl mt-5 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-5xl mt-5 font-semibold">
           <p>समिति</p>
         </div>
         <div className="flex items-center mt-15 text-3xl ml-5 text-gray-700">
@@ -37,15 +37,15 @@ const Sixth = () => {
         <div className="flex items-center justify-center mt-10">
           <div>
             <img
-              className="w-150 h-90 rounded-2xl"
+              className="w-140 h-90 rounded-2xl transition duration-300  hover:scale-105"
               src="https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/sanskrit1.jpg"
             ></img>
           </div>
         </div>
-        <div className="flex justify-center text-3xl lg:text-6xl mt-10 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-5xl mt-10 font-semibold">
           <p>स्वामी अभयानंद संस्कृत</p>
         </div>
-        <div className="flex justify-center text-3xl lg:text-6xl mt-5 font-semibold">
+        <div className="flex justify-center text-3xl lg:text-5xl mt-5 font-semibold">
           <p>विद्यालय</p>
         </div>
         <div className="flex items-center mt-15 text-3xl ml-5 text-gray-700">

@@ -37,10 +37,6 @@ const About = () => {
   return (
     <div>
       <div>
-        <div>
-          <Nav />
-        </div>
-        <LatestEvents />
         <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-bold text-black">
           <p>हमारे बारे में</p>
         </div>
@@ -139,9 +135,6 @@ const About = () => {
           है। इसका संचालन प्रज्ञानम् सत्संग आश्रम समिति द्वारा किया जाता है।
         </p>
       </div>
-      <Seventh />
-      <Eighth />
-      <Ninth />
     </div>
   );
 };

@@ -4,9 +4,9 @@ import { LiaMailBulkSolid } from "react-icons/lia";
 
 const Eighth = () => {
   return (
-    <div className="flex flex-wrap justify-center items-stretch gap-6 mt-8 px-4">
+    <div className="flex flex-wrap justify-center items-stretch gap-4 mt-8  ">
       {/* Main Bio Card */}
-      <div className="flex-1 min-w-[480px] max-w-[480px] bg-white shadow-2xl shadow-orange-400 p-5">
+      <div className="flex-1 min-w-[400px] max-w-[400px] hover:scale-105 cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
         <div className="flex justify-center mt-4">
           <img
             src="https://swamiabhyanand.com/images/cropped-logo.png"
@@ -30,7 +30,7 @@ const Eighth = () => {
       {["LUCKNOW", "MEERUT", "SITAPUR", "HARIDWAR"].map((city, i) => (
         <div
           key={i}
-          className="flex-1 min-w-[280px] max-w-[360px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
+          className="flex-1 min-w-[216px] max-w-[216px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
         >
           <div className="text-center font-semibold text-xl">{city} ASHRAM</div>
           <div className="flex justify-center items-center mt-5 gap-2">

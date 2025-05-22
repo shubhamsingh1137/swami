@@ -39,7 +39,7 @@ const LatestEvents = () => {
     <>
       {/* Floating Button */}
       <div
-        className="fixed top-1/3 right-1 z-50 px-10 py-5 rounded-lg shadow-lg cursor-pointer bg-gradient-to-r from-orange-300 to-cyan-200"
+        className="fixed top-1/3 right-1 z-50 px-5 py-2 rounded-lg shadow-lg cursor-pointer bg-gradient-to-r from-orange-300 to-cyan-200"
         onClick={handleOpen}
       >
         <div className="text-sm lg:text-2xl font-bold text-black leading-tight text-center">

@@ -11,6 +11,8 @@ import Eighth from "../components/Eighth";
 import Ninth from "../components/Ninth";
 import Latest_event from "../components/Latest_event";
 import Image_slider from "../components/Image_slider";
+import Layout from "../layout";
+import Whatapps from "../components/Whatapps";
 
 const Home = () => {
   return (
@@ -25,6 +27,7 @@ const Home = () => {
       <Fifth />
       <Sixth />
       <Seventh />
+      <Whatapps />
       <Eighth />
       <Ninth />
     </div>

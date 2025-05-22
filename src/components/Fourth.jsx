@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Fourth = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <section className="bg-[#fefee9] py-10 px-4">
@@ -59,8 +61,11 @@ const Fourth = () => {
               </div>
             ))}
 
-            <div className="pt-6">
-              <button className="border lg:text-5xl cursor-pointer border-red-500 text-red-600 px-6 py-2 rounded-md hover:bg-red-600 hover:text-white transition">
+            <div className="pt-6 lg:-ml-22 ">
+              <button
+                onClick={() => navigate("/blog")}
+                className="border lg:text-3xl cursor-pointer border-red-500 text-red-600 px-6 py-2 rounded-md hover:bg-red-600 hover:text-white transition"
+              >
                 Read All
               </button>
             </div>

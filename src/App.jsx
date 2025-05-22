@@ -21,6 +21,9 @@ import Donate from "./components/Donate";
 import Event from "./components/Event";
 import Contact from "./components/Contact";
 import Ebooks from "./components/Ebooks";
+import Layout from "./layout";
+import LatestEvents from "./components/Latest_event";
+import Whatapps from "./components/Whatapps";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -40,13 +43,78 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/gallary" element={<Gallery />} />
-          <Route path="/donate" element={<Donate />} />
-          <Route path="/event" element={<Event />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/ebooks" element={<Ebooks />} />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <Layout>
+                <Blog />
+              </Layout>
+            }
+          />
+          <Route
+            path="/gallary"
+            element={
+              <Layout>
+                <Gallery />
+              </Layout>
+            }
+          />
+          <Route
+            path="/donate"
+            element={
+              <Layout>
+                <Donate />
+              </Layout>
+            }
+          />
+          <Route
+            path="/event"
+            element={
+              <Layout>
+                <Event />
+              </Layout>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <Layout>
+                <Contact />
+              </Layout>
+            }
+          />
+          <Route
+            path="/ebooks"
+            element={
+              <Layout>
+                <Ebooks />
+              </Layout>
+            }
+          />
+          <Route
+            path="/latest"
+            element={
+              <Layout>
+                <LatestEvents />
+              </Layout>
+            }
+          />
+          <Route
+            path="/whatapps"
+            element={
+              <Layout>
+                <Whatapps />
+              </Layout>
+            }
+          />
         </Routes>
       </Router>
     </>

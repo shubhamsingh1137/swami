@@ -8,16 +8,13 @@ import LatestEvents from "./Latest_event";
 const Donate = () => {
   return (
     <div>
-      <div>
-        <Nav />
-      </div>
       <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
         <img src="https://swamiabhyanand.com/images/cropped-logo.png"></img>
       </div>
       <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-semibold text-black">
         <p>Donate</p>
       </div>
-      <LatestEvents />
+
       <div className="">
         <div className="bg-[#fcfce9] py-12 px-10 md:px-8 mt-10">
           <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
@@ -90,11 +87,6 @@ const Donate = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="">
-        <Seventh />
-        <Eighth />
-        <Ninth />
       </div>
     </div>
   );

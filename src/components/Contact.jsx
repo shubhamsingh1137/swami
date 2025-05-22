@@ -51,14 +51,13 @@ const locations = [
 export default function ContactSection() {
   return (
     <div>
-      <Nav />
       <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
         <img src="https://swamiabhyanand.com/images/cropped-logo.png"></img>
       </div>
       <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-semibold text-black">
         <p>Contact Us</p>
       </div>
-      <div className="max-w-8xl  max-h-100 mt-10 p-4">
+      <div className="max-w-8xl  min-h-100 mt-10 p-4">
         <div className="flex flex-col lg:flex-row gap-10 bg-yellow-50 p-6 rounded-xl shadow-xl text-3xl">
           {/* Form Section */}
           <form className="flex-1 space-y-10">
@@ -119,7 +118,7 @@ export default function ContactSection() {
                 allowFullScreen=""
                 loading="lazy"
               ></iframe>
-              <LatestEvents />
+
               {/* Contact Details */}
               <div className="text-center space-y-10 text-sm lg:text-2xl md:text-base ">
                 <div className="flex items-center justify-center gap-2 text-orange-500 font-semibold">
@@ -156,9 +155,6 @@ export default function ContactSection() {
             </div>
           ))}
         </div>
-        <Seventh />
-        <Eighth />
-        <Ninth />
       </div>
     </div>
   );

@@ -18,9 +18,6 @@ const Gallery = () => {
 
   return (
     <div>
-      <div>
-        <Nav />
-      </div>
       <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
         <img src="https://swamiabhyanand.com/images/cropped-logo.png"></img>
       </div>
@@ -31,8 +28,7 @@ const Gallery = () => {
         {" "}
         <div className="flex justify-center items-center mt-10 ">
           <div className="w-full max-w-7xl px-4">
-            <LatestEvents />
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-4 mb-8 ">
               {[
                 "All",
                 "LUCKNOW ASHRAM",
@@ -42,7 +38,7 @@ const Gallery = () => {
               ].map((label, index) => (
                 <button
                   key={index}
-                  className="px-4 py-2 bg-white rounded-md shadow-[0_0_10px_5px_rgba(255,165,0,0.3)] text-lg text-gray-800"
+                  className="px-4 py-2 bg-white rounded-md shadow-[0_0_10px_5px_rgba(255,165,0,0.3)] text-lg lg:text-2xl cursor-pointer hover:scale-110 text-gray-800"
                 >
                   {label}
                 </button>
@@ -54,7 +50,7 @@ const Gallery = () => {
               {numberOfImages.map((_, index) => (
                 <div
                   key={index}
-                  className="bg-white shadow-lg rounded-lg overflow-hidden"
+                  className="bg-white shadow-2xl shadow-orange-500 rounded-lg overflow-hidden"
                 >
                   <img
                     src={imageUrl}
@@ -66,7 +62,7 @@ const Gallery = () => {
               {numberOfImage.map((_, index) => (
                 <div
                   key={index}
-                  className="bg-white shadow-lg rounded-lg overflow-hidden"
+                  className="bg-white shadow-2xl shadow-orange-500 rounded-lg overflow-hidden"
                 >
                   <img
                     src={imageUrls}
@@ -78,7 +74,7 @@ const Gallery = () => {
               {Images.map((_, index) => (
                 <div
                   key={index}
-                  className="bg-white shadow-lg rounded-lg overflow-hidden"
+                  className="bg-white shadow-2xl shadow-orange-500 rounded-lg overflow-hidden"
                 >
                   <img
                     src={Url}
@@ -98,10 +94,6 @@ const Gallery = () => {
           </div>
         </div>
       </div>
-
-      <Seventh />
-      <Eighth />
-      <Ninth />
     </div>
   );
 };
