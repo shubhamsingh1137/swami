@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import axios from "axios";
 
 const images = [
   "https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/DSC06305.JPG",
@@ -9,6 +11,22 @@ const images = [
 ];
 
 const First = () => {
+  const [data, setData] = useState();
+  const fetchapi = async () => {
+    try {
+      const response = await axios.post(
+        "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
+        { store_id: 1 }
+      );
+      setData(response?.data?.data);
+    } catch (error) {
+      console.error("fetch failed error", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchapi();
+  }, []);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -27,7 +45,7 @@ const First = () => {
     <div className="w-full px-4 py-10 bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
         {/* Carousel Section */}
-        <div className="w-full relative group overflow-hidden rounded-lg shadow-lg">
+        <div className="w-full lg:w-210 relative group overflow-hidden rounded-lg shadow-lg">
           <img
             src={images[currentIndex]}
             alt={`Slide ${currentIndex}`}
@@ -65,7 +83,7 @@ const First = () => {
         </div>
 
         {/* Static Image Section */}
-        <div className="relative w-full rounded-lg overflow-hidden shadow-md">
+        <div className="relative w-full lg:w-110 lg:ml-45 rounded-lg overflow-hidden shadow-md">
           <img
             src="https://swamiabhyanand.com/images/_DSC2502.JPG"
             alt="Swamiji"

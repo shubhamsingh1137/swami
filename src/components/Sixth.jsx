@@ -3,7 +3,7 @@ import React from "react";
 const Sixth = () => {
   return (
     <div className="lg:flex lg:items-center lg:justify-center">
-      <div className="lg:w-170 lg:h-290 border-2 border-gray-900 lg:ml-20 shadow-2xl shadow-gray-900 mb-10 lg:mt-10 ">
+      <div className="lg:w-145 lg:h-290 border-2 border-white lg:ml- shadow-2xl shadow-gray-900 mb-10 lg:mt-10 ">
         <div className="flex items-center justify-center mt-10">
           <div>
             <img
@@ -33,7 +33,7 @@ const Sixth = () => {
           </button>
         </div>
       </div>
-      <div className="lg:w-170 lg:h-290 border-2 border-gray-900 ml-20 shadow-2xl shadow-gray-900 ">
+      <div className="lg:w-145 lg:h-290 border-2 border-white ml-10 shadow-2xl shadow-gray-900 ">
         <div className="flex items-center justify-center mt-10">
           <div>
             <img
