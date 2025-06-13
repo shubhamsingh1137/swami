@@ -7,8 +7,8 @@ import { FaGoogle } from "react-icons/fa";
 
 const Ninth = () => {
   return (
-    <div className="flex justify-center bg-orange-500 px-10 py-10 mt-5">
-      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-5">
+    <div className="flex justify-center bg-orange-500 px-10 lg:py-10 mt-5">
+      <div className="w-full max-w-6xl mt-15  flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-5">
         {/* Footer Text */}
         <div className="text-center lg:text-left text-white font-extrabold text-sm sm:text-lg lg:text-4xl leading-snug">
           <p>©2022 परम् पूज्य परमादर्श आचार्य महामंडलेश्वर स्वामी श्री</p>

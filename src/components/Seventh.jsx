@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Seventh = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col lg:flex-row w-full mt-10">
       {/* ABOUT Card */}
@@ -11,7 +13,10 @@ const Seventh = () => {
             alt="About Icon"
           />
         </div>
-        <div className="flex justify-center items-center mt-4 font-semibold text-white text-2xl lg:text-3xl">
+        <div
+          onClick={() => navigate("/about")}
+          className="flex justify-center items-center mt-4 font-semibold text-white text-2xl lg:text-3xl"
+        >
           <p>ABOUT</p>
         </div>
         <div className="flex justify-center items-center mt-2 font-normal text-white text-xl lg:text-2xl text-center px-2">
@@ -27,7 +32,10 @@ const Seventh = () => {
             alt="Events Icon"
           />
         </div>
-        <div className="flex justify-center items-center mt-4 font-semibold text-white text-2xl lg:text-3xl">
+        <div
+          onClick={() => navigate("/event")}
+          className="flex justify-center items-center mt-4 font-semibold text-white text-2xl lg:text-3xl"
+        >
           <p>EVENTS</p>
         </div>
         <div className="flex justify-center items-center mt-2 font-normal text-white text-xl lg:text-2xl text-center px-2">
@@ -43,7 +51,10 @@ const Seventh = () => {
             alt="Blog Icon"
           />
         </div>
-        <div className="flex justify-center items-center mt-4 font-semibold text-white text-2xl lg:text-3xl">
+        <div
+          onClick={() => navigate("/blog")}
+          className="flex justify-center items-center mt-4 font-semibold text-white text-2xl lg:text-3xl"
+        >
           <p>BLOG</p>
         </div>
         <div className="flex justify-center items-center mt-2 font-normal text-white text-xl lg:text-2xl text-center px-2">

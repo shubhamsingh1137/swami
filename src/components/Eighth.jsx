@@ -1,8 +1,10 @@
 import React from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { LiaMailBulkSolid } from "react-icons/lia";
+import { useNavigate } from "react-router-dom";
 
 const Eighth = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-wrap justify-center items-stretch gap-4 mt-8  ">
       {/* Main Bio Card */}
@@ -30,7 +32,7 @@ const Eighth = () => {
       {["LUCKNOW", "MEERUT", "SITAPUR", "HARIDWAR"].map((city, i) => (
         <div
           key={i}
-          className="flex-1 min-w-[216px] max-w-[216px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
+          className="flex-1 lg:min-w-[216px]  lg:max-w-[216px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
         >
           <div className="text-center font-semibold text-xl">{city} ASHRAM</div>
           <div className="flex justify-center items-center mt-5 gap-2">
@@ -42,7 +44,10 @@ const Eighth = () => {
             <p>info@swamiabhayanand.com</p>
           </div>
           <div className="flex justify-center items-center gap-4 ">
-            <button className="w-40 h-12 bg-orange-900 text-white rounded hover:scale-105 transition-transform duration-300">
+            <button
+              onClick={() => navigate("/event")}
+              className="w-40 h-12 bg-orange-900 text-white rounded hover:scale-105 transition-transform duration-300"
+            >
               CLICK HERE
             </button>
             <img

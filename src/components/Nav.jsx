@@ -21,15 +21,15 @@ const Nav = () => {
   return (
     <div className="w-full">
       {/* Top Bar */}
-      <div className="bg-orange-500 text-white flex justify-between items-center px-4 py-2 text-sm md:text-base lg:text-lg font-bold shadow">
+      <div className="bg-orange-500 text-white flex justify-between items-center gap-4 px-4 py-2 text-sm md:text-base lg:text-lg font-bold shadow-2xl shadow-orange-800">
         <p>Email: swamiabhyanand@gmail.com</p>
         <p>Call Now! 8881810100</p>
       </div>
 
       {/* Main Nav */}
-      <div className="bg-yellow-50 px-4 py-4 flex flex-col lg:flex-row items-center justify-between lg:justify-around relative">
+      <div className="bg-yellow-50 px-4 py-4 flex flex-col lg:flex-row lg:items-center justify-between lg:justify-around relative">
         {/* Logo */}
-        <div className="mb-4 lg:mb-0">
+        <div className=" ">
           <img
             src="https://swamiabhyanand.com/images/pic1.png"
             alt="Logo"
@@ -38,7 +38,7 @@ const Nav = () => {
         </div>
 
         {/* Hamburger Button (Mobile Only) */}
-        <div className="lg:hidden absolute -top-13 right-4 z-50 border border-black p-1 rounded">
+        <div className="lg:hidden absolute top-8 right-4 z-50 border border-black p-1 rounded">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? (
               <HiX size={30} className="text-black" />
