@@ -1,24 +1,36 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sixth = () => {
+  const navigate = useNavigate();
   return (
-    <div className="lg:flex lg:items-center lg:justify-center">
-      <div className="lg:w-145 lg:h-290 border-2 border-white lg:ml- shadow-2xl shadow-gray-900 mb-10 lg:mt-10 ">
-        <div className="flex items-center justify-center mt-10">
+    <div className="flex flex-col lg:flex-row lg:items-center justify-center p-4 lg:p-10 bg-gray-50">
+      {" "}
+      <div className="w-full max-w-sm lg:max-w-lg border-2 border-white shadow-2xl shadow-gray-900 mb-10 lg:mb-0 lg:mr-10 p-5 rounded-lg bg-white">
+        {" "}
+        <div className="flex items-center justify-center mt-5 mb-5 lg:mt-10">
+          {" "}
           <div>
             <img
-              className="w-140 h-90  transition duration-300  hover:scale-105"
+              className="w-32 h-20 md:w-40 md:h-24 lg:w-110 lg:h-80 transition duration-300 hover:scale-105" // Smaller image on mobile, slightly larger on medium screens
               src="https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/pic5.png"
+              alt="Gaushala" // Added alt text for accessibility
             ></img>
           </div>
         </div>
-        <div className="flex justify-center text-3xl lg:text-5xl mt-10 font-semibold">
+        <div className="text-xl md:text-3xl lg:text-4xl mt-5 font-semibold text-center leading-tight">
+          {" "}
+          {/* Responsive text size, text-center, leading-tight */}
           <p>स्वामी अभयानंद गौशाला</p>
         </div>
-        <div className="flex justify-center text-3xl lg:text-5xl mt-5 font-semibold">
+        <div className="text-xl md:text-3xl lg:text-4xl mt-2 font-semibold text-center leading-tight">
+          {" "}
+          {/* Responsive text size, text-center, leading-tight */}
           <p>समिति</p>
         </div>
-        <div className="flex items-center mt-15 text-3xl ml-5 text-gray-700">
+        <div className="mt-8 text-sm md:text-base lg:text-2xl text-gray-700 text-justify">
+          {" "}
+          {/* Responsive text size, text-justify */}
           <p>
             गौ रक्षा मानव समाज के लिए आवश्यक है। यहाँ तक कि स्वयं भगवान कृष्ण भी
             कहते हैं कि गायें उन्हें विशेष रूप से प्रिय हैं, वे गोपाल और गोविंदा
@@ -27,28 +39,47 @@ const Sixth = () => {
             हमारे गौशाला के अंतर्गत गौरक्षा, संरक्षण एवं संवर्धन किया जाता है।
           </p>
         </div>
-        <div className="flex justify-center items-center lg:mt-20 ">
-          <button className="text-orange-500 w-35 h-20 border-2 border-orange-500 text-3xl hover:text-white hover:bg-orange-200 cursor-pointer">
+        <div className="flex justify-center items-center mt-8 lg:mt-12">
+          {" "}
+          {/* Adjusted margin-top */}
+          <button
+            onClick={() => navigate("/about")}
+            className="text-orange-500 px-6 py-3 border-2 border-orange-500 text-base md:text-lg hover:text-white hover:bg-orange-200 cursor-pointer transition duration-300 rounded-md"
+          >
+            {" "}
+            {/* Responsive button text, padding, rounded corners, transition */}
             और पढ़ें
           </button>
         </div>
       </div>
-      <div className="lg:w-145 lg:h-290 border-2 border-white ml-10 shadow-2xl shadow-gray-900 ">
-        <div className="flex items-center justify-center mt-10">
+      {/* Box 2: Swami Abhyanand Sanskrit Vidyalaya */}
+      <div className="w-full max-w-sm lg:max-w-lg border-2 border-white shadow-2xl shadow-gray-900 p-5 rounded-lg bg-white">
+        {" "}
+        {/* Adjusted max-width, added padding, rounded corners, and background */}
+        <div className="flex items-center justify-center mt-5 mb-5 lg:mt-10">
+          {" "}
+          {/* Adjusted margins */}
           <div>
             <img
-              className="w-140 h-90 rounded-2xl transition duration-300  hover:scale-105"
+              className="w-32 h-20 md:w-40 md:h-24 lg:w-110 lg:h-80 rounded-lg transition duration-300 hover:scale-105" // Smaller image on mobile, slightly larger on medium screens, rounded-lg
               src="https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/sanskrit1.jpg"
+              alt="Sanskrit Vidyalaya" // Added alt text for accessibility
             ></img>
           </div>
         </div>
-        <div className="flex justify-center text-3xl lg:text-5xl mt-10 font-semibold">
+        <div className="text-xl md:text-3xl lg:text-4xl mt-5 font-semibold text-center leading-tight">
+          {" "}
+          {/* Responsive text size, text-center, leading-tight */}
           <p>स्वामी अभयानंद संस्कृत</p>
         </div>
-        <div className="flex justify-center text-3xl lg:text-5xl mt-5 font-semibold">
+        <div className="text-xl md:text-3xl lg:text-4xl mt-2 font-semibold text-center leading-tight">
+          {" "}
+          {/* Responsive text size, text-center, leading-tight */}
           <p>विद्यालय</p>
         </div>
-        <div className="flex items-center mt-15 text-3xl ml-5 text-gray-700">
+        <div className="mt-8 text-sm md:text-base lg:text-2xl text-gray-700 text-justify">
+          {" "}
+          {/* Responsive text size, text-justify */}
           <p>
             स्वामी अभ्यानंद वेद पाठशाला के अन्तर्गत 3 आचार्य एवं 21 विद्यार्थी
             वर्तमान में शुक्लयजुर्वेद, व्याकरण व आधुनिक शिक्षा भी प्राप्त करते
@@ -58,8 +89,15 @@ const Sixth = () => {
             प्रत्येक रविवार।
           </p>
         </div>
-        <div className="flex justify-center items-center mt-20">
-          <button className="text-orange-500 w-35 h-20 border-2 border-orange-500 text-3xl hover:text-white hover:bg-orange-200 cursor-pointer">
+        <div className="flex justify-center items-center mt-8 lg:mt-12">
+          {" "}
+          {/* Adjusted margin-top */}
+          <button
+            onClick={() => navigate("/about")}
+            className="text-orange-500 px-6 py-3 border-2 border-orange-500 text-base md:text-lg hover:text-white hover:bg-orange-200 cursor-pointer transition duration-300 rounded-md"
+          >
+            {" "}
+            {/* Responsive button text, padding, rounded corners, transition */}
             और पढ़ें
           </button>
         </div>

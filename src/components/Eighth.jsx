@@ -6,7 +6,7 @@ const Eighth = () => {
   return (
     <div className="flex flex-wrap justify-center items-stretch gap-4 mt-8  ">
       {/* Main Bio Card */}
-      <div className="flex-1 min-w-[400px] max-w-[400px] hover:scale-105 cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
+      <div className="flex-1 lg:min-w-[400px] lg:max-w-[400px] hover:scale-105 cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
         <div className="flex justify-center mt-4">
           <img
             src="https://swamiabhyanand.com/images/cropped-logo.png"

@@ -49,7 +49,7 @@ const Second = () => {
             {" "}
             <h2
               onClick={() => navigate("/about")}
-              className="text-3xl lg:text-5xl font-semibold text-gray-600 cursor-pointer"
+              className="text-3xl lg:text-4xl font-semibold text-gray-600 cursor-pointer"
             >
               हमारे बारे में
             </h2>

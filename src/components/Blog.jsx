@@ -99,7 +99,7 @@ const Blog = () => {
   useEffect(() => {
     if (loading) {
       const timer = setInterval(() => {
-        setProgress((prev) => (prev >= 100 ? 100 : prev + 10));
+        setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
       }, 100);
       return () => clearInterval(timer);
     }

@@ -13,7 +13,7 @@ const Fifth = () => {
             alt="Logo"
             className="w-14 h-14 lg:w-30 lg:h-30 mb-2"
           />
-          <h2 className="text-2xl lg:text-6xl font-semibold text-gray-600">
+          <h2 className="text-2xl lg:text-5xl font-semibold text-gray-600">
             वीडियो देखें
           </h2>
         </div>

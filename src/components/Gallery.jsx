@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-// Optional: Custom CircularProgress with label
+// Circular loader with label
 function CircularProgressWithLabel({ value }) {
   return (
     <Box position="relative" display="inline-flex">
@@ -34,6 +34,7 @@ const Gallery = () => {
   const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [zoomImage, setZoomImage] = useState(null); // ← modal state
 
   const itemsPerPage = 2;
 
@@ -56,7 +57,7 @@ const Gallery = () => {
         console.error("fetch failed error", error);
       } finally {
         clearInterval(simulateProgress);
-        setTimeout(() => setLoading(false), 300); // smoother transition
+        setTimeout(() => setLoading(false), 300);
       }
     };
 
@@ -106,12 +107,13 @@ const Gallery = () => {
         <>
           {/* Image Grid */}
           <div className="flex justify-center mt-10">
-            <div className="w-full max-w-7xl px-4">
+            <div className="w-full max-w-5xl px-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
                 {displayedImages.map((img, index) => (
                   <div
                     key={index}
-                    className="bg-white shadow-2xl shadow-orange-500 rounded-lg overflow-hidden"
+                    className="bg-white shadow-2xl shadow-orange-500 rounded-lg overflow-hidden cursor-pointer"
+                    onClick={() => setZoomImage(img)}
                   >
                     <img
                       src={img}
@@ -148,6 +150,20 @@ const Gallery = () => {
             </div>
           </div>
         </>
+      )}
+
+      {/* Fullscreen Zoom Image Modal */}
+      {zoomImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={() => setZoomImage(null)}
+        >
+          <img
+            src={zoomImage}
+            alt="Zoomed"
+            className="max-w-full max-h-full rounded-lg shadow-xl transition-transform duration-300 scale-100"
+          />
+        </div>
       )}
     </div>
   );

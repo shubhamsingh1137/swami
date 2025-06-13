@@ -56,7 +56,7 @@ const About = () => {
   useEffect(() => {
     if (loading) {
       const timer = setInterval(() => {
-        setProgress((prev) => (prev >= 100 ? 100 : prev + 10));
+        setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
       }, 100);
       return () => clearInterval(timer);
     }
@@ -68,10 +68,12 @@ const About = () => {
         "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
         { store_id: 1 }
       );
+      // Ensure data.blog_list is an array before setting
       setData(response?.data?.blog_list || []);
     } catch (error) {
       console.error("fetch failed error", error);
     } finally {
+      // Small delay to allow progress bar to show, then set loading to false
       setTimeout(() => setLoading(false), 1000);
     }
   };
@@ -132,11 +134,50 @@ const About = () => {
         )}
       </div>
 
-      {/* Additional Content */}
+      {/* Additional Content - Added this section */}
       <div className="flex items-center justify-center mt-10 lg:text-2xl text-black font-semibold">
         <p>॥श्री गुरूवे नमः॥</p>
       </div>
-      {/* [Rest of your text content remains unchanged...] */}
+
+      <div className="flex flex-col items-center justify-center text-center mt-5 text-base lg:text-xl text-gray-700 mx-5 lg:mx-20 leading-relaxed">
+        <p>
+          संत श्री अभयानंद जी महाराज का जन्म उत्तर प्रदेश के एक छोटे से गाँव में
+          हुआ था। उन्होंने छोटी उम्र से ही आध्यात्मिकता और ज्ञान की प्यास के
+          संकेत दिखाए। उन्होंने गहन तपस्या और ध्यान में वर्षों बिताए, विभिन्न
+          शास्त्रों का अध्ययन किया और आध्यात्मिक गुरुओं से शिक्षा प्राप्त की।
+          उनकी शिक्षाएं वेदों, उपनिषदों और अन्य प्राचीन भारतीय ग्रंथों के
+          सिद्धांतों में गहराई से निहित हैं। वे आत्म-साक्षात्कार, दिव्य प्रेम और
+          अहिंसा के महत्व पर जोर देते हैं।
+        </p>
+        <p className="mt-5">
+          महाराजश्री श्री शंकराचार्य, श्री रामानुजाचार्य, श्री माधवाचार्य, श्री
+          निम्बार्काचार्य एवं श्री वल्लभाचार्य आदि पाँच प्रमुख आचार्य परम्पराओं
+          एवं श्री कृष्ण प्रणामी, श्री स्वामी नारायण, श्री राधावल्लभ, श्री
+          कबीरपंथी, श्री दादू पंथी, श्री वल्लभ आदि विभिन्न पंथों की शिक्षाओं को
+          सम्मिलित करते हुए सभी परम्पराओं में सामंजस्य स्थापित करते हैं। सनातन
+          धर्म की अनेक मान्यताओं में एकता और सामंजस्य स्थापित करने में
+          महाराजश्री का अतुलनीय योगदान रहा है। वर्तमान समय में महाराजश्री की
+          अद्वितीय जीवन यात्रा एक आध्यात्मिक जागृति है।
+        </p>
+        <p className="mt-5">
+          महाराजश्री ने केवल आध्यात्मिक उपदेश ही नहीं दिए, बल्कि समाज सेवा के
+          कार्य भी किए हैं। उन्होंने शिक्षा, स्वास्थ्य और पर्यावरण संरक्षण के
+          क्षेत्र में कई पहल की हैं। उनके मार्गदर्शन में कई आश्रम और संस्थान
+          स्थापित किए गए हैं, जो वंचितों की सेवा करते हैं और आध्यात्मिक मूल्यों
+          को बढ़ावा देते हैं। महाराजश्री का जीवन और उनकी शिक्षाएं हमें यह याद
+          दिलाती हैं कि सच्ची आध्यात्मिक प्रगति आंतरिक शांति, निस्वार्थ सेवा और
+          सभी जीवित प्राणियों के प्रति प्रेम में निहित है।
+        </p>
+      </div>
+
+      <div className="flex justify-center items-center text-center mt-10 mb-10 text-base lg:text-xl text-gray-700 mx-5 lg:mx-20 leading-relaxed">
+        <p>
+          महाराजश्री का दर्शन न केवल भारतीय संस्कृति की गहन आध्यात्मिक परंपराओं
+          में गहराई से निहित है, बल्कि आधुनिक समय की चुनौतियों के लिए भी
+          प्रासंगिक है। उनकी शिक्षाएं हमें आंतरिक शांति, निस्वार्थ सेवा और सभी
+          जीवित प्राणियों के प्रति प्रेम प्राप्त करने के लिए प्रेरित करती हैं।
+        </p>
+      </div>
     </div>
   );
 };

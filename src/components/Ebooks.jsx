@@ -1,63 +1,51 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Pagination from "@mui/material/Pagination";
-import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { CircularProgress, Box, Typography } from "@mui/material"; // Import Box and Typography
 
-// Loader Component
-function CircularProgressWithLabel({ value }) {
+// Custom CircularProgressWithLabel component
+const CircularProgressWithLabel = (props) => {
   return (
-    <Box position="relative" display="inline-flex">
-      <CircularProgress variant="determinate" value={value} size={80} />
+    <Box sx={{ position: "relative", display: "inline-flex" }}>
+      <CircularProgress variant="determinate" {...props} size={80} />
       <Box
-        top={0}
-        left={0}
-        bottom={0}
-        right={0}
-        position="absolute"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <Typography variant="caption" component="div" color="textSecondary">
-          {`${Math.round(value)}%`}
+        <Typography variant="caption" component="div" color="text.secondary">
+          {`${Math.round(props.value)}%`}
         </Typography>
       </Box>
     </Box>
   );
-}
+};
 
 const Ebooks = () => {
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
   const [progress, setProgress] = useState(0);
-  const itemsPerPage = 2;
-
-  // Simulate progress bar increasing while loading
-  useEffect(() => {
-    if (loading) {
-      const timer = setInterval(() => {
-        setProgress((oldProgress) =>
-          oldProgress >= 100 ? 100 : oldProgress + 10
-        );
-      }, 100);
-      return () => clearInterval(timer);
-    }
-  }, [loading]);
+  const [loading, setLoading] = useState(true);
 
   const fetchapi = async () => {
+    setLoading(true);
+    setProgress(0); // Reset progress when starting a new fetch
     try {
-      const response = await axios.post(
-        "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
-        { store_id: 1 }
+      const response = await axios.get(
+        "https://openlibrary.org/search.json?q=the+lord+of+the+rings"
       );
-      setData(response?.data?.blog_list || []);
+      setData(response?.data?.docs?.slice(0, 12));
     } catch (error) {
-      console.error("fetch failed error", error);
+      console.error("error in fetched data", error);
     } finally {
-      setTimeout(() => setLoading(false), 1000); // slight delay to show loader
+      setLoading(false);
     }
   };
 
@@ -65,56 +53,109 @@ const Ebooks = () => {
     fetchapi();
   }, []);
 
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(4);
+      } else {
+        setItemsPerPage(1);
+      }
+    };
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
 
-  const startIndex = (page - 1) * itemsPerPage;
-  const paginatedData = data.slice(startIndex, startIndex + itemsPerPage);
+  // Animate loader progress
+  useEffect(() => {
+    if (loading) {
+      let value = 0;
+      const interval = setInterval(() => {
+        value += 10;
+        if (value > 100) {
+          clearInterval(interval);
+          setProgress(100); // Ensure it reaches 100%
+        } else {
+          setProgress(value);
+        }
+      }, 100);
+      return () => clearInterval(interval); // Cleanup interval on unmount or if loading changes
+    } else {
+      setProgress(100); // Set to 100% immediately once loading is false
+    }
+  }, [loading]);
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const currentBooks = data.slice(
+    currentPage * itemsPerPage,
+    currentPage * itemsPerPage + itemsPerPage
+  );
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-[#f9fcd1]">
+        <CircularProgressWithLabel value={progress} />{" "}
+        {/* Use the custom component */}
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <div className="flex justify-center items-center gap-10 mt-10">
+    <div className="bg-[#f9fcd1] min-h-screen flex flex-col items-center px-4">
+      {/* Header */}
+      <div className="flex flex-col items-center py-10">
         <img
           src="https://swamiabhyanand.com/images/cropped-logo.png"
-          alt="logo"
+          alt="Logo"
+          className="h-20 mb-4"
         />
-      </div>
-      <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-semibold text-black">
-        <p>Gallery</p>
+        <h1 className="text-4xl lg:text-6xl font-semibold text-black">
+          E-Books
+        </h1>
       </div>
 
-      {loading ? (
-        <div className="flex justify-center items-center h-96">
-          <CircularProgressWithLabel value={progress} />
-        </div>
-      ) : (
-        <div className="min-h-screen bg-[#f9fcd1] p-12 mt-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-10">
-            {paginatedData.map((item, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center space-y-2 hover:scale-110 transition duration-500 cursor-pointer"
-              >
-                <img
-                  src={item?.images}
-                  alt={`Book Cover ${index + 1}`}
-                  className="rounded-lg w-150 h-150 shadow-2xl shadow-orange-500"
-                />
-              </div>
-            ))}
-          </div>
+      {/* Book Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-8">
+        {currentBooks.map((book, index) => {
+          const cover = book.cover_i
+            ? `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
+            : "https://via.placeholder.com/200x300.png?text=No+Cover";
 
-          <div className="flex justify-center mt-10">
-            <Pagination
-              count={Math.ceil(data.length / itemsPerPage)}
-              page={page}
-              onChange={handleChange}
-              color="primary"
-            />
-          </div>
-        </div>
-      )}
+          return (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center hover:scale-105 transition-transform duration-300"
+            >
+              <img
+                src={cover}
+                alt={book.title}
+                className="h-80 w-auto object-cover rounded-md mb-3"
+              />
+              <h2 className="text-lg font-bold text-center">{book.title}</h2>
+              <p className="text-sm text-gray-600 text-center">
+                {book.author_name?.[0] || "Unknown Author"}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Pagination Buttons */}
+      <div className="flex gap-2 flex-wrap justify-center mb-10">
+        {Array.from({ length: totalPages }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(index)}
+            className={`w-8 h-8 rounded-full text-sm font-semibold ${
+              currentPage === index
+                ? "bg-orange-500 text-white"
+                : "bg-white text-black border border-orange-300 hover:bg-orange-100"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
