@@ -1,61 +1,69 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
-
-const images = [
-  "https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/DSC06305.JPG",
-  "https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/sanskrit1.jpg",
-  "https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/DSC_9301.JPG",
-  "https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/DSC_9867.JPG",
-  "https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/sanskrit2.jpg",
-];
+import { CircularProgress } from "@mui/material";
 
 const First = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+
   const fetchapi = async () => {
     try {
-      const response = await axios.post(
-        "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
-        { store_id: 1 }
+      const response = await axios.get(
+        "https://m1blog.aaragroups.com/blog/Slider-api/",
+        {
+          headers: {
+            Authorization: "Token 55cf7e557b527cb3f44de530cc98ca14dea80dd1",
+          },
+        }
       );
-      setData(response?.data?.data);
+      setData(response?.data?.data || []);
     } catch (error) {
-      console.error("fetch failed error", error);
+      console.error("Fetch failed:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchapi();
   }, []);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
-    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+    setCurrentIndex(currentIndex === 0 ? data.length - 1 : currentIndex - 1);
   };
 
   const nextSlide = () => {
-    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+    setCurrentIndex(currentIndex === data.length - 1 ? 0 : currentIndex + 1);
   };
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <CircularProgress size={60} />
+      </div>
+    );
+  }
+
   return (
     <div className="w-full px-4 py-10 bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
         {/* Carousel Section */}
-        <div className="w-full lg:w-210 relative group overflow-hidden rounded-lg shadow-lg">
+        <div className="w-full lg:w-180 relative overflow-hidden rounded-lg shadow-lg">
           <img
-            src={images[currentIndex]}
-            alt={`Slide ${currentIndex}`}
-            className="w-full  h-[300px] md:h-[400px] lg:h-[700px] object-cover transition duration-500"
+            src={data[currentIndex]?.image}
+            alt={data[currentIndex]?.title || `Slide ${currentIndex}`}
+            className="w-full h-[300px] md:h-[400px] lg:h-[700px] object-cover transition duration-500"
           />
 
           {/* Left Arrow */}
           <div
             onClick={prevSlide}
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 text-3xl text-white cursor-pointer bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-80"
+            className="absolute top-1/2 left-4 -translate-y-1/2 text-3xl text-orange-600 cursor-pointer  bg-opacity-60 p-2 rounded-full z-20"
           >
             ❮
           </div>
@@ -63,14 +71,14 @@ const First = () => {
           {/* Right Arrow */}
           <div
             onClick={nextSlide}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-3xl text-white cursor-pointer bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-80"
+            className="absolute top-1/2 right-4 -translate-y-1/2 text-3xl text-orange-600 cursor-pointer  bg-opacity-60 p-2 rounded-full z-20"
           >
             ❯
           </div>
 
           {/* Slide Indicators */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {images.map((_, index) => (
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+            {data.map((_, index) => (
               <div
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -83,7 +91,7 @@ const First = () => {
         </div>
 
         {/* Static Image Section */}
-        <div className="relative w-full lg:w-110 lg:ml-45 rounded-lg overflow-hidden shadow-md">
+        <div className="relative w-full lg:w-[580px] lg:ml-18 rounded-lg overflow-hidden shadow-md">
           <img
             src="https://swamiabhyanand.com/images/_DSC2502.JPG"
             alt="Swamiji"

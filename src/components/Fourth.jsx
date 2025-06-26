@@ -61,7 +61,7 @@ const Fourth = () => {
               </div>
             ))}
 
-            <div className="pt-6 lg:-ml-22 ">
+            <div className="pt-6 lg:-ml-180 flex items-center justify-center  ">
               <button
                 onClick={() => navigate("/blog")}
                 className="border lg:text-3xl cursor-pointer border-red-500 text-red-600 px-6 py-2 rounded-md hover:bg-red-600 hover:text-white transition"

@@ -9,6 +9,10 @@ import Seventh from "./Seventh";
 import Eighth from "./Eighth";
 import Ninth from "./Ninth";
 import LatestEvents from "./Latest_event";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const locations = [
   {
@@ -48,48 +52,138 @@ const locations = [
     email: "info@swamiabhyanand.com",
   },
 ];
-export default function ContactSection() {
+
+export default function Contact() {
+  const initialValues = {
+    firstName: "",
+    email: "",
+    phone: "",
+    message: "",
+  };
+
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required("First Name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    phone: Yup.string()
+      .matches(/^[0-9]{10}$/, "Phone number must be exactly 10 digits")
+      .required("Phone Number is required"),
+    message: Yup.string(),
+  });
+
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    const stored = JSON.parse(localStorage.getItem("contacts") || "[]");
+    const updated = [
+      ...stored,
+      { ...values, submittedAt: new Date().toISOString() },
+    ];
+    localStorage.setItem("contacts", JSON.stringify(updated));
+
+    setTimeout(() => {
+      setSubmitting(false);
+      resetForm();
+      toast.success("Message sent successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+    }, 500);
+  };
+
   return (
     <div>
       <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
-        <img src="https://swamiabhyanand.com/images/cropped-logo.png"></img>
+        <img src="https://swamiabhyanand.com/images/cropped-logo.png" />
       </div>
       <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-semibold text-black">
         <p>Contact Us</p>
       </div>
-      <div className="max-w-8xl  min-h-100 mt-10 p-4">
+
+      <div className="max-w-8xl min-h-100 mt-10 p-4">
         <div className="flex flex-col lg:flex-row gap-10 bg-yellow-50 p-6 rounded-xl shadow-xl text-3xl">
           {/* Form Section */}
-          <form className="flex-1 space-y-10">
-            <input
-              type="text"
-              placeholder="First Name*"
-              className="w-full border-b border-gray-400 bg-transparent outline-none p-2"
-            />
-            <input
-              type="email"
-              placeholder="Email Address*"
-              className="w-full border-b border-gray-400 bg-transparent outline-none p-2"
-            />
-            <input
-              type="tel"
-              placeholder="Phone Number*"
-              className="w-full border-b border-gray-400 bg-transparent outline-none p-2"
-            />
-            <textarea
-              rows="4"
-              placeholder="Message"
-              className="w-full border border-blue-300 rounded p-2 outline-none resize-none"
-            ></textarea>
-            <button
-              type="submit"
-              className="w-full  text-gray-600 py-2 rounded font-semibold hover:bg-orange-600 transition"
-            >
-              SEND MESSAGE
-            </button>
-          </form>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form className="flex-1 space-y-6">
+                <div>
+                  <Field
+                    name="firstName"
+                    type="text"
+                    placeholder="First Name*"
+                    className="w-full border-b border-gray-400 bg-transparent outline-none p-2 placeholder:text-xl"
+                  />
+                  <ErrorMessage
+                    name="firstName"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
 
-          {/* Map Section */}
+                <div>
+                  <Field
+                    name="email"
+                    type="email"
+                    placeholder="Email Address*"
+                    className="w-full border-b border-gray-400 bg-transparent outline-none p-2 placeholder:text-xl"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Field
+                    name="phone"
+                    type="tel"
+                    placeholder="Phone Number*"
+                    className="w-full border-b border-gray-400 bg-transparent outline-none p-2 placeholder:text-xl"
+                  />
+                  <ErrorMessage
+                    name="phone"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Field
+                    name="message"
+                    as="textarea"
+                    rows="4"
+                    placeholder="Message"
+                    className="w-full border border-blue-300 rounded p-2 outline-none resize-none placeholder:text-xl"
+                  />
+                  <ErrorMessage
+                    name="message"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full text-gray-600 bg-orange-400 border-2 border-yellow-700 py-2 rounded font-semibold hover:bg-orange-600 transition"
+                >
+                  {isSubmitting ? "Sending..." : "SEND MESSAGE"}
+                </button>
+              </Form>
+            )}
+          </Formik>
+          <ToastContainer />
+
+          {/* Static Map Section */}
           <div className="flex-1 h-130 rounded overflow-hidden shadow-md">
             <iframe
               title="Location"
@@ -100,18 +194,18 @@ export default function ContactSection() {
             ></iframe>
           </div>
         </div>
+
+        {/* Dynamic Locations */}
         <div className="flex flex-wrap justify-center gap-6 p-6 bg-[#fffef0] shadow-2xl shadow-orange-400">
           {locations.map((loc, index) => (
             <div
               key={index}
-              className="w-full md:w-[48%] lg:w-[23%] bg-white rounded-xl  p-4 space-y-3 border-t-4 shadow-2xl shadow-orange-400 border-orange-500"
+              className="w-full md:w-[48%] lg:w-[23%] bg-white rounded-xl p-4 space-y-3 border-t-4 shadow-2xl shadow-orange-400 border-orange-500"
             >
-              {/* Ashram Name */}
               <h3 className="text-xl lg:text-4xl font-bold text-center text-orange-600 uppercase">
                 {loc.name}
               </h3>
 
-              {/* Google Map */}
               <iframe
                 src={loc.mapSrc}
                 className="w-full h-50 rounded-md lg:mt-5"
@@ -119,8 +213,7 @@ export default function ContactSection() {
                 loading="lazy"
               ></iframe>
 
-              {/* Contact Details */}
-              <div className="text-center space-y-10 text-sm lg:text-2xl md:text-base ">
+              <div className="text-center space-y-5 text-sm lg:text-xl md:text-base">
                 <div className="flex items-center justify-center gap-2 text-orange-500 font-semibold">
                   <FaMapMarkerAlt />
                   <p className="text-black">{loc.address}</p>
@@ -146,10 +239,18 @@ export default function ContactSection() {
                   <span>{loc.email}</span>
                 </div>
 
+                {/* Dynamic Google Maps Link */}
                 <div className="pt-2">
-                  <button className="bg-pink-600 hover:bg-pink-700 text-white px-4 py-1 rounded-full shadow">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                      loc.address
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-pink-600 hover:bg-pink-700 text-white px-4 py-1 rounded-full shadow"
+                  >
                     CLICK HERE
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

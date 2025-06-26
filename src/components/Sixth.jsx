@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Sixth = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col lg:flex-row lg:items-center justify-center p-4 lg:p-10 bg-gray-50">
+    <div className="flex flex-col  lg:flex-row lg:items-center justify-center p-4 lg:p-10 bg-gray-50">
       {" "}
       <div className="w-full max-w-sm lg:max-w-lg border-2 border-white shadow-2xl shadow-gray-900 mb-10 lg:mb-0 lg:mr-10 p-5 rounded-lg bg-white">
         {" "}

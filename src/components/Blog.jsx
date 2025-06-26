@@ -16,6 +16,8 @@ import Pagination from "@mui/material/Pagination";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Imageformat } from "../Utilis/Imageformat/Index";
+import { useNavigate } from "react-router-dom";
 
 // Circular loader with label
 function CircularProgressWithLabel({ value }) {
@@ -41,7 +43,16 @@ function CircularProgressWithLabel({ value }) {
 }
 
 // Blog Card component
-const BlogCard = ({ title, date_created, location, quote, body, images }) => (
+const BlogCard = ({
+  title,
+  date_created,
+  location,
+  quote,
+  body,
+  images,
+  id,
+  navigate,
+}) => (
   <div className="bg-white p-6 rounded-xl shadow-md space-y-4">
     <img
       src={images}
@@ -49,22 +60,22 @@ const BlogCard = ({ title, date_created, location, quote, body, images }) => (
       className="w-full aspect-video object-cover rounded-md"
     />
     <h3 className="text-2xl font-semibold text-gray-800">{title}</h3>
-    <div className="flex flex-wrap lg:text-base items-center gap-3 text-gray-500 text-sm">
+
+    <div className="flex flex-wrap lg:text-xl items-center gap-3 text-gray-500 text-sm">
       <FaCalendarAlt />
-      <span>{date_created}</span>
-      <FaMapMarkerAlt />
-      <span>{location}</span>
-      <FaFolderOpen />
+      <span>{new Date(date_created).toLocaleDateString("hi-IN")}</span>
     </div>
-    <div className="flex items-center gap-2 text-base text-gray-500">
+
+    <div className="flex text-xl items-center gap-2 text-gray-500">
       <IoChatbubbles />
       <span>(0)</span>
     </div>
+
     <div>
-      <p className="text-base font-semibold text-gray-700">
+      <p className="text-2xl font-semibold text-gray-700">
         Share This Blog with Others
       </p>
-      <div className="flex gap-3 text-2xl text-gray-600 mt-2">
+      <div className="flex gap-3 text-4xl mt-5 text-gray-600 ">
         <FaWhatsappSquare />
         <FaFacebook />
         <FaInstagram />
@@ -72,6 +83,7 @@ const BlogCard = ({ title, date_created, location, quote, body, images }) => (
         <FaLinkedin />
       </div>
     </div>
+
     {quote && body && (
       <div className="mt-4 bg-gray-100 p-4 rounded text-gray-800">
         <p className="font-semibold text-center text-base text-gray-900 mb-2">
@@ -80,8 +92,12 @@ const BlogCard = ({ title, date_created, location, quote, body, images }) => (
         <p className="text-justify leading-relaxed text-sm">{body}</p>
       </div>
     )}
+
     <div className="flex items-center justify-center mt-5">
-      <button className="text-center w-40 h-12 text-base border-2 border-red-600 text-red-600 font-semibold py-2 rounded hover:bg-red-600 hover:text-white transition">
+      <button
+        onClick={() => navigate(`/newblog/${id}`)}
+        className="text-center w-40 h-12 text-base border-2 border-red-600 text-red-600 font-semibold py-2 rounded hover:bg-red-600 hover:text-white transition"
+      >
         Read More
       </button>
     </div>
@@ -95,6 +111,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const itemsPerPage = 2;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) {
@@ -109,7 +126,7 @@ const Blog = () => {
     try {
       const response = await axios.post(
         "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
-        { store_id: 1 }
+        { store_id: 14 }
       );
       setData(response?.data?.blog_list || []);
     } catch (error) {
@@ -136,13 +153,13 @@ const Blog = () => {
 
       <div className="flex justify-center">
         <img
-          src="https://swamiabhyanand.com/images/cropped-logo.png"
+          src="https://swamiabhyanand.com/images/pic1.png"
           alt="Logo"
           className="h-20"
         />
       </div>
 
-      <h2 className="text-center text-4xl lg:text-6xl font-bold text-gray-800 mt-4">
+      <h2 className="text-center text-4xl lg:text-5xl font-bold text-gray-800 mt-4">
         Blog
       </h2>
 
@@ -154,7 +171,7 @@ const Blog = () => {
         <>
           <div className="grid md:grid-cols-2 gap-10 mt-12">
             {paginatedBlogs?.map((blog) => (
-              <BlogCard key={blog?.id} {...blog} />
+              <BlogCard key={blog?.id} {...blog} navigate={navigate} />
             ))}
           </div>
 

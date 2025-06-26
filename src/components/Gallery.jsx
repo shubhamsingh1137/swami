@@ -4,6 +4,7 @@ import Pagination from "@mui/material/Pagination";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { Imageformat } from "../Utilis/Imageformat/Index";
 
 // Circular loader with label
 function CircularProgressWithLabel({ value }) {
@@ -47,11 +48,15 @@ const Gallery = () => {
 
     const fetchapi = async () => {
       try {
-        const response = await axios.post(
-          "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
-          { store_id: 1 }
+        const response = await axios.get(
+          "https://m1blog.aaragroups.com/blog/gallery-image-api/",
+          {
+            headers: {
+              Authorization: "Token 55cf7e557b527cb3f44de530cc98ca14dea80dd1",
+            },
+          }
         );
-        setData(response?.data?.blog_list || []);
+        setData(response?.data?.data || []);
         setProgress(100);
       } catch (error) {
         console.error("fetch failed error", error);
@@ -79,7 +84,7 @@ const Gallery = () => {
     ),
   ];
 
-  const combinedImages = [...data.map((item) => item.images), ...staticImages];
+  const combinedImages = [...data.map((item) => item.image), ...staticImages];
 
   const displayedImages = showAll
     ? combinedImages

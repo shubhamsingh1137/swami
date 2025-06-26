@@ -18,6 +18,7 @@ import {
 } from "react-icons/fa";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { TbHandClick } from "react-icons/tb";
+import { Imageformat } from "../Utilis/Imageformat/Index";
 
 // Loader with label component
 const CircularProgressWithLabel = ({ value }) => {
@@ -56,11 +57,17 @@ const Event = () => {
 
     const fetchapi = async () => {
       try {
-        const response = await axios.post(
-          "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
-          { store_id: 1 }
+        const response = await axios.get(
+          "https://m1blog.aaragroups.com/blog/api/event_list_api/",
+          {
+            params: { store_id: 14 },
+            headers: {
+              Token: "55cf7e557b527cb3f44de530cc98ca14dea80dd1",
+            },
+          }
         );
-        setData(response?.data?.blog_list || []);
+        console.log("API Response:", response.data);
+        setData(response?.data?.data || []);
         setProgress(100);
       } catch (error) {
         console.error("fetch failed error", error);
@@ -115,7 +122,6 @@ const Event = () => {
                 <h2 className="text-2xl md:text-4xl font-semibold text-center mb-6">
                   Latest Upcoming Events
                 </h2>
-
                 <div className="flex flex-wrap justify-center gap-4 mt-4 text-base md:text-2xl">
                   <button className="border px-4 py-2 font-semibold">
                     Today
@@ -124,7 +130,6 @@ const Event = () => {
                     NOW ONWARDS
                   </button>
                 </div>
-
                 <div className="text-xl md:text-3xl font-semibold text-center mt-16 mb-5">
                   Latest Past Events
                 </div>
@@ -140,21 +145,24 @@ const Event = () => {
                         {/* Image */}
                         <div className="w-full lg:w-1/2 h-64 sm:h-80">
                           <img
-                            src={event.images}
+                            src={
+                              event.images ||
+                              "https://swamiabhyanand.com/uploads/WhatsApp%20Image%202023-07-14%20at%2012.29.37%20PM.jpeg"
+                            }
                             alt="Event"
-                            className="w-full h-full object-cover"
+                            className="w-full lg:h-100 h-full object-cover lg:mt-10 lg:-ml-5 rounded-2xl"
                           />
                         </div>
 
                         {/* Content */}
                         <div className="w-full lg:w-1/2 p-6 space-y-4 text-base md:text-xl">
-                          <p className="text-2xl md:text-3xl font-extrabold text-black">
-                            {event.title}
+                          <p className="text-2xl md:text-3xl font-bold text-black">
+                            {event.Title}
                           </p>
 
                           <div className="flex items-start gap-3">
                             <FaCalendarAlt className="mt-1 text-orange-400" />
-                            <p>{event.date_created}</p>
+                            <p>{event.date}</p>
                           </div>
 
                           <div className="flex items-start gap-3">
@@ -201,7 +209,6 @@ const Event = () => {
                     No events found.
                   </p>
                 )}
-
                 {/* Pagination */}
                 {data.length > itemsPerPage && (
                   <div className="flex justify-center mt-10">

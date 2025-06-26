@@ -24,6 +24,8 @@ import Ebooks from "./components/Ebooks";
 import Layout from "./layout";
 import LatestEvents from "./components/Latest_event";
 import Whatapps from "./components/Whatapps";
+import Navilatest from "./components/Navilatest";
+import Newblog from "./components/Newblog";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -107,11 +109,20 @@ function App() {
               </Layout>
             }
           />
+
           <Route
-            path="/whatapps"
+            path="/navilatest/:id"
             element={
               <Layout>
-                <Whatapps />
+                <Navilatest />
+              </Layout>
+            }
+          />
+          <Route
+            path="/newblog/:id"
+            element={
+              <Layout>
+                <Newblog />
               </Layout>
             }
           />

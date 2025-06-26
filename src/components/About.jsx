@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Imageformat } from "../Utilis/Imageformat/Index";
 
 // Loader Component
 const CircularProgressWithLabel = ({ value }) => (
@@ -66,14 +67,13 @@ const About = () => {
     try {
       const response = await axios.post(
         "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
-        { store_id: 1 }
+        { store_id: 14 }
       );
-      // Ensure data.blog_list is an array before setting
+
       setData(response?.data?.blog_list || []);
     } catch (error) {
       console.error("fetch failed error", error);
     } finally {
-      // Small delay to allow progress bar to show, then set loading to false
       setTimeout(() => setLoading(false), 1000);
     }
   };
@@ -85,10 +85,10 @@ const About = () => {
   const settings = {
     infinite: true,
     speed: 1000,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     cssEase: "ease",
     arrows: true,
     nextArrow: <NextArrow />,
@@ -103,7 +103,7 @@ const About = () => {
   return (
     <div>
       {/* Title */}
-      <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-bold text-black">
+      <div className="flex justify-center items-center mt-5 text-4xl lg:text-4xl font-bold text-black">
         <p>हमारे बारे में</p>
       </div>
       <div className="flex justify-center items-center mt-10">
@@ -126,7 +126,7 @@ const About = () => {
                 <img
                   src={item.images}
                   alt={`slider-${index}`}
-                  className="rounded-xl h-65 w-full object-cover"
+                  className="rounded-xl h-full lg:h-200 w-full object-cover"
                 />
               </div>
             ))}
@@ -137,6 +137,18 @@ const About = () => {
       {/* Additional Content - Added this section */}
       <div className="flex items-center justify-center mt-10 lg:text-2xl text-black font-semibold">
         <p>॥श्री गुरूवे नमः॥</p>
+      </div>
+      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
+        <p>(परम् पूज्य महामंडलेश्वर स्वामी श्री अभयानन्द सरस्वती जी महराज)</p>
+      </div>
+      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
+        <p>कुलं पवित्रं जननी कृतार्था वसुन्धरा पुण्यवती च तेन।</p>
+      </div>
+      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
+        <p>अपारसंवित्सुखसागरेऽस्मिन् लीनं परे ब्रह्मणि यस्य चेतः॥</p>
+      </div>
+      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
+        <p>(स्कंन्दपुराणम्)</p>
       </div>
 
       <div className="flex flex-col items-center justify-center text-center mt-5 text-base lg:text-xl text-gray-700 mx-5 lg:mx-20 leading-relaxed">

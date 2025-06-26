@@ -62,7 +62,7 @@ const Nav = () => {
                 setIsMenuOpen(false);
               }}
               className={`cursor-pointer hover:text-orange-500 ${
-                pathname === item.path && "text-black font-semibold"
+                pathname === item.path && "text-orange-700 font-semibold"
               }`}
             >
               {item.label}

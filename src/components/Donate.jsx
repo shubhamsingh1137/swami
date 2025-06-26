@@ -29,23 +29,23 @@ const Donate = () => {
             {/* Right: Text Content */}
             <div className="text-center md:text-left">
               <div className="flex items-center lg:pl-25">
-                <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold mb-4 text-gray-800">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 text-gray-800">
                   Raising Human Consciousness
                 </h2>
               </div>
               <div className="flex items-center justify-center pl-10">
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed lg:text-2xl mt-5 ">
+                <p className="text-gray-700 text-base md:text-lg leading-relaxed lg:text-xl mt-5 ">
                   Lorem ipsum dolor sit amet, consectetur.
                 </p>
               </div>
               <div className="flex justify-center pl-16">
-                <p className="text-gray-700 text-base md:text-lg lg:text-2xl leading-realxed mb-6">
+                <p className="text-gray-700 text-base md:text-lg lg:text-xl leading-realxed mb-6">
                   Ut elit tellus, luctus nec ullamcorper mattis, pulvinar
                   dapibus leo.
                 </p>
               </div>
               <div className="flex items-center justify-center lg:mt-10">
-                <button className=" lg: text-2xl px-10 py-5 border cursor-pointer border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition duration-300 transform  hover:scale-105 rounded">
+                <button className=" lg: text-2xl px-5 py-4 border cursor-pointer border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition duration-300 transform  hover:scale-105 rounded">
                   CLICK HERE
                 </button>
               </div>
@@ -53,23 +53,23 @@ const Donate = () => {
             <div>
               <div className="text-center md:text-left">
                 <div className="flex items-center lg:pl-30">
-                  <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold mb-4 text-gray-800">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 text-gray-800">
                     Raising Human Consciousness
                   </h2>
                 </div>
                 <div className="flex items-center justify-center pl-">
-                  <p className="text-gray-700 text-base md:text-lg leading-relaxed lg:text-2xl mt-5 ">
+                  <p className="text-gray-700 text-base md:text-lg leading-relaxed lg:text-xl mt-5 ">
                     Lorem ipsum dolor sit amet, consectetur.
                   </p>
                 </div>
                 <div className="flex justify-center pl-">
-                  <p className="text-gray-700 text-base md:text-lg lg:text-2xl leading-realxed mb-6">
+                  <p className="text-gray-700 text-base md:text-lg lg:text-xl leading-realxed mb-6">
                     Ut elit tellus, luctus nec ullamcorper mattis, pulvinar
                     dapibus leo.
                   </p>
                 </div>
                 <div className="flex items-center justify-center lg:mt-10">
-                  <button className=" lg: text-2xl px-10 py-5 border cursor-pointer border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition duration-300 hover:scale-105 rounded">
+                  <button className=" lg: text-2xl px-5 py-4 border cursor-pointer border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition duration-300 hover:scale-105 rounded">
                     CLICK HERE
                   </button>
                 </div>
