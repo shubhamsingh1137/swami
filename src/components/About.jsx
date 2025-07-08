@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Imageformat } from "../Utilis/Imageformat/Index";
+import Vidioimage from "./Vidioimage";
 
 // Loader Component
 const CircularProgressWithLabel = ({ value }) => (
@@ -112,7 +113,6 @@ const About = () => {
           alt="logo"
         />
       </div>
-
       {/* Loader or Slider */}
       <div className="relative mt-10 px-4 lg:px-20">
         {loading ? (
@@ -133,7 +133,6 @@ const About = () => {
           </Slider>
         )}
       </div>
-
       {/* Additional Content - Added this section */}
       <div className="flex items-center justify-center mt-10 lg:text-2xl text-black font-semibold">
         <p>॥श्री गुरूवे नमः॥</p>
@@ -150,7 +149,6 @@ const About = () => {
       <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
         <p>(स्कंन्दपुराणम्)</p>
       </div>
-
       <div className="flex flex-col items-center justify-center text-center mt-5 text-base lg:text-xl text-gray-700 mx-5 lg:mx-20 leading-relaxed">
         <p>
           संत श्री अभयानंद जी महाराज का जन्म उत्तर प्रदेश के एक छोटे से गाँव में
@@ -181,7 +179,6 @@ const About = () => {
           सभी जीवित प्राणियों के प्रति प्रेम में निहित है।
         </p>
       </div>
-
       <div className="flex justify-center items-center text-center mt-10 mb-10 text-base lg:text-xl text-gray-700 mx-5 lg:mx-20 leading-relaxed">
         <p>
           महाराजश्री का दर्शन न केवल भारतीय संस्कृति की गहन आध्यात्मिक परंपराओं
@@ -189,6 +186,9 @@ const About = () => {
           प्रासंगिक है। उनकी शिक्षाएं हमें आंतरिक शांति, निस्वार्थ सेवा और सभी
           जीवित प्राणियों के प्रति प्रेम प्राप्त करने के लिए प्रेरित करती हैं।
         </p>
+      </div>
+      <div>
+        <Vidioimage group="About" />
       </div>
     </div>
   );

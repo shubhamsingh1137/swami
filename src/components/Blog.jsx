@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Imageformat } from "../Utilis/Imageformat/Index";
 import { useNavigate } from "react-router-dom";
+import Vidioimage from "./Vidioimage";
 
 // Circular loader with label
 function CircularProgressWithLabel({ value }) {
@@ -150,7 +151,6 @@ const Blog = () => {
   return (
     <div className="px-4 py-10 bg-gray-100 min-h-screen">
       <LatestEvents />
-
       <div className="flex justify-center">
         <img
           src="https://swamiabhyanand.com/images/pic1.png"
@@ -158,11 +158,9 @@ const Blog = () => {
           className="h-20"
         />
       </div>
-
       <h2 className="text-center text-4xl lg:text-5xl font-bold text-gray-800 mt-4">
         Blog
       </h2>
-
       {loading ? (
         <div className="flex justify-center items-center h-96">
           <CircularProgressWithLabel value={progress} />
@@ -185,6 +183,7 @@ const Blog = () => {
           </div>
         </>
       )}
+      <Vidioimage group="blog" />
     </div>
   );
 };

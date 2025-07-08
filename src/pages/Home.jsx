@@ -13,23 +13,23 @@ import Latest_event from "../components/Latest_event";
 import Image_slider from "../components/Image_slider";
 import Layout from "../layout";
 import Whatapps from "../components/Whatapps";
+import Vidioimage from "../components/Vidioimage";
 
 const Home = () => {
   return (
     <div>
-      <Nav />
       {/* <Image_slider /> */}
       <First />
       <Second />
-      <Latest_event />
+
       <Third />
       <Fourth />
+      <Latest_event />
       <Fifth />
       <Sixth />
-      <Seventh />
+      <Vidioimage />
+
       <Whatapps />
-      <Eighth />
-      <Ninth />
     </div>
   );
 };

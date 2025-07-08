@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 const Fifth = () => {
   const navigate = useNavigate();
+
   return (
     <div>
       <section className="bg-[#fefee9] py-10 px-4">
         {/* Heading */}
         <div className="flex flex-col items-center mb-10">
           <img
-            src="https://swamiabhyanand.com/images/pic1.png" // Replace with your actual logo
+            src="https://swamiabhyanand.com/images/pic1.png"
             alt="Logo"
             className="w-14 h-14 lg:w-30 lg:h-30 mb-2"
           />
@@ -50,7 +51,10 @@ const Fifth = () => {
         {/* Watch All Button */}
         <div className="mt-8 flex justify-center">
           <button
-            onClick={() => navigate("/event")}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              navigate("/allvidios");
+            }}
             className="border lg:text-3xl cursor-pointer border-red-500 text-red-600 px-6 py-2 rounded-md hover:bg-red-600 hover:text-white transition"
           >
             सभी वीडियो देखें

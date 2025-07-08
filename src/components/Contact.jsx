@@ -13,6 +13,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Vidioimage from "./Vidioimage";
 
 const locations = [
   {
@@ -194,7 +195,6 @@ export default function Contact() {
             ></iframe>
           </div>
         </div>
-
         {/* Dynamic Locations */}
         <div className="flex flex-wrap justify-center gap-6 p-6 bg-[#fffef0] shadow-2xl shadow-orange-400">
           {locations.map((loc, index) => (
@@ -256,6 +256,7 @@ export default function Contact() {
             </div>
           ))}
         </div>
+        <Vidioimage group="contactus" />
       </div>
     </div>
   );

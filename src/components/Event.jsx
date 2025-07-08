@@ -19,6 +19,7 @@ import {
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { TbHandClick } from "react-icons/tb";
 import { Imageformat } from "../Utilis/Imageformat/Index";
+import Vidioimage from "./Vidioimage";
 
 // Loader with label component
 const CircularProgressWithLabel = ({ value }) => {
@@ -225,6 +226,7 @@ const Event = () => {
           )}
         </div>
       </div>
+      <Vidioimage group="event" />
     </div>
   );
 };

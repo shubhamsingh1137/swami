@@ -12,6 +12,7 @@ import {
   PDFViewer,
 } from "@react-pdf/renderer";
 import NotoDevanagari from "../fonts/NotoSansDevanagari-VariableFont_wdth,wght.ttf";
+import Vidioimage from "./Vidioimage";
 
 Font.register({
   family: "NotoSansDevanagari",
@@ -163,7 +164,6 @@ const Ebooks = () => {
           </div>
         </>
       )}
-
       {/* Modal for PDF preview */}
       {selectedBook && (
         <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
@@ -203,6 +203,7 @@ const Ebooks = () => {
           </div>
         </div>
       )}
+      <Vidioimage group="ebook" />
     </div>
   );
 };

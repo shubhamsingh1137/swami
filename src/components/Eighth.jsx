@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Eighth = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-wrap justify-center items-stretch gap-4 mt-8  ">
+    <div className="flex flex-wrap justify-center items-stretch gap-4 mt-2  ">
       {/* Main Bio Card */}
       <div className="flex-1 lg:min-w-[400px] lg:max-w-[400px] hover:scale-105 cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
         <div className="flex justify-center mt-4">
@@ -15,10 +15,10 @@ const Eighth = () => {
             alt="Logo"
           />
         </div>
-        <div className="text-center font-bold mt-6 lg:text-xl">
+        <div className="text-center font-bold mt-2 ">
           <p>आचार्य महामंडलेश्वर स्वामी श्री अभयानंद सरस्वती जी</p>
         </div>
-        <div className="text-center font-bold mt-5 text-xl leading-relaxed">
+        <div className="text-center font-bold mt-3  leading-relaxed">
           <p>
             ॥श्री गुरूवे नमः॥ (परम् पूज्य महामंडलेश्वर स्वामी श्री अभयानन्द
             सरस्वती जी महराज) कुलं पवित्रं जननी कृतार्था वसुन्धरा पुण्यवती च
@@ -35,11 +35,11 @@ const Eighth = () => {
           className="flex-1 lg:min-w-[216px]  lg:max-w-[216px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
         >
           <div className="text-center font-semibold text-xl">{city} ASHRAM</div>
-          <div className="flex justify-center items-center mt-5 gap-2">
+          <div className="flex justify-center items-center mt-2 gap-2">
             <FaPhoneAlt className="text-orange-500" />
             <p>+91-9956578080</p>
           </div>
-          <div className="flex justify-center items-center mt-4 gap-2">
+          <div className="flex justify-center items-center mt-2 gap-2">
             <LiaMailBulkSolid className="text-orange-500 size-5" />
             <p>info@swamiabhayanand.com</p>
           </div>
@@ -53,7 +53,7 @@ const Eighth = () => {
             <img
               src="https://swamiabhyanand.com/images/pic9.png"
               alt="Ashram"
-              className="w-20 h-20 mt-5"
+              className="w-20 h-20 mt-2"
             />
           </div>
         </div>

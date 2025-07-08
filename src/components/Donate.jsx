@@ -4,6 +4,7 @@ import Seventh from "./Seventh";
 import Eighth from "./Eighth";
 import Ninth from "./Ninth";
 import LatestEvents from "./Latest_event";
+import Vidioimage from "./Vidioimage";
 
 const Donate = () => {
   return (
@@ -87,6 +88,7 @@ const Donate = () => {
             </div>
           </div>
         </div>
+        <Vidioimage group="donate" />
       </div>
     </div>
   );

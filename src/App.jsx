@@ -1,19 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./App.css";
-import Nav from "./components/Nav";
-import First from "./components/First";
-import Second from "./components/Second";
-import Third from "./components/Third";
-import Fourth from "./components/Fourth";
-import Fifth from "./components/Fifth";
-import Sixth from "./components/Sixth";
-import Seventh from "./components/Seventh";
-import Eighth from "./components/Eighth";
-import Ninth from "./components/Ninth";
 import Home from "./pages/Home";
+import Nav from "./components/Nav";
 import About from "./components/About";
 import Blog from "./components/Blog";
 import Gallery from "./components/Gallery";
@@ -23,112 +17,130 @@ import Contact from "./components/Contact";
 import Ebooks from "./components/Ebooks";
 import Layout from "./layout";
 import LatestEvents from "./components/Latest_event";
-import Whatapps from "./components/Whatapps";
 import Navilatest from "./components/Navilatest";
 import Newblog from "./components/Newblog";
+import Allvidios from "./components/Allvidios";
+import Dashboard from "./components/Dashboard";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+    };
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   return (
-    <>
-      {/* <Nav />
-      <First />
-      <Second />
-      <Third />
-      <Fourth />
-      <Fifth />
-      <Sixth />
-      <Seventh />
-      <Eighth />
-      <Ninth /> */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/about"
-            element={
-              <Layout>
-                <About />
-              </Layout>
-            }
-          />
-          <Route
-            path="/blog"
-            element={
-              <Layout>
-                <Blog />
-              </Layout>
-            }
-          />
-          <Route
-            path="/gallary"
-            element={
-              <Layout>
-                <Gallery />
-              </Layout>
-            }
-          />
-          <Route
-            path="/donate"
-            element={
-              <Layout>
-                <Donate />
-              </Layout>
-            }
-          />
-          <Route
-            path="/event"
-            element={
-              <Layout>
-                <Event />
-              </Layout>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <Layout>
-                <Contact />
-              </Layout>
-            }
-          />
-          <Route
-            path="/ebooks"
-            element={
-              <Layout>
-                <Ebooks />
-              </Layout>
-            }
-          />
-          <Route
-            path="/latest"
-            element={
-              <Layout>
-                <LatestEvents />
-              </Layout>
-            }
-          />
-
-          <Route
-            path="/navilatest/:id"
-            element={
-              <Layout>
-                <Navilatest />
-              </Layout>
-            }
-          />
-          <Route
-            path="/newblog/:id"
-            element={
-              <Layout>
-                <Newblog />
-              </Layout>
-            }
-          />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Layout>
+              <About />
+            </Layout>
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <Layout>
+              <Blog />
+            </Layout>
+          }
+        />
+        <Route
+          path="/gallary"
+          element={
+            <Layout>
+              <Gallery />
+            </Layout>
+          }
+        />
+        <Route
+          path="/donate"
+          element={
+            <Layout>
+              <Donate />
+            </Layout>
+          }
+        />
+        <Route
+          path="/event"
+          element={
+            <Layout>
+              <Event />
+            </Layout>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <Layout>
+              <Contact />
+            </Layout>
+          }
+        />
+        <Route
+          path="/ebooks"
+          element={
+            <Layout>
+              <Ebooks />
+            </Layout>
+          }
+        />
+        <Route
+          path="/latest"
+          element={
+            <Layout>
+              <LatestEvents />
+            </Layout>
+          }
+        />
+        <Route
+          path="/navilatest/:id"
+          element={
+            <Layout>
+              <Navilatest />
+            </Layout>
+          }
+        />
+        <Route
+          path="/newblog/:id"
+          element={
+            <Layout>
+              <Newblog />
+            </Layout>
+          }
+        />
+        <Route
+          path="/allvidios"
+          element={
+            <Layout>
+              <Allvidios />
+            </Layout>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
+        />
+      </Routes>
+    </Router>
   );
 }
 

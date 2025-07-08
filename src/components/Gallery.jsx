@@ -1,175 +1,81 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Pagination from "@mui/material/Pagination";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { Imageformat } from "../Utilis/Imageformat/Index";
-
-// Circular loader with label
-function CircularProgressWithLabel({ value }) {
-  return (
-    <Box position="relative" display="inline-flex">
-      <CircularProgress variant="determinate" value={value} size={80} />
-      <Box
-        top={0}
-        left={0}
-        bottom={0}
-        right={0}
-        position="absolute"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Typography variant="caption" component="div" color="text.secondary">
-          {`${Math.round(value)}%`}
-        </Typography>
-      </Box>
-    </Box>
-  );
-}
+import Vidioimage from "./Vidioimage";
 
 const Gallery = () => {
-  const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [showAll, setShowAll] = useState(false);
+  const [folders, setFolders] = useState([]);
+  const [selectedFolder, setSelectedFolder] = useState("Select All");
   const [loading, setLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [zoomImage, setZoomImage] = useState(null); // ← modal state
-
-  const itemsPerPage = 2;
 
   useEffect(() => {
-    const simulateProgress = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 90 ? 90 : prevProgress + 10
-      );
-    }, 200);
-
-    const fetchapi = async () => {
+    const fetchGallery = async () => {
       try {
-        const response = await axios.get(
-          "https://m1blog.aaragroups.com/blog/gallery-image-api/",
+        const res = await axios.get(
+          "https://m1blog.aaragroups.com/blog/gallery-image-api/?is_website=true",
           {
             headers: {
               Authorization: "Token 55cf7e557b527cb3f44de530cc98ca14dea80dd1",
             },
           }
         );
-        setData(response?.data?.data || []);
-        setProgress(100);
+
+        const data = res.data.data;
+        const allImages = Object.values(data).flat();
+
+        const folderList = [
+          { title: "Select All", images: allImages },
+          ...Object.entries(data).map(([key, images]) => ({
+            title: key,
+            images,
+          })),
+        ];
+
+        setFolders(folderList);
       } catch (error) {
-        console.error("fetch failed error", error);
+        console.error("Error fetching gallery:", error);
       } finally {
-        clearInterval(simulateProgress);
-        setTimeout(() => setLoading(false), 300);
+        setLoading(false);
       }
     };
 
-    fetchapi();
+    fetchGallery();
   }, []);
 
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-
-  const handleLoadMore = () => {
-    setShowAll(true);
-  };
-
-  const staticImages = [
-    ...Array(2).fill("https://swamiabhyanand.com/uploads/MEERUT_ASHRAM4.JPG"),
-    ...Array(2).fill(
-      "https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/sanskrit1.jpg"
-    ),
-  ];
-
-  const combinedImages = [...data.map((item) => item.image), ...staticImages];
-
-  const displayedImages = showAll
-    ? combinedImages
-    : combinedImages.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  const displayedImages =
+    folders.find((f) => f.title === selectedFolder)?.images || [];
 
   return (
-    <div>
-      {/* Header */}
-      <div className="flex justify-center items-center gap-10 mt-10">
-        <img
-          src="https://swamiabhyanand.com/images/cropped-logo.png"
-          alt="logo"
-        />
+    <div className="p-4">
+      {/* Folder Tabs */}
+      <div className="flex flex-wrap gap-4 justify-center mb-6">
+        {folders.map((folder) => (
+          <button
+            key={folder.title}
+            onClick={() => setSelectedFolder(folder.title)}
+            className={`px-4 py-2 rounded-full text-white font-semibold ${
+              selectedFolder === folder.title ? "bg-orange-500" : "bg-gray-500"
+            }`}
+          >
+            {folder.title}
+          </button>
+        ))}
       </div>
-      <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-semibold text-black">
-        <p>Gallery</p>
-      </div>
-
-      {/* Loader */}
+      {/* Images */}
       {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <CircularProgressWithLabel value={progress} />
-        </div>
+        <p className="text-center">Loading...</p>
       ) : (
-        <>
-          {/* Image Grid */}
-          <div className="flex justify-center mt-10">
-            <div className="w-full max-w-5xl px-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
-                {displayedImages.map((img, index) => (
-                  <div
-                    key={index}
-                    className="bg-white shadow-2xl shadow-orange-500 rounded-lg overflow-hidden cursor-pointer"
-                    onClick={() => setZoomImage(img)}
-                  >
-                    <img
-                      src={img}
-                      alt={`Gallery ${index}`}
-                      className="w-full h-full object-cover hover:scale-105 transition duration-500"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {!showAll && (
-                <div className="flex justify-center mt-10">
-                  <Pagination
-                    count={Math.ceil(combinedImages.length / itemsPerPage)}
-                    page={page}
-                    onChange={handleChange}
-                    color="primary"
-                  />
-                </div>
-              )}
-
-              {/* Load More */}
-              {!showAll && (
-                <div className="flex items-center justify-center mt-10 cursor-pointer">
-                  <button
-                    className="w-40 h-12 text-xl text-white bg-orange-400 hover:bg-orange-500 rounded-md shadow"
-                    onClick={handleLoadMore}
-                  >
-                    LOAD MORE
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* Fullscreen Zoom Image Modal */}
-      {zoomImage && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={() => setZoomImage(null)}
-        >
-          <img
-            src={zoomImage}
-            alt="Zoomed"
-            className="max-w-full max-h-full rounded-lg shadow-xl transition-transform duration-300 scale-100"
-          />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {displayedImages.map((img) => (
+            <img
+              key={img.id}
+              src={img.image}
+              alt={img.title}
+              className="rounded shadow hover:scale-105 transition"
+            />
+          ))}
         </div>
       )}
+      <Vidioimage group="gallary" />
     </div>
   );
 };
