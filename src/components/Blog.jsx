@@ -19,7 +19,7 @@ import Box from "@mui/material/Box";
 import { Imageformat } from "../Utilis/Imageformat/Index";
 import { useNavigate } from "react-router-dom";
 import Vidioimage from "./Vidioimage";
-
+import logo from "../assets/Images/logoswami.png";
 // Circular loader with label
 function CircularProgressWithLabel({ value }) {
   return (
@@ -152,11 +152,7 @@ const Blog = () => {
     <div className="px-4 py-10 bg-gray-100 min-h-screen">
       <LatestEvents />
       <div className="flex justify-center">
-        <img
-          src="https://swamiabhyanand.com/images/pic1.png"
-          alt="Logo"
-          className="h-20"
-        />
+        <img src={logo} alt="Logo" className="size-25" />
       </div>
       <h2 className="text-center text-4xl lg:text-5xl font-bold text-gray-800 mt-4">
         Blog

@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import aboutIcon1 from "../assets/Images/about-icon1.png";
+import blogicon from "../assets/Images/blog-icon3.png";
+import event from "../assets/Images/media-icon2.png";
 const Seventh = () => {
   const navigate = useNavigate();
   return (
@@ -8,10 +10,7 @@ const Seventh = () => {
       {/* ABOUT Card */}
       <div className="flex-1 h-60 border-2 border-white bg-[#FE9342] m-2 hover:scale-105 transition-transform duration-300">
         <div className="flex justify-center items-center mt-6">
-          <img
-            src="https://swamiabhyanand.com/images/about-icon1.png"
-            alt="About Icon"
-          />
+          <img src={aboutIcon1} alt="About Icon" />
         </div>
         <div
           onClick={() => navigate("/about")}
@@ -27,10 +26,7 @@ const Seventh = () => {
       {/* EVENTS Card */}
       <div className="flex-1 h-60 border-2 border-white bg-[#C84407] m-2 hover:scale-105 transition-transform duration-300">
         <div className="flex justify-center items-center mt-6">
-          <img
-            src="https://swamiabhyanand.com/images/media-icon2.png"
-            alt="Events Icon"
-          />
+          <img src={event} alt="Events Icon" />
         </div>
         <div
           onClick={() => navigate("/event")}
@@ -46,10 +42,7 @@ const Seventh = () => {
       {/* BLOG Card */}
       <div className="flex-1 h-60 border-2 border-white bg-[#FE9342] m-2 hover:scale-105 transition-transform duration-300">
         <div className="flex justify-center items-center mt-6">
-          <img
-            src="https://swamiabhyanand.com/images/blog-icon3.png"
-            alt="Blog Icon"
-          />
+          <img src={blogicon} alt="Blog Icon" />
         </div>
         <div
           onClick={() => navigate("/blog")}

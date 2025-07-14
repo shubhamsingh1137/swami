@@ -46,7 +46,6 @@ const Gallery = () => {
 
   return (
     <div className="p-4">
-      {/* Folder Tabs */}
       <div className="flex flex-wrap gap-4 justify-center mb-6">
         {folders.map((folder) => (
           <button

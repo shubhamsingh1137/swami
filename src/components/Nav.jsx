@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import logo from "../assets/Images/logoswami.png";
+import swamiPic5 from "../assets/Images/swami_pic5.jpg";
 const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const Nav = () => {
 
   const baseURL = "https://m1blog.aaragroups.com";
   const token = "Token 55cf7e557b527cb3f44de530cc98ca14dea80dd1";
+
+  const profileRef = useRef(null);
 
   const handleSendOtp = async () => {
     const fullPhone = `${countryCode}${mobile}`;
@@ -51,7 +54,6 @@ const Nav = () => {
     }
   };
 
-  // ✅ Verify OTP
   const handleVerifyOtp = async () => {
     try {
       const response = await axios.post(
@@ -81,7 +83,6 @@ const Nav = () => {
     }
   };
 
-  // ✅ Handle logout via storage update
   useEffect(() => {
     const handleStorageChange = () => {
       const isLogged = localStorage.getItem("isLoggedIn") === "true";
@@ -98,7 +99,6 @@ const Nav = () => {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  // ✅ Initialize state on mount
   useEffect(() => {
     const isLogged = localStorage.getItem("isLoggedIn") === "true";
     if (isLogged) {
@@ -111,6 +111,19 @@ const Nav = () => {
       setOtp("");
       setOtpSent(false);
     }
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowLogin(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const navItems = [
@@ -137,9 +150,9 @@ const Nav = () => {
         {/* Logo */}
         <div>
           <img
-            src="https://swamiabhyanand.com/images/pic1.png"
-            alt="Logo"
-            className="h-20 w-auto object-contain"
+            src={logo}
+            alt="Swami Logo"
+            className="h-18 w-auto object-contain"
           />
         </div>
 
@@ -175,26 +188,35 @@ const Nav = () => {
             </li>
           ))}
 
-          {/* Profile or Initial */}
-          <div
-            className="relative"
-            onMouseEnter={() => setShowLogin(true)}
-            onMouseLeave={() => setShowLogin(false)}
-          >
-            {userInitial ? (
-              <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-lg font-bold">
-                {userInitial}
-              </div>
-            ) : (
-              <CgProfile className="size-7 hover:text-orange-500 cursor-pointer" />
-            )}
+          {/* Profile Login Trigger */}
+          <div className="relative" ref={profileRef}>
+            <div
+              onClick={() => {
+                const isLogged = localStorage.getItem("isLoggedIn") === "true";
+                if (isLogged) {
+                  if (pathname !== "/dashboard") {
+                    navigate("/dashboard");
+                  }
+                } else {
+                  setShowLogin(!showLogin);
+                }
+              }}
+            >
+              {userInitial ? (
+                <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-lg font-bold cursor-pointer">
+                  {userInitial}
+                </div>
+              ) : (
+                <CgProfile className="size-7 hover:text-orange-500 cursor-pointer" />
+              )}
+            </div>
 
             {showLogin && !isVerified && (
               <div className="absolute top-8 right-0 w-[650px] bg-white rounded-lg shadow-2xl z-50 flex">
                 {/* Left Image */}
                 <div className="w-1/2 p-4 bg-gray-100 flex flex-col justify-center items-center">
                   <img
-                    src="https://swamiabhyanand.com/images/_DSC2502.JPG"
+                    src={swamiPic5}
                     alt="Swami"
                     className="w-full h-auto object-contain"
                   />
@@ -213,7 +235,7 @@ const Nav = () => {
                         <select
                           value={countryCode}
                           onChange={(e) => setCountryCode(e.target.value)}
-                          className="border rounded  mb-3 w-40"
+                          className="border rounded mb-3 w-40"
                         >
                           <option value="+91">🇮🇳 (+91) India</option>
                           <option value="+1">🇺🇸 (+1) USA</option>

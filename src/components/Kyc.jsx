@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Kyc = () => {
   const [kycExists, setKycExists] = useState(false);
@@ -36,8 +38,6 @@ const Kyc = () => {
           aadhaarBack: null,
           panCardPic: null,
         });
-
-        toast.success(response.data.message);
       } else {
         setKycExists(false);
       }
@@ -90,22 +90,27 @@ const Kyc = () => {
         );
 
         if (response.status === 200 || response.status === 201) {
-          toast.success("Your KYC is successfully filled");
-
-          setKycData({
-            adhar_num: values.aadhaarNumber,
-            pan_num: values.panNumber,
-            is_verified_by_admin: false,
-          });
-
+          toast.success("Your KYC is successfully updated.");
           setKycExists(true);
           setEditMode(false);
           resetForm();
+          await fetchKycData();
         } else {
           toast.error("Something went wrong. Please try again.");
         }
       } catch (error) {
-        toast.error("Submission failed: " + error.message);
+        if (
+          error.response &&
+          error.response.status === 400 &&
+          error.response.data?.message
+        ) {
+          toast.warning(error.response.data.message);
+        } else {
+          toast.error(
+            "Submission failed: " +
+              (error.response?.data?.message || error.message)
+          );
+        }
       } finally {
         setSubmitting(false);
       }
@@ -116,10 +121,10 @@ const Kyc = () => {
 
   return (
     <div className="space-y-6 bg-orange-500 p-6 rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">KYC Information</h2>
-
+      <h2 className="text-2xl font-bold mb-4 text-white">KYC Information</h2>
+      <ToastContainer position="top-center" autoClose={3000} />
       {kycExists && !editMode ? (
-        <div className="bg-white p-4 rounded text-gray-800">
+        <div className="bg-white p-4 rounded text-gray-800 space-y-4">
           <p>
             <strong>Aadhaar Number:</strong> {kycData?.adhar_num || "N/A"}
           </p>
@@ -134,6 +139,39 @@ const Kyc = () => {
               <span className="text-red-600 font-semibold">No ❌</span>
             )}
           </p>
+
+          {kycData?.adhar_front_image && (
+            <div>
+              <strong>Aadhaar Front:</strong>
+              <img
+                src={kycData.adhar_front_image}
+                alt="Aadhaar Front"
+                className="w-40 h-auto border rounded mt-2"
+              />
+            </div>
+          )}
+
+          {kycData?.adhar_back_image && (
+            <div>
+              <strong>Aadhaar Back:</strong>
+              <img
+                src={kycData.adhar_back_image}
+                alt="Aadhaar Back"
+                className="w-40 h-auto border rounded mt-2"
+              />
+            </div>
+          )}
+
+          {kycData?.pan_image && (
+            <div>
+              <strong>PAN Card:</strong>
+              <img
+                src={kycData.pan_image}
+                alt="PAN Card"
+                className="w-40 h-auto border rounded mt-2"
+              />
+            </div>
+          )}
 
           {!kycData?.is_verified_by_admin && (
             <button
@@ -166,6 +204,7 @@ const Kyc = () => {
             <input
               type="file"
               name="aadhaarFront"
+              accept="image/*"
               className="border p-2 rounded w-full"
               onChange={(e) =>
                 formik.setFieldValue("aadhaarFront", e.currentTarget.files[0])
@@ -174,6 +213,7 @@ const Kyc = () => {
             <input
               type="file"
               name="aadhaarBack"
+              accept="image/*"
               className="border p-2 rounded w-full"
               onChange={(e) =>
                 formik.setFieldValue("aadhaarBack", e.currentTarget.files[0])
@@ -182,6 +222,7 @@ const Kyc = () => {
             <input
               type="file"
               name="panCardPic"
+              accept="image/*"
               className="border p-2 rounded w-full"
               onChange={(e) =>
                 formik.setFieldValue("panCardPic", e.currentTarget.files[0])
@@ -193,7 +234,7 @@ const Kyc = () => {
             className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded"
             disabled={submitting}
           >
-            {submitting ? "Submitting..." : editMode ? "Update KYC" : "Submit"}
+            {submitting ? "Submitting..." : "Submit"}
           </button>
         </form>
       )}

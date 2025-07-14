@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Vidioimage from "./Vidioimage";
-
+import logo from "../assets/Images/logoswami.png";
 const locations = [
   {
     name: "LUCKNOW ASHRAM",
@@ -99,7 +99,7 @@ export default function Contact() {
   return (
     <div>
       <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
-        <img src="https://swamiabhyanand.com/images/cropped-logo.png" />
+        <img src={logo} className="size-25" />
       </div>
       <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-semibold text-black">
         <p>Contact Us</p>

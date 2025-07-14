@@ -2,7 +2,8 @@ import React from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { LiaMailBulkSolid } from "react-icons/lia";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../assets/Images/logoswami.png";
+import swamiPic9 from "../assets/Images/swami_pic9.png";
 const Eighth = () => {
   const navigate = useNavigate();
   return (
@@ -10,10 +11,7 @@ const Eighth = () => {
       {/* Main Bio Card */}
       <div className="flex-1 lg:min-w-[400px] lg:max-w-[400px] hover:scale-105 cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
         <div className="flex justify-center mt-4">
-          <img
-            src="https://swamiabhyanand.com/images/cropped-logo.png"
-            alt="Logo"
-          />
+          <img src={logo} alt="Logo" className="size-25" />
         </div>
         <div className="text-center font-bold mt-2 ">
           <p>आचार्य महामंडलेश्वर स्वामी श्री अभयानंद सरस्वती जी</p>
@@ -50,11 +48,7 @@ const Eighth = () => {
             >
               CLICK HERE
             </button>
-            <img
-              src="https://swamiabhyanand.com/images/pic9.png"
-              alt="Ashram"
-              className="w-20 h-20 mt-2"
-            />
+            <img src={swamiPic9} alt="Ashram" className="w-20 h-20 mt-2" />
           </div>
         </div>
       ))}

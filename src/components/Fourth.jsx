@@ -1,6 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../assets/Images/logoswami.png";
+import bagwatarti from "../assets/Images/bhagwat arti_pic.png";
+import goshala from "../assets/Images/goshala_pic.png";
+import sanskritvidhaylya from "../assets/Images/sanskrit vidyalay_pic.png";
+import pustkalya from "../assets/Images/pustkalay_pic3.png";
+import satsang from "../assets/Images/satsang_pic.png";
+import swamiPic6 from "../assets/Images/swami_pic6.jpg";
 const Fourth = () => {
   const navigate = useNavigate();
   return (
@@ -8,7 +14,7 @@ const Fourth = () => {
       <section className="bg-[#fefee9] py-10 px-4">
         <div className="flex flex-col items-center text-center mb-10">
           <img
-            src="https://swamiabhyanand.com/images/pic1.png"
+            src={logo}
             alt="Blog Logo"
             className="w-16 h-16 lg:w-30 lg:h-30 mb-2"
           />
@@ -20,7 +26,7 @@ const Fourth = () => {
         <div className="max-w-10xl  grid md:grid-cols-2 gap-15 ">
           <div className="w-full">
             <img
-              src="https://swamiabhyanand.s3.ap-south-1.amazonaws.com/uploads/DSC06339.JPG" // Replace with your actual image path
+              src={swamiPic6}
               alt="Blog"
               className="w-full lg:h-140  rounded-lg shadow-md"
             />
@@ -29,23 +35,23 @@ const Fourth = () => {
           <div className="space-y-10">
             {[
               {
-                icon: "https://swamiabhyanand.com/images/goshala.png",
+                icon: goshala,
                 title: "गौशाला",
               },
               {
-                icon: "https://swamiabhyanand.com/images/sanskrit%20vidyalay.png",
+                icon: sanskritvidhaylya,
                 title: "संस्कृत विद्यालय",
               },
               {
-                icon: "https://swamiabhyanand.com/images/pic3.png",
-                title: "संस्कृत विद्यालय",
+                icon: pustkalya,
+                title: "पुस्तकालय",
               },
               {
-                icon: "https://swamiabhyanand.com/images/satsang.png",
+                icon: satsang,
                 title: "सत्संग",
               },
               {
-                icon: "https://swamiabhyanand.com/images/bhagwat%20arti.png",
+                icon: bagwatarti,
                 title: "भगवत आरती",
               },
             ].map((item, i) => (

@@ -21,6 +21,7 @@ import Navilatest from "./components/Navilatest";
 import Newblog from "./components/Newblog";
 import Allvidios from "./components/Allvidios";
 import Dashboard from "./components/Dashboard";
+import PaymentPage from "./components/Paymentpage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -138,6 +139,12 @@ function App() {
         <Route
           path="/dashboard"
           element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/payment"
+          element={
+            isLoggedIn ? <PaymentPage /> : <Navigate to="/donate" replace />
+          }
         />
       </Routes>
     </Router>

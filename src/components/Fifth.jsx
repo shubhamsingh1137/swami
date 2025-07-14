@@ -1,6 +1,6 @@
 import React, { use } from "react";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../assets/Images/logoswami.png";
 const Fifth = () => {
   const navigate = useNavigate();
 
@@ -10,7 +10,7 @@ const Fifth = () => {
         {/* Heading */}
         <div className="flex flex-col items-center mb-10">
           <img
-            src="https://swamiabhyanand.com/images/pic1.png"
+            src={logo}
             alt="Logo"
             className="w-14 h-14 lg:w-30 lg:h-30 mb-2"
           />

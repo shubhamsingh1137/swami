@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Imageformat } from "../Utilis/Imageformat/Index";
+import logo from "../assets/Images/logoswami.png";
 import Vidioimage from "./Vidioimage";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-// Loader Component
+// Loader component
 const CircularProgressWithLabel = ({ value }) => (
   <Box position="relative" display="inline-flex">
     <CircularProgress variant="determinate" value={value} size={80} />
@@ -31,7 +31,7 @@ const CircularProgressWithLabel = ({ value }) => (
   </Box>
 );
 
-// Custom Arrows
+// Slider Arrows
 const NextArrow = ({ onClick }) => (
   <div
     className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer bg-white rounded-full shadow-md p-2 hover:bg-gray-200"
@@ -51,10 +51,12 @@ const PrevArrow = ({ onClick }) => (
 );
 
 const About = () => {
-  const [data, setData] = useState([]);
+  const [sliderData, setSliderData] = useState([]);
+  const [htmlContent, setHtmlContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
+  // Update progress loader
   useEffect(() => {
     if (loading) {
       const timer = setInterval(() => {
@@ -64,23 +66,48 @@ const About = () => {
     }
   }, [loading]);
 
-  const fetchapi = async () => {
+  // Fetch slider images
+  const fetchSliderData = async () => {
     try {
       const response = await axios.post(
         "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
         { store_id: 14 }
       );
-
-      setData(response?.data?.blog_list || []);
+      setSliderData(response?.data?.blog_list || []);
     } catch (error) {
-      console.error("fetch failed error", error);
+      console.error("Slider fetch failed", error);
+    }
+  };
+
+  // Fetch HTML content from "about us"
+  const fetchAboutContent = async () => {
+    try {
+      const res = await axios.get(
+        "https://m1blog.aaragroups.com/blog/content-writer-api/",
+        {
+          headers: {
+            Authorization: "Token 55cf7e557b527cb3f44de530cc98ca14dea80dd1",
+          },
+        }
+      );
+
+      const aboutItem = res.data.data.find(
+        (item) => item.title?.toLowerCase() === "about us"
+      );
+
+      const key = "स्वामीजी जी का सामाजिक जीवन";
+      const html = aboutItem?.content?.[key] || "";
+      setHtmlContent(html);
+    } catch (err) {
+      console.error("Error fetching about us content:", err);
     } finally {
       setTimeout(() => setLoading(false), 1000);
     }
   };
 
   useEffect(() => {
-    fetchapi();
+    fetchSliderData();
+    fetchAboutContent();
   }, []);
 
   const settings = {
@@ -102,18 +129,18 @@ const About = () => {
   };
 
   return (
-    <div>
+    <div className="bg-[#fefee9] text-gray-800 py-8">
       {/* Title */}
-      <div className="flex justify-center items-center mt-5 text-4xl lg:text-4xl font-bold text-black">
-        <p>हमारे बारे में</p>
+      <div className="text-center text-3xl lg:text-4xl font-bold mb-6">
+        हमारे बारे में
       </div>
-      <div className="flex justify-center items-center mt-10">
-        <img
-          src="https://swamiabhyanand.com/images/cropped-logo.png"
-          alt="logo"
-        />
+
+      {/* Logo */}
+      <div className="flex justify-center items-center mt-2">
+        <img src={logo} alt="logo" className="h-20 w-auto" />
       </div>
-      {/* Loader or Slider */}
+
+      {/* Slider */}
       <div className="relative mt-10 px-4 lg:px-20">
         {loading ? (
           <div className="flex justify-center items-center h-72">
@@ -121,73 +148,29 @@ const About = () => {
           </div>
         ) : (
           <Slider {...settings}>
-            {data.map((item, index) => (
+            {sliderData.map((item, index) => (
               <div key={index} className="px-2">
                 <img
                   src={item.images}
-                  alt={`slider-${index}`}
-                  className="rounded-xl h-full lg:h-200 w-full object-cover"
+                  alt={`slide-${index}`}
+                  className="rounded-xl w-full h-[550px] object-cover"
                 />
               </div>
             ))}
           </Slider>
         )}
       </div>
-      {/* Additional Content - Added this section */}
-      <div className="flex items-center justify-center mt-10 lg:text-2xl text-black font-semibold">
-        <p>॥श्री गुरूवे नमः॥</p>
+
+      {/* Dynamic HTML content */}
+      <div className="max-w-6xl mx-auto px-4 mt-10 text-base lg:text-lg leading-relaxed">
+        <div
+          className="text-gray-800"
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
+        />
       </div>
-      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
-        <p>(परम् पूज्य महामंडलेश्वर स्वामी श्री अभयानन्द सरस्वती जी महराज)</p>
-      </div>
-      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
-        <p>कुलं पवित्रं जननी कृतार्था वसुन्धरा पुण्यवती च तेन।</p>
-      </div>
-      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
-        <p>अपारसंवित्सुखसागरेऽस्मिन् लीनं परे ब्रह्मणि यस्य चेतः॥</p>
-      </div>
-      <div className="flex items-center justify-center mt-5 lg:text-2xl text-black font-semibold">
-        <p>(स्कंन्दपुराणम्)</p>
-      </div>
-      <div className="flex flex-col items-center justify-center text-center mt-5 text-base lg:text-xl text-gray-700 mx-5 lg:mx-20 leading-relaxed">
-        <p>
-          संत श्री अभयानंद जी महाराज का जन्म उत्तर प्रदेश के एक छोटे से गाँव में
-          हुआ था। उन्होंने छोटी उम्र से ही आध्यात्मिकता और ज्ञान की प्यास के
-          संकेत दिखाए। उन्होंने गहन तपस्या और ध्यान में वर्षों बिताए, विभिन्न
-          शास्त्रों का अध्ययन किया और आध्यात्मिक गुरुओं से शिक्षा प्राप्त की।
-          उनकी शिक्षाएं वेदों, उपनिषदों और अन्य प्राचीन भारतीय ग्रंथों के
-          सिद्धांतों में गहराई से निहित हैं। वे आत्म-साक्षात्कार, दिव्य प्रेम और
-          अहिंसा के महत्व पर जोर देते हैं।
-        </p>
-        <p className="mt-5">
-          महाराजश्री श्री शंकराचार्य, श्री रामानुजाचार्य, श्री माधवाचार्य, श्री
-          निम्बार्काचार्य एवं श्री वल्लभाचार्य आदि पाँच प्रमुख आचार्य परम्पराओं
-          एवं श्री कृष्ण प्रणामी, श्री स्वामी नारायण, श्री राधावल्लभ, श्री
-          कबीरपंथी, श्री दादू पंथी, श्री वल्लभ आदि विभिन्न पंथों की शिक्षाओं को
-          सम्मिलित करते हुए सभी परम्पराओं में सामंजस्य स्थापित करते हैं। सनातन
-          धर्म की अनेक मान्यताओं में एकता और सामंजस्य स्थापित करने में
-          महाराजश्री का अतुलनीय योगदान रहा है। वर्तमान समय में महाराजश्री की
-          अद्वितीय जीवन यात्रा एक आध्यात्मिक जागृति है।
-        </p>
-        <p className="mt-5">
-          महाराजश्री ने केवल आध्यात्मिक उपदेश ही नहीं दिए, बल्कि समाज सेवा के
-          कार्य भी किए हैं। उन्होंने शिक्षा, स्वास्थ्य और पर्यावरण संरक्षण के
-          क्षेत्र में कई पहल की हैं। उनके मार्गदर्शन में कई आश्रम और संस्थान
-          स्थापित किए गए हैं, जो वंचितों की सेवा करते हैं और आध्यात्मिक मूल्यों
-          को बढ़ावा देते हैं। महाराजश्री का जीवन और उनकी शिक्षाएं हमें यह याद
-          दिलाती हैं कि सच्ची आध्यात्मिक प्रगति आंतरिक शांति, निस्वार्थ सेवा और
-          सभी जीवित प्राणियों के प्रति प्रेम में निहित है।
-        </p>
-      </div>
-      <div className="flex justify-center items-center text-center mt-10 mb-10 text-base lg:text-xl text-gray-700 mx-5 lg:mx-20 leading-relaxed">
-        <p>
-          महाराजश्री का दर्शन न केवल भारतीय संस्कृति की गहन आध्यात्मिक परंपराओं
-          में गहराई से निहित है, बल्कि आधुनिक समय की चुनौतियों के लिए भी
-          प्रासंगिक है। उनकी शिक्षाएं हमें आंतरिक शांति, निस्वार्थ सेवा और सभी
-          जीवित प्राणियों के प्रति प्रेम प्राप्त करने के लिए प्रेरित करती हैं।
-        </p>
-      </div>
-      <div>
+
+      {/* Video Section */}
+      <div className="mt-10">
         <Vidioimage group="About" />
       </div>
     </div>
