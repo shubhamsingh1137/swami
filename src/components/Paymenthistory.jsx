@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import { FaSearchengin } from "react-icons/fa";
 
 const Paymenthistory = () => {
   const [paymentHistory, setPaymentHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const fetchPaymentHistory = async () => {
+  const fetchPaymentHistory = async (page = 1, search = "") => {
+    setLoading(true);
     try {
-      const res = await axios.get(
-        "https://m1blog.aaragroups.com/user-payment-history/",
-        {
-          headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const url = `https://m1blog.aaragroups.com/user-payment-history/?page=${page}&search=${search}`;
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      });
 
       if (res.data?.response_code === 200) {
         setPaymentHistory(res.data.data || []);
+        setTotalPages(res.data.total_page || 1);
+        setCurrentPage(res.data.current_page || 1);
       } else {
         toast.warn("⚠️ Could not load payment history.");
       }
@@ -31,73 +38,112 @@ const Paymenthistory = () => {
   };
 
   useEffect(() => {
-    fetchPaymentHistory();
+    fetchPaymentHistory(1, searchTerm);
   }, []);
 
-  return (
-    <div className="bg-white p-6 rounded shadow-md">
-      <h2 className="text-2xl font-bold mb-4">🧾 Payment History</h2>
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    setCurrentPage(1);
+    fetchPaymentHistory(1, value);
+  };
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : paymentHistory.length === 0 ? (
-        <p>No payments found.</p>
-      ) : (
-        <>
-          <div className="flex justify-end mb-2">
-            <button
-              onClick={() => setPaymentHistory([])}
-              className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded text-sm"
-            >
-              Clear All
-            </button>
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+    fetchPaymentHistory(page, searchTerm);
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setCurrentPage(1);
+    fetchPaymentHistory(1, "");
+  };
+
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-yellow-100 via-orange-50 to-pink-100 p-4 sm:p-6 lg:p-10 overflow-auto">
+      <div className="w-full bg-white/80 backdrop-blur-md rounded-xl shadow-xl p-4 sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-orange-700 underline underline-offset-4">
+          🧾 Donation History
+        </h2>
+
+        {/* 🔍 Search Bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+          <div className="relative w-full sm:w-2/3">
+            <FaSearchengin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black" />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearch}
+              placeholder="Search by Name, Phone or Payment No..."
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
           </div>
+        </div>
+
+        {loading ? (
+          <div className="text-center text-lg text-gray-700">Loading...</div>
+        ) : paymentHistory.length === 0 ? (
+          <div className="text-center text-gray-600 text-base">
+            No payments found.
+          </div>
+        ) : (
           <div className="overflow-x-auto">
-            <table className="w-full table-auto border border-gray-300">
-              <thead className="bg-gray-100">
+            <table className="min-w-full border border-gray-300 text-sm sm:text-base">
+              <thead className="bg-orange-200 text-gray-800">
                 <tr>
                   <th className="p-2 border">#</th>
                   <th className="p-2 border">Payment No</th>
                   <th className="p-2 border">Name</th>
-                  <th className="p-2 border">Mobile No</th>
+                  <th className="p-2 border hidden md:table-cell">Mobile</th>
                   <th className="p-2 border">Amount</th>
-                  <th className="p-2 border">Status</th>
+                  <th className="p-2 border hidden sm:table-cell">Status</th>
                   <th className="p-2 border">Date</th>
-                  <th className="p-2 border">Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-white/90">
                 {paymentHistory.map((item, index) => (
-                  <tr key={index} className="text-center">
-                    <td className="p-2 border">{index + 1}</td>
-                    <td className="p-2 border">{item.payment_no || "N/A"}</td>
+                  <tr
+                    key={index}
+                    className="text-center border-t hover:bg-orange-50 transition"
+                  >
+                    <td className="p-2 border">
+                      {(currentPage - 1) * 10 + index + 1}
+                    </td>
+                    <td className="p-2 border break-all">
+                      {item.payment_no || "N/A"}
+                    </td>
                     <td className="p-2 border">{item.name || "N/A"}</td>
-                    <td className="p-2 border">{item.phone || "N/A"}</td>
-                    <td className="p-2 border">{item.amount || "0"}</td>
-                    <td className="p-2 border text-green-600 font-semibold">
+                    <td className="p-2 border hidden md:table-cell">
+                      {item.phone || "N/A"}
+                    </td>
+                    <td className="p-2 border font-semibold text-blue-600">
+                      ₹ {item.amount || "0"}
+                    </td>
+                    <td className="p-2 border hidden sm:table-cell font-medium text-green-600">
                       {item.status}
                     </td>
-                    <td className="p-2 border">
+                    <td className="p-2 border text-gray-700 text-xs sm:text-sm">
                       {new Date(item.updated_date).toLocaleString()}
-                    </td>
-                    <td className="p-2 border">
-                      <button
-                        onClick={() => {
-                          const updated = [...paymentHistory];
-                          updated.splice(index, 1);
-                          setPaymentHistory(updated);
-                        }}
-                        className="text-white bg-red-400 hover:bg-red-600 px-2 py-1 rounded text-sm"
-                      >
-                        Clear
-                      </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </>
+        )}
+      </div>
+
+      {/* 📄 Pagination */}
+      {totalPages > 1 && (
+        <Stack spacing={2} className="mt-4 items-center">
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="secondary"
+            size="small"
+          />
+        </Stack>
       )}
     </div>
   );

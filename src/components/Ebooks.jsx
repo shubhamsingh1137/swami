@@ -13,7 +13,7 @@ import {
 } from "@react-pdf/renderer";
 import NotoDevanagari from "../fonts/NotoSansDevanagari-VariableFont_wdth,wght.ttf";
 import Vidioimage from "./Vidioimage";
-
+import logo from "../assets/Images/logoswami.png";
 Font.register({
   family: "NotoSansDevanagari",
   src: NotoDevanagari,
@@ -127,84 +127,96 @@ const Ebooks = () => {
   }, [loading]);
 
   return (
-    <div className="bg-[#f9fcd1] min-h-screen flex flex-col items-center px-4">
-      {loading ? (
-        <div className="flex justify-center items-center h-screen">
-          <CircularProgressWithLabel value={progress} />
-        </div>
-      ) : (
-        <>
-          <h1 className="text-3xl font-bold text-center my-8">E-Books</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {data.map((book, index) => (
-              <div
-                key={index}
-                className="p-4 bg-white  rounded-lg shadow hover:scale-105 transition"
-              >
-                <div className="flex items-center justify-center">
-                  <img
-                    src={book.image}
-                    alt={book.title}
-                    className="w-50 h-50  object-cover rounded mb-3"
-                  />
-                </div>
-                <h2 className="font-bold text-center">{book.title}</h2>
-                <p className="text-center text-sm text-gray-600 mt-1">
-                  {book.created_author?.[0] ||
-                    "परम् पूज्य  महामंडलेश्वर स्वामी श्री अभयानन्द सरस्वती जी महराज"}
-                </p>
-                <button
-                  onClick={() => setSelectedBook(book)}
-                  className="mt-3 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
-                >
-                  <IoMdOpen className="inline mr-1" /> Preview
-                </button>
-              </div>
-            ))}
+    <>
+      {" "}
+      <div className="flex justify-center items-center mb-2">
+        <img
+          src={logo}
+          alt="logo"
+          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
+        />
+      </div>
+      <div className="text-center text-3xl lg:text-4xl font-bold mb-6">
+        E-books
+      </div>
+      <div className="bg-[#f9fcd1] min-h-screen flex flex-col items-center px-4">
+        {loading ? (
+          <div className="flex justify-center items-center h-screen">
+            <CircularProgressWithLabel value={progress} />
           </div>
-        </>
-      )}
-      {/* Modal for PDF preview */}
-      {selectedBook && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
-          <div className="relative bg-white rounded-lg max-w-4xl w-full h-[90vh]">
-            <button
-              onClick={() => setSelectedBook(null)}
-              className="absolute top-3 right-3 text-black hover:text-red-600 z-10"
-            >
-              <MdClose size={24} />
-            </button>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
+              {data.map((book, index) => (
+                <div key={index} className="p-4 bg-white  rounded-lg shadow-md">
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={book.image}
+                      alt={book.title}
+                      className="w-50 h-50  object-cover rounded mb-3  hover:scale-105 transition-transform duration-500 ease-in-out"
+                    />
+                  </div>
 
-            {/* Conditionally render viewer based on screen */}
-            {isMobile ? (
-              <iframe
-                src={`https://docs.google.com/gview?embedded=true&url=${selectedBook.url}`}
-                title="PDF Viewer"
-                width="100%"
-                height="100%"
-                className="rounded"
-              ></iframe>
-            ) : (
-              <PDFViewer width="100%" height="100%">
-                <Document>
-                  <Page style={styles.page}>
-                    <Text style={styles.heading}>{selectedBook.title}</Text>
-                    <Text style={styles.author}>
-                      {selectedBook.created_author?.[0] ||
-                        "SWAMI TRIBHUVAN DAS"}
-                    </Text>
-                    <Text style={styles.content}>
-                      {selectedBook.description || "No content available."}
-                    </Text>
-                  </Page>
-                </Document>
-              </PDFViewer>
-            )}
+                  <h2 className="font-bold text-center hover:scale-105 transition-transform duration-500 ease-in-out">
+                    {book.title}
+                  </h2>
+                  <p className="text-center text-sm text-gray-600 mt-1 hover:scale-105 transition-transform duration-500 ease-in-out">
+                    {book.created_author?.[0] ||
+                      "परम् पूज्य  महामंडलेश्वर स्वामी श्री अभयानन्द सरस्वती जी महराज"}
+                  </p>
+                  <button
+                    onClick={() => setSelectedBook(book)}
+                    className="mt-3 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-2xl hover:scale-105 transition-transform duration-500 ease-in-out"
+                  >
+                    <IoMdOpen className="inline mr-1" /> Preview
+                  </button>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        {/* Modal for PDF preview */}
+        {selectedBook && (
+          <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
+            <div className="relative bg-white rounded-lg max-w-4xl w-full h-[90vh]">
+              <button
+                onClick={() => setSelectedBook(null)}
+                className="absolute top-3 right-3 text-black hover:text-red-600 z-10"
+              >
+                <MdClose size={24} />
+              </button>
+
+              {/* Conditionally render viewer based on screen */}
+              {isMobile ? (
+                <iframe
+                  src={`https://docs.google.com/gview?embedded=true&url=${selectedBook.url}`}
+                  title="PDF Viewer"
+                  width="100%"
+                  height="100%"
+                  className="rounded"
+                ></iframe>
+              ) : (
+                <PDFViewer width="100%" height="100%">
+                  <Document>
+                    <Page style={styles.page}>
+                      <Text style={styles.heading}>{selectedBook.title}</Text>
+                      <Text style={styles.author}>
+                        {selectedBook.created_author?.[0] ||
+                          "SWAMI TRIBHUVAN DAS"}
+                      </Text>
+                      <Text style={styles.content}>
+                        {selectedBook.description || "No content available."}
+                      </Text>
+                    </Page>
+                  </Document>
+                </PDFViewer>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-      <Vidioimage group="ebook" />
-    </div>
+        )}
+        <Vidioimage group="ebook" />
+      </div>
+    </>
   );
 };
 

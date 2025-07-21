@@ -20,8 +20,10 @@ import LatestEvents from "./components/Latest_event";
 import Navilatest from "./components/Navilatest";
 import Newblog from "./components/Newblog";
 import Allvidios from "./components/Allvidios";
-import Dashboard from "./components/Dashboard";
+
 import PaymentPage from "./components/Paymentpage";
+import Dashboard from "./components/Dashboard/Dashboard";
+import ScrollToTop from "./components/Scroll_top/ScrollToTop";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -38,116 +40,119 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <Home />
-            </Layout>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <Layout>
-              <About />
-            </Layout>
-          }
-        />
-        <Route
-          path="/blog"
-          element={
-            <Layout>
-              <Blog />
-            </Layout>
-          }
-        />
-        <Route
-          path="/gallary"
-          element={
-            <Layout>
-              <Gallery />
-            </Layout>
-          }
-        />
-        <Route
-          path="/donate"
-          element={
-            <Layout>
-              <Donate />
-            </Layout>
-          }
-        />
-        <Route
-          path="/event"
-          element={
-            <Layout>
-              <Event />
-            </Layout>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <Layout>
-              <Contact />
-            </Layout>
-          }
-        />
-        <Route
-          path="/ebooks"
-          element={
-            <Layout>
-              <Ebooks />
-            </Layout>
-          }
-        />
-        <Route
-          path="/latest"
-          element={
-            <Layout>
-              <LatestEvents />
-            </Layout>
-          }
-        />
-        <Route
-          path="/navilatest/:id"
-          element={
-            <Layout>
-              <Navilatest />
-            </Layout>
-          }
-        />
-        <Route
-          path="/newblog/:id"
-          element={
-            <Layout>
-              <Newblog />
-            </Layout>
-          }
-        />
-        <Route
-          path="/allvidios"
-          element={
-            <Layout>
-              <Allvidios />
-            </Layout>
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path="/payment"
-          element={
-            isLoggedIn ? <PaymentPage /> : <Navigate to="/donate" replace />
-          }
-        />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <Layout>
+                <Blog />
+              </Layout>
+            }
+          />
+          <Route
+            path="/gallary"
+            element={
+              <Layout>
+                <Gallery />
+              </Layout>
+            }
+          />
+          <Route
+            path="/donate"
+            element={
+              <Layout>
+                <Donate />
+              </Layout>
+            }
+          />
+          <Route
+            path="/event"
+            element={
+              <Layout>
+                <Event />
+              </Layout>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <Layout>
+                <Contact />
+              </Layout>
+            }
+          />
+          <Route
+            path="/ebooks"
+            element={
+              <Layout>
+                <Ebooks />
+              </Layout>
+            }
+          />
+          <Route
+            path="/latest"
+            element={
+              <Layout>
+                <LatestEvents />
+              </Layout>
+            }
+          />
+          <Route
+            path="/navilatest/:id"
+            element={
+              <Layout>
+                <Navilatest />
+              </Layout>
+            }
+          />
+          <Route
+            path="/newblog/:id"
+            element={
+              <Layout>
+                <Newblog />
+              </Layout>
+            }
+          />
+          <Route
+            path="/allvidios"
+            element={
+              <Layout>
+                <Allvidios />
+              </Layout>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
+          />
+          <Route
+            path="/payment"
+            element={
+              isLoggedIn ? <PaymentPage /> : <Navigate to="/donate" replace />
+            }
+          />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

@@ -77,8 +77,6 @@ const Setting = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         const token = localStorage.getItem("token");
-        const fullPhone = values.countryCode + values.mobile;
-
         const payload = {
           first_name: values.firstName,
           last_name: values.lastName,
@@ -147,67 +145,62 @@ const Setting = () => {
   return (
     <>
       <ToastContainer position="top-right" autoClose={2000} />
-      <div className="bg-orange-500 text-gray-800 rounded-md p-6 shadow-2xl max-w-5xl mx-auto mb-10">
-        <div className="flex items-start gap-4">
-          <div className="bg-blue-400 p-3 rounded-full">
-            <FaDonate className="text-gray-800 text-3xl" />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-2">
-              दान करें - हमारे मिशन को सहयोग दें
-            </h3>
-            <p className="text-sm text-gray-800">
-              क्या आप हमारे मिशन में योगदान देना चाहेंगे? आपका दान हमारे आश्रम
-              की गतिविधियों, आध्यात्मिक कार्यक्रमों और सेवाओं को आगे बढ़ाने में
-              सहायक होगा। आपका हर एक योगदान मूल्यवान है और हम इसके लिए आभारी
-              हैं।
-            </p>
-            <button
-              onClick={() => navigate("/donate")}
-              className="mt-4 text-sm italic text-red-800 cursor-pointer hover:underline"
-            >
-              मैं दान करना चाहता हूँ।
-            </button>
+      <div className="min-h-screen bg-gradient-to-r from-orange-300 via-yellow-50 to-pink-300 py-10 px-4 sm:px-6 lg:px-16">
+        <div className="bg-white/70  rounded-xl shadow-2xl p-6 sm:p-10 max-w-5xl mx-auto mb-12">
+          <div className="flex flex-col sm:flex-row items-start gap-4">
+            <div className="bg-gradient-to-r from-yellow-400 to-orange-500 p-3 rounded-full shadow">
+              <FaDonate className="text-white text-3xl" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-2 text-orange-700">
+                दान करें - हमारे मिशन को सहयोग दें
+              </h3>
+              <p className="text-sm text-gray-800 leading-relaxed">
+                क्या आप हमारे मिशन में योगदान देना चाहेंगे? आपका दान हमारे आश्रम
+                की गतिविधियों, आध्यात्मिक कार्यक्रमों और सेवाओं को आगे बढ़ाने
+                में सहायक होगा। आपका हर एक योगदान मूल्यवान है और हम इसके लिए
+                आभारी हैं।
+              </p>
+              <button
+                onClick={() => navigate("/donate")}
+                className="mt-4 text-sm font-semibold text-red-600 hover:text-red-800 hover:underline transition"
+              >
+                मैं दान करना चाहता हूँ।
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex justify-center">
-        <h2 className="text-3xl font-bold mb-4 underline text-gray-800">
-          Edit profile
-        </h2>
-      </div>
+        <div className="text-center mb-8">
+          <h2 className="text-4xl font-extrabold text-gray-800 underline underline-offset-4">
+            Edit Profile
+          </h2>
+        </div>
 
-      <div className="flex justify-center items-center min-h-screen bg-orange-400">
-        <div className="w-full max-w-5xl p-8 bg-orange-500 rounded-lg shadow-md border border-orange-500">
+        <div className="bg-white/70 backdrop-blur-lg p-6 sm:p-10 rounded-2xl shadow-xl max-w-5xl mx-auto">
           <form
             onSubmit={formik.handleSubmit}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-800"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            {/* First Name */}
             <InputBox label="First Name" name="firstName" formik={formik} />
             <InputBox label="Last Name" name="lastName" formik={formik} />
-
-            {/* Sex */}
             <SelectBox
               label="Sex"
               name="sex"
               options={["Male", "Female", "Other"]}
               formik={formik}
             />
-
-            {/* Email */}
             <InputBox label="Email" name="email" type="email" formik={formik} />
 
             {/* Mobile + Country Code */}
-            <div className="bg-orange-400 p-4 rounded-2xl shadow">
-              <label className="block mb-1 font-medium">Mobile Number</label>
-              <div className="flex gap-2">
+            <div className="bg-orange-100 p-4 rounded-2xl shadow">
+              <label className="block mb-1 font-semibold">Mobile Number</label>
+              <div className="flex gap-2 flex-col sm:flex-row">
                 <select
                   name="countryCode"
                   onChange={formik.handleChange}
                   value={formik.values.countryCode}
-                  className="w-1/3 p-2 rounded-2xl bg-orange-500"
+                  className="sm:w-1/3 w-full p-2 rounded-xl bg-white border"
                 >
                   {countryCodes.map((c) => (
                     <option key={c.code} value={c.code}>
@@ -220,7 +213,7 @@ const Setting = () => {
                   name="mobile"
                   onChange={formik.handleChange}
                   value={formik.values.mobile}
-                  className="w-2/3 p-2 rounded-2xl bg-orange-500"
+                  className="sm:w-2/3 w-full p-2 rounded-xl bg-white border"
                   placeholder="Enter 10-digit number"
                 />
               </div>
@@ -231,23 +224,18 @@ const Setting = () => {
               )}
             </div>
 
-            {/* Country */}
             <SelectBox
               label="Country"
               name="country"
               options={countries.map((c) => c.name)}
               formik={formik}
             />
-
-            {/* State */}
             <SelectBox
               label="State"
               name="state"
               options={getStates()}
               formik={formik}
             />
-
-            {/* Nearby Ashram */}
             <SelectBox
               label="Nearby Ashram"
               name="Nearbyashram"
@@ -256,13 +244,13 @@ const Setting = () => {
             />
 
             {/* Description */}
-            <div className="bg-orange-400 p-4 rounded-2xl shadow md:col-span-2">
-              <label className="block mb-1 font-medium">Description</label>
+            <div className="bg-orange-100 p-4 rounded-2xl shadow md:col-span-2">
+              <label className="block mb-1 font-semibold">Description</label>
               <textarea
                 name="description"
                 onChange={formik.handleChange}
                 value={formik.values.description}
-                className="w-full p-2 rounded-2xl bg-orange-500"
+                className="w-full p-2 rounded-xl bg-white border"
               ></textarea>
               {formik.errors.description && formik.touched.description && (
                 <p className="text-red-500 text-sm mt-1">
@@ -271,11 +259,10 @@ const Setting = () => {
               )}
             </div>
 
-            {/* Submit */}
             <div className="md:col-span-2 flex justify-center">
               <button
                 type="submit"
-                className="bg-orange-600 hover:bg-orange-700 hover:scale-105 transition duration-150 text-white font-bold px-6 py-2 rounded"
+                className="bg-orange-600 hover:bg-orange-700 hover:scale-105 transition duration-150 text-white font-bold px-6 py-2 rounded-full shadow-md"
               >
                 Save
               </button>
@@ -287,16 +274,16 @@ const Setting = () => {
   );
 };
 
-// Reusable Input Field Component
+// Reusable Input Field
 const InputBox = ({ label, name, formik, type = "text" }) => (
-  <div className="bg-orange-400 p-4 rounded-2xl shadow">
-    <label className="block mb-1 font-medium">{label}</label>
+  <div className="bg-orange-100 p-4 rounded-2xl shadow">
+    <label className="block mb-1 font-semibold">{label}</label>
     <input
       type={type}
       name={name}
       onChange={formik.handleChange}
       value={formik.values[name]}
-      className="w-full p-2 rounded-2xl bg-orange-500"
+      className="w-full p-2 rounded-xl bg-white border"
     />
     {formik.errors[name] && formik.touched[name] && (
       <p className="text-red-500 text-sm mt-1">{formik.errors[name]}</p>
@@ -304,15 +291,15 @@ const InputBox = ({ label, name, formik, type = "text" }) => (
   </div>
 );
 
-// Reusable Select Field Component
+// Reusable Select Field
 const SelectBox = ({ label, name, options, formik }) => (
-  <div className="bg-orange-400 p-4 rounded-2xl shadow">
-    <label className="block mb-1 font-medium">{label}</label>
+  <div className="bg-orange-100 p-4 rounded-2xl shadow">
+    <label className="block mb-1 font-semibold">{label}</label>
     <select
       name={name}
       onChange={formik.handleChange}
       value={formik.values[name]}
-      className="w-full p-2 rounded-2xl bg-orange-500"
+      className="w-full p-2 rounded-xl bg-white border"
     >
       <option value="">Select</option>
       {options.map((opt, i) => (

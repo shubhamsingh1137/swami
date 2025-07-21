@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
-import swamiPic5 from "../assets/Images/swami_pic5.jpg";
+
 const First = () => {
   const [data, setData] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex1, setCurrentIndex1] = useState(0); // left
+  const [currentIndex2, setCurrentIndex2] = useState(1); // right
   const [loading, setLoading] = useState(true);
 
   const fetchapi = async () => {
@@ -29,23 +30,24 @@ const First = () => {
     fetchapi();
   }, []);
 
-  useEffect(() => {
-    if (currentIndex >= data.length) {
-      setCurrentIndex(0);
-    }
-  }, [data.length]);
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
+  const prevSlide1 = () => {
+    setCurrentIndex1((prev) => (prev === 0 ? data.length - 1 : prev - 1));
   };
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+  const nextSlide1 = () => {
+    setCurrentIndex1((prev) => (prev === data.length - 1 ? 0 : prev + 1));
   };
 
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
+  const prevSlide2 = () => {
+    setCurrentIndex2((prev) => (prev === 0 ? data.length - 1 : prev - 1));
   };
+
+  const nextSlide2 = () => {
+    setCurrentIndex2((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToSlide1 = (index) => setCurrentIndex1(index);
+  const goToSlide2 = (index) => setCurrentIndex2(index);
 
   if (loading) {
     return (
@@ -57,51 +59,75 @@ const First = () => {
 
   return (
     <div className="flex flex-col md:flex-row h-screen">
-      {/* Slider Section */}
-      <div className="relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden">
+      {/* Left Slider */}
+      <div className="relative mt-2 w-full md:w-1/2 h-1/2 md:h-full overflow-hidden">
         <img
-          src={data[currentIndex]?.image}
-          alt={data[currentIndex]?.title || `Slide ${currentIndex}`}
+          src={data[currentIndex1]?.image}
+          alt={data[currentIndex1]?.title || `Slide ${currentIndex1}`}
           className="w-full h-full object-cover transition duration-500"
         />
 
-        {/* Left Arrow */}
         <div
-          onClick={prevSlide}
+          onClick={prevSlide1}
           className="absolute top-1/2 left-4 -translate-y-1/2 text-3xl text-white bg-black bg-opacity-30 hover:bg-opacity-50 cursor-pointer p-2 rounded-full z-10"
         >
           ❮
         </div>
 
-        {/* Right Arrow */}
         <div
-          onClick={nextSlide}
+          onClick={nextSlide1}
           className="absolute top-1/2 right-4 -translate-y-1/2 text-3xl text-white bg-black bg-opacity-30 hover:bg-opacity-50 cursor-pointer p-2 rounded-full z-10"
         >
           ❯
         </div>
 
-        {/* Slide Indicators */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
           {data.map((_, index) => (
             <div
               key={index}
-              onClick={() => goToSlide(index)}
+              onClick={() => goToSlide1(index)}
               className={`w-3 h-3 rounded-full cursor-pointer ${
-                index === currentIndex ? "bg-white" : "bg-gray-400"
+                index === currentIndex1 ? "bg-white" : "bg-gray-400"
               }`}
             />
           ))}
         </div>
       </div>
 
-      {/* Static Image Section */}
-      <div className="relative w-full md:w-1/2 h-1/2 md:h-full">
+      {/* Right Slider */}
+      <div className="relative mt-2 w-full md:w-1/2 h-1/2 md:h-full overflow-hidden">
         <img
-          src={swamiPic5}
-          alt="Swamiji"
-          className="w-full h-full object-cover"
+          src={data[currentIndex2]?.image}
+          alt={data[currentIndex2]?.title || `Slide ${currentIndex2}`}
+          className="w-full h-full object-cover transition duration-500"
         />
+
+        <div
+          onClick={prevSlide2}
+          className="absolute top-1/2 left-4 -translate-y-1/2 text-3xl text-white bg-black bg-opacity-30 hover:bg-opacity-50 cursor-pointer p-2 rounded-full z-10"
+        >
+          ❮
+        </div>
+
+        <div
+          onClick={nextSlide2}
+          className="absolute top-1/2 right-4 -translate-y-1/2 text-3xl text-white bg-black bg-opacity-30 hover:bg-opacity-50 cursor-pointer p-2 rounded-full z-10"
+        >
+          ❯
+        </div>
+
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+          {data.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => goToSlide2(index)}
+              className={`w-3 h-3 rounded-full cursor-pointer ${
+                index === currentIndex2 ? "bg-white" : "bg-gray-400"
+              }`}
+            />
+          ))}
+        </div>
+
         <p className="absolute bottom-0 left-0 w-full text-center text-white text-lg md:text-2xl lg:text-4xl font-semibold px-4 py-3">
           परम पूज्य आचार्य महामंडलेश्वर...
         </p>

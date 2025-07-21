@@ -98,10 +98,13 @@ export default function Contact() {
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
-        <img src={logo} className="size-25" />
+      <div className="flex flex-wrap justify-center items-center gap-10 ">
+        <img
+          src={logo}
+          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
+        />
       </div>
-      <div className="flex justify-center items-center mt-5 text-4xl lg:text-6xl font-semibold text-black">
+      <div className="text-center text-3xl lg:text-4xl font-bold mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
         <p>Contact Us</p>
       </div>
 
@@ -189,26 +192,26 @@ export default function Contact() {
             <iframe
               title="Location"
               src="https://www.google.com/maps?q=W33Q%2BC44%20Chinhat%2C%20Lucknow%2C%20Uttar%20Pradesh&output=embed"
-              className="w-full h-full border-0"
+              className="w-full h-full border-0 hover:scale-105 transition-transform duration-500 ease-in-out"
               allowFullScreen=""
               loading="lazy"
             ></iframe>
           </div>
         </div>
         {/* Dynamic Locations */}
-        <div className="flex flex-wrap justify-center gap-6 p-6 bg-[#fffef0] shadow-2xl shadow-orange-400">
+        <div className="flex flex-wrap justify-center gap-6 p-6 bg-[#fffef0] shadow-2xl shadow-orange-400 ">
           {locations.map((loc, index) => (
             <div
               key={index}
-              className="w-full md:w-[48%] lg:w-[23%] bg-white rounded-xl p-4 space-y-3 border-t-4 shadow-2xl shadow-orange-400 border-orange-500"
+              className="w-full md:w-[48%] lg:w-[23%] bg-white hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl p-4 space-y-3 border-t-4 shadow-2xl shadow-orange-400 border-orange-500"
             >
-              <h3 className="text-xl lg:text-4xl font-bold text-center text-orange-600 uppercase">
+              <h3 className="text-xl lg:text-4xl font-bold text-center text-orange-600 uppercase hover:scale-105 transition-transform duration-500 ease-in-out">
                 {loc.name}
               </h3>
 
               <iframe
                 src={loc.mapSrc}
-                className="w-full h-50 rounded-md lg:mt-5"
+                className="w-full h-50 rounded-md lg:mt-5 hover:scale-105 transition-transform duration-500 ease-in-out"
                 allowFullScreen=""
                 loading="lazy"
               ></iframe>
@@ -216,25 +219,27 @@ export default function Contact() {
               <div className="text-center space-y-5 text-sm lg:text-xl md:text-base">
                 <div className="flex items-center justify-center gap-2 text-orange-500 font-semibold">
                   <FaMapMarkerAlt />
-                  <p className="text-black">{loc.address}</p>
+                  <p className="text-black hover:scale-105 transition-transform duration-500 ease-in-out">
+                    {loc.address}
+                  </p>
                 </div>
 
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-2 hover:scale-105 transition-transform duration-500 ease-in-out">
                   <FaPhoneAlt className="text-orange-500" />
                   <span>{loc.phone}</span>
                 </div>
 
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-2 hover:scale-105 transition-transform duration-500 ease-in-out">
                   <FaMobileAlt className="text-orange-500" />
                   <span>{loc.mobile}</span>
                 </div>
 
-                <div className="font-bold">
+                <div className="font-bold hover:scale-105 transition-transform duration-500 ease-in-out">
                   <p>Contact Person:</p>
                   <p>{loc.person}</p>
                 </div>
 
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-2 hover:scale-105 transition-transform duration-500 ease-in-out">
                   <FaEnvelope className="text-orange-500" />
                   <span>{loc.email}</span>
                 </div>
@@ -247,7 +252,7 @@ export default function Contact() {
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-pink-600 hover:bg-pink-700 text-white px-4 py-1 rounded-full shadow"
+                    className="bg-pink-600 hover:bg-pink-700 text-white px-4 py-1 rounded-full shadow hover:scale-105 transition-transform duration-500 ease-in-out"
                   >
                     CLICK HERE
                   </a>

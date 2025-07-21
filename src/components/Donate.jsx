@@ -105,15 +105,15 @@ const Donate = () => {
       {/* Logo */}
       <div className="flex justify-center pt-5">
         <img
-          src="https://swamiabhyanand.com/images/cropped-logo.png"
+          src={logo}
           alt="logo"
-          className="h-20 object-contain"
+          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
         />
       </div>
 
       {/* Page Heading */}
       <div className="text-center mt-2">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">
+        <h1 className="text-center text-3xl lg:text-4xl font-bold hover:scale-105 transition-transform duration-500 ease-in-out">
           Donate
         </h1>
       </div>
@@ -138,11 +138,11 @@ const Donate = () => {
               </p>
             ) : donationData ? (
               <>
-                <h2 className="text-2xl md:text-3xl font-semibold text-red-600 mb-4">
+                <h2 className="text-2xl md:text-3xl font-semibold text-red-600 mb-4 hover:scale-105 transition-transform duration-500 ease-in-out">
                   🙏 वेदांत के सेवाकार्यों में दें अपना सहयोग
                 </h2>
                 <div
-                  className="text-gray-800 text-base md:text-lg leading-relaxed space-y-4"
+                  className="text-gray-800 text-base md:text-lg leading-relaxed space-y-4 hover:scale-105 transition-transform duration-500 ease-in-out"
                   dangerouslySetInnerHTML={{
                     __html:
                       donationData[
@@ -150,14 +150,6 @@ const Donate = () => {
                       ],
                   }}
                 />
-                <div className="mt-6">
-                  <button
-                    onClick={handleDonateClick}
-                    className="text-lg md:text-xl px-6 py-3 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 rounded-lg"
-                  >
-                    CLICK HERE
-                  </button>
-                </div>
               </>
             ) : (
               <p className="text-red-500">Donation data not available.</p>
@@ -167,12 +159,12 @@ const Donate = () => {
 
         {/* Section 2 */}
         {donationData?.["❤️ कैसे करें दान?"] && (
-          <div className="mt-20 max-w-5xl mx-auto">
+          <div className="mt-20 max-w-5xl mx-auto hover:scale-105 transition-transform duration-500 ease-in-out">
             <h2 className="text-2xl md:text-3xl font-semibold text-red-600 mb-4 text-center md:text-left">
               ❤️ कैसे करें दान?
             </h2>
             <div
-              className="text-gray-800 text-base md:text-lg leading-relaxed space-y-4"
+              className="text-gray-800 text-base md:text-lg leading-relaxed space-y-4 hover:scale-105 transition-transform duration-500 ease-in-out"
               dangerouslySetInnerHTML={{
                 __html: donationData["❤️ कैसे करें दान?"],
               }}
@@ -180,7 +172,7 @@ const Donate = () => {
             <div className="flex justify-center md:justify-start mt-6">
               <button
                 onClick={handleDonateClick}
-                className="text-lg md:text-xl px-6 py-3 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 rounded-lg"
+                className="text-lg md:text-xl px-6 py-3 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl"
               >
                 Donate Now
               </button>

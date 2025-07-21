@@ -4,7 +4,7 @@ import Pagination from "@mui/material/Pagination";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-
+import logo from "../assets/Images/logoswami.png";
 import {
   FaAngleRight,
   FaCalendarAlt,
@@ -21,7 +21,6 @@ import { TbHandClick } from "react-icons/tb";
 import { Imageformat } from "../Utilis/Imageformat/Index";
 import Vidioimage from "./Vidioimage";
 
-// Loader with label component
 const CircularProgressWithLabel = ({ value }) => {
   return (
     <Box position="relative" display="inline-flex">
@@ -90,6 +89,16 @@ const Event = () => {
 
   return (
     <div>
+      <div className="flex justify-center items-center mb-2">
+        <img
+          src={logo}
+          alt="logo"
+          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
+        />
+      </div>
+      <div className="text-center text-3xl lg:text-4xl font-bold mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
+        Events
+      </div>
       <div className="flex items-center justify-center">
         <div className="bg-yellow-50 px-4 py-8 min-h-screen shadow-2xl shadow-gray-600 w-full max-w-[1400px]">
           {/* Filter Section */}
@@ -100,13 +109,19 @@ const Event = () => {
                 placeholder="SEARCH"
                 className="w-full md:flex-1 px-6 py-4 border border-white bg-white rounded placeholder:text-xl text-base"
               />
-              <button className="px-6 py-3 border text-base md:text-xl border-orange-500 text-orange-500 font-bold rounded hover:bg-orange-100">
+              <button className="px-6 py-3 border text-base md:text-xl border-orange-500 text-orange-500 font-bold rounded hover:bg-orange-100 hover:scale-105 transition-transform duration-500 ease-in-out">
                 FIND EVENTS
               </button>
               <div className="flex space-x-4 text-sm md:text-lg font-semibold text-gray-600">
-                <button className="hover:text-orange-600">List</button>
-                <button className="hover:text-orange-600">Month</button>
-                <button className="hover:text-orange-600">Day</button>
+                <button className="hover:text-orange-600 hover:scale-105 transition-transform duration-500 ease-in-out">
+                  List
+                </button>
+                <button className="hover:text-orange-600 hover:scale-105 transition-transform duration-500 ease-in-out">
+                  Month
+                </button>
+                <button className="hover:text-orange-600 hover:scale-105 transition-transform duration-500 ease-in-out">
+                  Day
+                </button>
               </div>
             </div>
           </div>
@@ -120,18 +135,18 @@ const Event = () => {
             <>
               {/* Event Section */}
               <div className="w-full">
-                <h2 className="text-2xl md:text-4xl font-semibold text-center mb-6">
+                <h2 className="text-2xl md:text-4xl font-semibold text-center mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
                   Latest Upcoming Events
                 </h2>
                 <div className="flex flex-wrap justify-center gap-4 mt-4 text-base md:text-2xl">
-                  <button className="border px-4 py-2 font-semibold">
+                  <button className="border px-4 py-2 font-semibold hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl">
                     Today
                   </button>
-                  <button className="bg-gray-100 px-4 py-2 text-blue-400 font-bold hover:scale-105 transition">
+                  <button className="bg-gray-100 px-4 py-2 text-blue-400 font-bold   hover:scale-105 transition-transform duration-500 ease-in-out">
                     NOW ONWARDS
                   </button>
                 </div>
-                <div className="text-xl md:text-3xl font-semibold text-center mt-16 mb-5">
+                <div className="text-xl md:text-3xl font-semibold text-center mt-16 mb-5 hover:scale-105 transition-transform duration-500 ease-in-out">
                   Latest Past Events
                 </div>
 
@@ -151,54 +166,54 @@ const Event = () => {
                               "https://swamiabhyanand.com/uploads/WhatsApp%20Image%202023-07-14%20at%2012.29.37%20PM.jpeg"
                             }
                             alt="Event"
-                            className="w-full lg:h-100 h-full object-cover lg:mt-10 lg:-ml-5 rounded-2xl"
+                            className="w-full lg:h-100 h-full object-cover  lg:-ml-5 rounded-2xl hover:scale-105 transition-transform duration-500 ease-in-out"
                           />
                         </div>
 
                         {/* Content */}
                         <div className="w-full lg:w-1/2 p-6 space-y-4 text-base md:text-xl">
-                          <p className="text-2xl md:text-3xl font-bold text-black">
+                          <p className="text-2xl md:text-3xl font-bold text-black hover:scale-105 transition-transform duration-500 ease-in-out">
                             {event.Title}
                           </p>
 
-                          <div className="flex items-start gap-3">
+                          <div className="flex items-start gap-3 hover:scale-105 transition-transform duration-500 ease-in-out">
                             <FaCalendarAlt className="mt-1 text-orange-400" />
                             <p>{event.date}</p>
                           </div>
 
-                          <div className="flex items-start gap-3">
+                          <div className="flex items-start gap-3 hover:scale-105 transition-transform duration-500 ease-in-out">
                             <FaMapMarkerAlt className="mt-1 text-orange-400" />
                             <p>{event.location || " लखनऊ"}</p>
                           </div>
 
-                          <div className="flex items-start gap-3">
+                          <div className="flex items-start gap-3 hover:scale-105 transition-transform duration-500 ease-in-out">
                             <FaMicrophone className="mt-1 text-orange-400" />
                             <p className="underline">{event.author || "N/A"}</p>
                           </div>
 
-                          <div className="flex items-start gap-3">
+                          <div className="flex items-start gap-3 hover:scale-105 transition-transform duration-500 ease-in-out">
                             <TfiHeadphoneAlt className="mt-1 text-orange-400" />
                             <p>{event.ashram || "स्वामी अभयानंद सरस्वती जी"}</p>
                           </div>
 
                           <div className="flex items-start gap-3">
                             <TbHandClick className="mt-1 text-orange-400" />
-                            <p className="font-semibold hover:underline cursor-pointer">
+                            <p className="font-semibold hover:underline cursor-pointer hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl">
                               Know More
                             </p>
                           </div>
 
                           {/* Share */}
                           <div className="pt-6">
-                            <p className="text-xl md:text-2xl font-bold mb-3">
+                            <p className="text-xl md:text-2xl font-bold mb-3 hover:scale-105 transition-transform duration-500 ease-in-out">
                               Share This Event with Others
                             </p>
                             <div className="flex text-orange-500 gap-4 text-2xl">
-                              <FaWhatsapp />
-                              <FaFacebook />
-                              <FaInstagram />
-                              <FaTwitter />
-                              <FaLinkedin />
+                              <FaWhatsapp className="hover:scale-150 transition-transform duration-500 ease-in-out" />
+                              <FaFacebook className="hover:scale-150 transition-transform duration-500 ease-in-out" />
+                              <FaInstagram className="hover:scale-150 transition-transform duration-500 ease-in-out" />
+                              <FaTwitter className="hover:scale-150 transition-transform duration-500 ease-in-out" />
+                              <FaLinkedin className="hover:scale-150 transition-transform duration-500 ease-in-out" />
                             </div>
                           </div>
                         </div>

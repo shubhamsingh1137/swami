@@ -1,8 +1,39 @@
-import React, { use } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/Images/logoswami.png";
+import axios from "axios";
 const Fifth = () => {
   const navigate = useNavigate();
+  const [homeContent, setHomeContent] = useState("");
+  const [loading, setLoading] = useState(true);
+  const fetchHomeContent = async () => {
+    try {
+      const res = await axios.get(
+        "https://m1blog.aaragroups.com/blog/content-writer-api/",
+        {
+          headers: {
+            Authorization: "Token 55cf7e557b527cb3f44de530cc98ca14dea80dd1",
+          },
+        }
+      );
+
+      const homeItem = res.data.data.find(
+        (item) => item.title?.toLowerCase() === "home page"
+      );
+
+      const contentData = homeItem?.content?.["गुरुदेव नवीनतम सत्संग"];
+
+      setHomeContent(contentData || "");
+    } catch (err) {
+      console.error("Error fetching home content:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHomeContent();
+  }, []);
 
   return (
     <div>
@@ -12,7 +43,7 @@ const Fifth = () => {
           <img
             src={logo}
             alt="Logo"
-            className="w-14 h-14 lg:w-30 lg:h-30 mb-2"
+            className="mx-auto mb-4 w-16 h-16 lg:w-30 lg:h-30 hover:scale-105 transition-transform duration-500 ease-in-out  border-5 border-orange-500 rounded-full"
           />
           <h2 className="text-2xl lg:text-5xl font-semibold text-gray-600">
             वीडियो देखें
@@ -35,16 +66,15 @@ const Fifth = () => {
 
           {/* Right: Text Details */}
           <div className="text-gray-600 space-y-4">
-            <h3 className="text-xl lg:text-4xl font-bold text-black">
-              श्रीमद्भगवद गीता अध्याय-9 | भाग-7
-            </h3>
-            <p className="text-base lg:text-3xl leading-relaxed">
-              श्रीमद्भगवद्गीता अध्याय- 9 (राजविद्याराजगुह्ययोग), भाग -7, अनंत
-              श्री विभूषित महामण्डलेश्वर स्वामी अभयानंद सरस्वती जी महाराज (श्री
-              पंचायती अखाड़ा महानिर्वाणी) “ अध्यक्ष ” अखिल भारतीय संत समिति
-              उत्तर प्रदेश स्वामी अभयानन्द वेद पाठशाला, पपनामऊ, अनेउरा कला,
-              फैज़ाबाद रोड, (लखनऊ )
-            </p>
+            <div className="text-md lg:text-2xl md:text-lg text-black mt-6 max-w-4xl mx-auto font-medium leading-relaxed hover:scale-105 transition-transform duration-500 ease-in-out">
+              {loading ? (
+                <p>Loading...</p>
+              ) : homeContent ? (
+                <div dangerouslySetInnerHTML={{ __html: homeContent }} />
+              ) : (
+                <p className="text-red-500">Content not found.</p>
+              )}
+            </div>
           </div>
         </div>
 
@@ -55,7 +85,7 @@ const Fifth = () => {
               window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/allvidios");
             }}
-            className="border lg:text-3xl cursor-pointer border-red-500 text-red-600 px-6 py-2 rounded-md hover:bg-red-600 hover:text-white transition"
+            className="border lg:text-3xl cursor-pointer border-red-500 text-red-600 px-6 py-2  hover:bg-red-600 hover:text-white hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl"
           >
             सभी वीडियो देखें
           </button>

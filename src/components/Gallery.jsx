@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Vidioimage from "./Vidioimage";
-
+import logo from "../assets/Images/logoswami.png";
 const Gallery = () => {
   const [folders, setFolders] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState("Select All");
@@ -45,37 +45,51 @@ const Gallery = () => {
     folders.find((f) => f.title === selectedFolder)?.images || [];
 
   return (
-    <div className="p-4">
-      <div className="flex flex-wrap gap-4 justify-center mb-6">
-        {folders.map((folder) => (
-          <button
-            key={folder.title}
-            onClick={() => setSelectedFolder(folder.title)}
-            className={`px-4 py-2 rounded-full text-white font-semibold ${
-              selectedFolder === folder.title ? "bg-orange-500" : "bg-gray-500"
-            }`}
-          >
-            {folder.title}
-          </button>
-        ))}
+    <>
+      <div className="flex justify-center items-center mb-2">
+        <img
+          src={logo}
+          alt="logo"
+          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
+        />
       </div>
-      {/* Images */}
-      {loading ? (
-        <p className="text-center">Loading...</p>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {displayedImages.map((img) => (
-            <img
-              key={img.id}
-              src={img.image}
-              alt={img.title}
-              className="rounded shadow hover:scale-105 transition"
-            />
+      <div className="text-center text-3xl lg:text-4xl font-bold mb-6">
+        Gallery
+      </div>{" "}
+      <div className="p-4">
+        <div className="flex flex-wrap gap-4 justify-center mb-6">
+          {folders.map((folder) => (
+            <button
+              key={folder.title}
+              onClick={() => setSelectedFolder(folder.title)}
+              className={`px-4 py-2 rounded-full text-white font-semibold ${
+                selectedFolder === folder.title
+                  ? "bg-orange-500 hover:scale-105 transition-transform duration-500 ease-in-out"
+                  : "bg-gray-500"
+              }`}
+            >
+              {folder.title}
+            </button>
           ))}
         </div>
-      )}
-      <Vidioimage group="gallary" />
-    </div>
+        {/* Images */}
+        {loading ? (
+          <p className="text-center">Loading...</p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {displayedImages.map((img) => (
+              <img
+                key={img.id}
+                src={img.image}
+                alt={img.title}
+                className="rounded shadow hover:scale-105 transition-transform duration-500 ease-in-out"
+              />
+            ))}
+          </div>
+        )}
+        <Vidioimage group="gallary" />
+      </div>
+    </>
   );
 };
 

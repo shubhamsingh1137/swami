@@ -10,7 +10,7 @@ const PaymentPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
-  const token = "5891390cf269c193ef2904ad38095673b8acee40"; // your auth token
+  const token = "6ddd489dcaae2d09ede8950a3f9b34289b42395f"; // your auth token
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -109,7 +109,6 @@ const PaymentPage = () => {
               if (verifyRes.status === 200) {
                 toast.success("🎉 Payment Verified Successfully!");
 
-                // ✅ Fetch payment history after verification
                 await fetchPaymentHistory();
 
                 // ✅ Redirect to dashboard's KYC section

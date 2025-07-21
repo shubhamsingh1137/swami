@@ -21,7 +21,7 @@ const Third = () => {
           (item) => item.title?.toLowerCase() === "home page"
         );
 
-        const key = "गुरुदेव  के बारे में"; // Do spaces matter
+        const key = "गुरुदेव  के बारे में";
         const content = homePageData?.content?.[key];
 
         if (content) {
@@ -36,10 +36,10 @@ const Third = () => {
   }, []);
 
   return (
-    <div className="bg-[#fefee9] text-gray-800 min-h-screen flex items-center justify-center px-4 py-10">
-      <div className="max-w-4xl w-full">
+    <div className="bg-[#fefee9] text-gray-800 min-h-screen flex items-center justify-center px-4 py-8">
+      <div className="w-full max-w-4xl mx-auto">
         <div
-          className="text-sm lg:text-xl leading-relaxed text-justify space-y-4"
+          className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none text-justify text-gray-800"
           dangerouslySetInnerHTML={{ __html: guruContent }}
         />
       </div>

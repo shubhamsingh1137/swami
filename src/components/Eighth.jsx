@@ -8,10 +8,13 @@ const Eighth = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-wrap justify-center items-stretch gap-4 mt-2  ">
-      {/* Main Bio Card */}
-      <div className="flex-1 lg:min-w-[400px] lg:max-w-[400px] hover:scale-105 cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
+      <div className="flex-1 lg:min-w-[400px] lg:max-w-[400px] hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
         <div className="flex justify-center mt-4">
-          <img src={logo} alt="Logo" className="size-25" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="size-25 border-5 border-orange-500 rounded-full"
+          />
         </div>
         <div className="text-center font-bold mt-2 ">
           <p>आचार्य महामंडलेश्वर स्वामी श्री अभयानंद सरस्वती जी</p>
@@ -26,11 +29,10 @@ const Eighth = () => {
         </div>
       </div>
 
-      {/* Reusable Ashram Cards */}
       {["LUCKNOW", "MEERUT", "SITAPUR", "HARIDWAR"].map((city, i) => (
         <div
           key={i}
-          className="flex-1 lg:min-w-[216px]  lg:max-w-[216px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
+          className="flex-1 lg:min-w-[216px] hover:scale-105 transition-transform duration-500 ease-in-out  lg:max-w-[216px] bg-white shadow-2xl shadow-orange-400 text-black font-semibold p-5 flex flex-col justify-between"
         >
           <div className="text-center font-semibold text-xl">{city} ASHRAM</div>
           <div className="flex justify-center items-center mt-2 gap-2">

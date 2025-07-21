@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Slider from "react-slick";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import logo from "../assets/Images/logoswami.png";
 import Vidioimage from "./Vidioimage";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-// Loader component
+// Loader with percentage label
 const CircularProgressWithLabel = ({ value }) => (
   <Box position="relative" display="inline-flex">
     <CircularProgress variant="determinate" value={value} size={80} />
@@ -31,55 +27,41 @@ const CircularProgressWithLabel = ({ value }) => (
   </Box>
 );
 
-// Slider Arrows
-const NextArrow = ({ onClick }) => (
-  <div
-    className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer bg-white rounded-full shadow-md p-2 hover:bg-gray-200"
-    onClick={onClick}
-  >
-    <FaArrowRight size={20} />
-  </div>
-);
-
-const PrevArrow = ({ onClick }) => (
-  <div
-    className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer bg-white rounded-full shadow-md p-2 hover:bg-gray-200"
-    onClick={onClick}
-  >
-    <FaArrowLeft size={20} />
-  </div>
-);
-
 const About = () => {
-  const [sliderData, setSliderData] = useState([]);
+  const [data, setData] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [htmlContent, setHtmlContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
-  // Update progress loader
+  // Simulated loader
   useEffect(() => {
     if (loading) {
       const timer = setInterval(() => {
         setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
-      }, 100);
+      }, 50);
       return () => clearInterval(timer);
     }
   }, [loading]);
 
   // Fetch slider images
-  const fetchSliderData = async () => {
+  const fetchapi = async () => {
     try {
-      const response = await axios.post(
-        "https://m1blog.aaragroups.com/blog/store-based-blog-list-api/",
-        { store_id: 14 }
+      const response = await axios.get(
+        "https://m1blog.aaragroups.com/blog/Slider-api/",
+        {
+          headers: {
+            Authorization: "Token 55cf7e557b527cb3f44de530cc98ca14dea80dd1",
+          },
+        }
       );
-      setSliderData(response?.data?.blog_list || []);
+      setData(response?.data?.data || []);
     } catch (error) {
-      console.error("Slider fetch failed", error);
+      console.error("Slider fetch failed:", error);
     }
   };
 
-  // Fetch HTML content from "about us"
+  // Fetch About content
   const fetchAboutContent = async () => {
     try {
       const res = await axios.get(
@@ -90,79 +72,95 @@ const About = () => {
           },
         }
       );
-
       const aboutItem = res.data.data.find(
         (item) => item.title?.toLowerCase() === "about us"
       );
-
       const key = "स्वामीजी जी का सामाजिक जीवन";
       const html = aboutItem?.content?.[key] || "";
       setHtmlContent(html);
     } catch (err) {
       console.error("Error fetching about us content:", err);
-    } finally {
-      setTimeout(() => setLoading(false), 1000);
     }
   };
 
   useEffect(() => {
-    fetchSliderData();
-    fetchAboutContent();
+    Promise.all([fetchapi(), fetchAboutContent()]).finally(() =>
+      setTimeout(() => setLoading(false), 1000)
+    );
   }, []);
 
-  const settings = {
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    cssEase: "ease",
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    pauseOnHover: true,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
-    ],
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
   };
 
   return (
-    <div className="bg-[#fefee9] text-gray-800 py-8">
-      {/* Title */}
-      <div className="text-center text-3xl lg:text-4xl font-bold mb-6">
-        हमारे बारे में
+    <div className="bg-[#fefee9] text-gray-800">
+      {/* Logo and Heading */}
+      <div className="flex flex-col justify-center items-center py-4 px-4">
+        <img
+          src={logo}
+          alt="logo"
+          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
+        />
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
+          हमारे बारे में
+        </h1>
       </div>
 
-      {/* Logo */}
-      <div className="flex justify-center items-center mt-2">
-        <img src={logo} alt="logo" className="h-20 w-auto" />
-      </div>
-
-      {/* Slider */}
-      <div className="relative mt-10 px-4 lg:px-20">
+      {/* Image Slider */}
+      <div className="relative w-full">
         {loading ? (
-          <div className="flex justify-center items-center h-72">
+          <div className="flex justify-center items-center h-[50vh]">
             <CircularProgressWithLabel value={progress} />
           </div>
         ) : (
-          <Slider {...settings}>
-            {sliderData.map((item, index) => (
-              <div key={index} className="px-2">
-                <img
-                  src={item.images}
-                  alt={`slide-${index}`}
-                  className="rounded-xl w-full h-[550px] object-cover"
+          <div className="relative w-full h-[calc(100vh-160px)] min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] overflow-hidden hover:scale-105 transition-transform duration-500 ease-in-out">
+            <img
+              src={data[currentIndex]?.image}
+              alt={data[currentIndex]?.title || `Slide ${currentIndex}`}
+              className="w-full h-full object-cover transition duration-500"
+            />
+
+            {/* Arrows */}
+            <div
+              onClick={prevSlide}
+              className="absolute top-1/2 left-2 sm:left-4 -translate-y-1/2 text-2xl sm:text-3xl text-white bg-black bg-opacity-30 hover:bg-opacity-50 cursor-pointer p-2 sm:p-3 rounded-full z-10"
+            >
+              ❮
+            </div>
+            <div
+              onClick={nextSlide}
+              className="absolute top-1/2 right-2 sm:right-4 -translate-y-1/2 text-2xl sm:text-3xl text-white bg-black bg-opacity-30 hover:bg-opacity-50 cursor-pointer p-2 sm:p-3 rounded-full z-10"
+            >
+              ❯
+            </div>
+
+            {/* Dots */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+              {data.map((_, index) => (
+                <div
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full cursor-pointer ${
+                    index === currentIndex ? "bg-white" : "bg-gray-400"
+                  }`}
                 />
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </div>
+          </div>
         )}
       </div>
 
-      {/* Dynamic HTML content */}
-      <div className="max-w-6xl mx-auto px-4 mt-10 text-base lg:text-lg leading-relaxed">
+      {/* About Content */}
+      <div className="max-w-6xl mx-auto px-4 mt-10 text-sm sm:text-base md:text-lg leading-relaxed hover:scale-105 transition-transform duration-500 ease-in-out">
         <div
           className="text-gray-800"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
@@ -170,7 +168,7 @@ const About = () => {
       </div>
 
       {/* Video Section */}
-      <div className="mt-10">
+      <div className="mt-10 px-4">
         <Vidioimage group="About" />
       </div>
     </div>

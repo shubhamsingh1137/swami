@@ -72,9 +72,9 @@ const Eventdashboard = () => {
   const paginatedData = data.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="min-h-screen bg-orange-500 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-r from-orange-300 via-yellow-50 to-pink-300 py-10 px-4">
       {/* Swamiji Highlight Card */}
-      <div className="bg-orange-400 shadow-lg rounded-xl p-6 max-w-5xl mx-auto mb-12 border-l-4 border-gray-800">
+      <div className="bg-orange-300 shadow-lg rounded-xl p-6 max-w-5xl mx-auto mb-12 border-l-4 border-gray-800">
         <h2 className="text-2xl font-bold text-gray-800 mb-3 text-center sm:text-left">
           🙏 परम् पूज्य स्वामी अभयानन्द सरस्वती जी महाराज
         </h2>

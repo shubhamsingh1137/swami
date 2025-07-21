@@ -58,21 +58,23 @@ const BlogCard = ({
     <img
       src={images}
       alt={title}
-      className="w-full aspect-video object-cover rounded-md"
+      className="w-full aspect-video object-cover rounded-md hover:scale-105 transition-transform duration-500 ease-in-out"
     />
-    <h3 className="text-2xl font-semibold text-gray-800">{title}</h3>
+    <h3 className="text-2xl font-semibold text-gray-800 hover:scale-105 transition-transform duration-500 ease-in-out">
+      {title}
+    </h3>
 
-    <div className="flex flex-wrap lg:text-xl items-center gap-3 text-gray-500 text-sm">
+    <div className="flex flex-wrap lg:text-xl items-center gap-3 text-gray-500 text-sm hover:scale-105 transition-transform duration-500 ease-in-out">
       <FaCalendarAlt />
       <span>{new Date(date_created).toLocaleDateString("hi-IN")}</span>
     </div>
 
-    <div className="flex text-xl items-center gap-2 text-gray-500">
+    <div className="flex text-xl items-center gap-2 text-gray-500 hover:scale-105 transition-transform duration-500 ease-in-out">
       <IoChatbubbles />
       <span>(0)</span>
     </div>
 
-    <div>
+    <div className="hover:scale-105 transition-transform duration-500 ease-in-out">
       <p className="text-2xl font-semibold text-gray-700">
         Share This Blog with Others
       </p>
@@ -97,7 +99,7 @@ const BlogCard = ({
     <div className="flex items-center justify-center mt-5">
       <button
         onClick={() => navigate(`/newblog/${id}`)}
-        className="text-center w-40 h-12 text-base border-2 border-red-600 text-red-600 font-semibold py-2 rounded hover:bg-red-600 hover:text-white transition"
+        className="text-center w-40 h-12 text-base border-2 border-red-600 text-red-600 font-semibold py-2  hover:bg-red-600 hover:text-white hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl"
       >
         Read More
       </button>
@@ -152,9 +154,13 @@ const Blog = () => {
     <div className="px-4 py-10 bg-gray-100 min-h-screen">
       <LatestEvents />
       <div className="flex justify-center">
-        <img src={logo} alt="Logo" className="size-25" />
+        <img
+          src={logo}
+          alt="Logo"
+          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
+        />
       </div>
-      <h2 className="text-center text-4xl lg:text-5xl font-bold text-gray-800 mt-4">
+      <h2 className="text-center text-3xl lg:text-4xl font-bold mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
         Blog
       </h2>
       {loading ? (

@@ -45,14 +45,14 @@ const Second = () => {
       <img
         src={logo}
         alt="Symbol"
-        className="mx-auto mb-4 w-16 h-16 lg:w-28 lg:h-28"
+        className="mx-auto mb-4 w-16 h-16 lg:w-30 lg:h-30 hover:scale-105 transition-transform duration-500 ease-in-out  border-5 border-orange-500 rounded-full"
       />
 
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-700">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-700 hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl">
         परम पूज्य आचार्य महामंडलेश्वर स्वामी अभयानन्द सरस्वती जी महाराज
       </h1>
 
-      <div className="text-md lg:text-2xl md:text-lg text-black mt-6 max-w-4xl mx-auto font-medium leading-relaxed">
+      <div className="text-md lg:text-2xl md:text-lg text-black mt-6 max-w-4xl mx-auto font-medium leading-relaxed hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl">
         {loading ? (
           <p>Loading...</p>
         ) : homeContent ? (
@@ -65,7 +65,7 @@ const Second = () => {
       <div className="mt-8">
         <button
           onClick={() => navigate("/about")}
-          className="border border-red-500 text-red-500 px-8 py-3 rounded text-xl hover:bg-red-500 hover:text-white transition"
+          className="border border-red-500 text-red-500 px-8 py-3  text-xl hover:bg-red-500 hover:text-white hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl"
         >
           Know More
         </button>
@@ -75,11 +75,11 @@ const Second = () => {
         <img
           src={logo}
           alt="logo"
-          className="mx-auto mb-3 w-10 h-10 lg:w-16 lg:h-16"
+          className="mx-auto mb-3 w-16 h-16 lg:w-30 lg:h-30 hover:scale-105 transition-transform duration-500 ease-in-out  border-5 border-orange-500 rounded-full"
         />
         <h2
           onClick={() => navigate("/about")}
-          className="text-3xl lg:text-4xl font-semibold text-gray-600 cursor-pointer hover:text-red-600 transition"
+          className="text-3xl lg:text-4xl font-semibold text-gray-600 cursor-pointer hover:text-red-600 hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl"
         >
           हमारे बारे में
         </h2>

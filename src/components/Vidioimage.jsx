@@ -76,7 +76,10 @@ const Vidioimage = ({ group = "Home Page" }) => {
           const embedUrl = getYouTubeEmbedUrl(video.url);
 
           return (
-            <div key={video.id} className="shadow-2xl rounded-2xl p-4 bg-white">
+            <div
+              key={video.id}
+              className="shadow-2xl rounded-2xl p-4 bg-white hover:scale-105 transition-transform duration-500 ease-in-out"
+            >
               <h3 className="font-bold text-xl mb-2 text-gray-800">
                 {video.title}
               </h3>
@@ -89,7 +92,7 @@ const Vidioimage = ({ group = "Home Page" }) => {
                       key={img.id || i}
                       src={img.image}
                       alt={img.title || `Image ${i + 1}`}
-                      className="w-40 h-24 object-cover rounded-lg flex-shrink-0"
+                      className="w-40 h-24 object-cover rounded-lg flex-shrink-0 "
                     />
                   ))}
                 </div>
