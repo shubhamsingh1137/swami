@@ -128,17 +128,8 @@ const Ebooks = () => {
 
   return (
     <>
-      {" "}
-      <div className="flex justify-center items-center mb-2">
-        <img
-          src={logo}
-          alt="logo"
-          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-      </div>
-      <div className="text-center text-3xl lg:text-4xl font-bold mb-6">
-        E-books
-      </div>
+      
+     
       <div className="bg-[#f9fcd1] min-h-screen flex flex-col items-center px-4">
         {loading ? (
           <div className="flex justify-center items-center h-screen">

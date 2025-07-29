@@ -145,7 +145,7 @@ const Setting = () => {
   return (
     <>
       <ToastContainer position="top-right" autoClose={2000} />
-      <div className="min-h-screen bg-gradient-to-r from-orange-300 via-yellow-50 to-pink-300 py-10 px-4 sm:px-6 lg:px-16">
+      <div className="min-h-screen bg-gradient-to-r from-orange-300 via-yellow-50 to-pink-300 py-10 px-4 sm:px-6 lg:px-35">
         <div className="bg-white/70  rounded-xl shadow-2xl p-6 sm:p-10 max-w-5xl mx-auto mb-12">
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <div className="bg-gradient-to-r from-yellow-400 to-orange-500 p-3 rounded-full shadow">

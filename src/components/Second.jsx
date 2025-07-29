@@ -41,7 +41,7 @@ const Second = () => {
   }, []);
 
   return (
-    <div className="bg-[#FEFDE5] w-full lg:-mt-20 text-center">
+    <div className="bg-[#FEFDE5] w-full  text-center">
       <img
         src={logo}
         alt="Symbol"

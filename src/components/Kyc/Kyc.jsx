@@ -98,13 +98,13 @@ const Kyc = () => {
     );
 
   return (
-    <div className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-orange-400 via-orange-200 to-orange-300 px-4 sm:px-6 py-10">
-      <div className="w-full max-w-4xl space-y-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-10">
+    <div className="w-full min-h-screen overflow-x-hidden bg-gradient-to-br from-orange-400 via-orange-200 to-orange-300 px-4 sm:px-6 py-10 flex justify-center items-center mb-20 lg:mb-0">
+      <div className="w-full max-w-3xl space-y-6 lg:mx-5 bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-10">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-orange-700 underline underline-offset-4">
           KYC Information
         </h2>
 
-        <div className="bg-orange-300 p-4 sm:p-6 rounded-lg shadow-md">
+        <div className="bg-orange-300 p-4 sm:p-6 rounded-lg shadow-md text-center">
           {kycExists && !editMode ? (
             <KycView kycData={kycData} onEdit={() => setEditMode(true)} />
           ) : (

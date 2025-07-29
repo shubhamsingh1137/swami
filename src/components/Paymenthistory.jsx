@@ -60,8 +60,8 @@ const Paymenthistory = () => {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-yellow-100 via-orange-50 to-pink-100 p-4 sm:p-6 lg:p-10 overflow-auto">
-      <div className="w-full bg-white/80 backdrop-blur-md rounded-xl shadow-xl p-4 sm:p-8">
+    <div className="w-full h-full bg-gradient-to-br from-yellow-100 via-orange-50 to-pink-100 p-4 sm:p-6 overflow-x-hidden">
+      <div className="w-full lg:max-w-4xl xl:w-full  lg:mx-25 bg-white/80 backdrop-blur-md rounded-xl shadow-xl p-4 sm:p-8">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-orange-700 underline underline-offset-4">
           🧾 Donation History
         </h2>

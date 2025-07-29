@@ -5,6 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Vidioimage from "./Vidioimage";
+import { useNavigate } from "react-router-dom";
 
 const CircularProgressWithLabel = ({ value }) => {
   return (
@@ -63,6 +64,7 @@ const Eventdashboard = () => {
 
     fetchapi();
   }, []);
+  const Navigate = useNavigate()
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -72,9 +74,9 @@ const Eventdashboard = () => {
   const paginatedData = data.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-orange-300 via-yellow-50 to-pink-300 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-r from-orange-300 via-yellow-50 to-pink-300 py-10 px-4 lg:px-30">
       {/* Swamiji Highlight Card */}
-      <div className="bg-orange-300 shadow-lg rounded-xl p-6 max-w-7xl mx-auto mb-12 border-l-4 border-gray-800">
+      <div className="bg-orange-300 shadow-lg rounded-xl p-6 max-w-5xl mx-auto mb-12 border-l-4 border-gray-800">
         <h2 className="text-2xl font-bold text-gray-800 mb-3 text-center sm:text-left">
           🙏 परम् पूज्य स्वामी अभयानन्द सरस्वती जी महाराज
         </h2>
@@ -96,7 +98,7 @@ const Eventdashboard = () => {
           <CircularProgressWithLabel value={progress} />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {paginatedData.length > 0 ? (
             paginatedData.map((event, index) => (
               <div
@@ -122,9 +124,9 @@ const Eventdashboard = () => {
                   </h3>
 
                   <button
-                    onClick={() =>
-                      (window.location.href = `/event/${event.id}`)
-                    }
+                    onClick={()=>Navigate("/event")}
+                     
+                    
                     className="self-start mt-auto px-4 py-2 border border-blue-500 text-blue-600 rounded-md hover:bg-blue-50 font-medium text-sm"
                   >
                     Read

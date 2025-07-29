@@ -153,16 +153,7 @@ const Blog = () => {
   return (
     <div className="px-4 py-10 bg-gray-100 min-h-screen">
       <LatestEvents />
-      <div className="flex justify-center">
-        <img
-          src={logo}
-          alt="Logo"
-          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-      </div>
-      <h2 className="text-center text-3xl lg:text-4xl font-bold mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
-        Blog
-      </h2>
+     
       {loading ? (
         <div className="flex justify-center items-center h-96">
           <CircularProgressWithLabel value={progress} />

@@ -103,19 +103,7 @@ const About = () => {
 
   return (
     <div className="bg-[#fefee9] text-gray-800">
-      {/* Logo and Heading */}
-      <div className="flex flex-col justify-center items-center py-4 px-4">
-        <img
-          src={logo}
-          alt="logo"
-          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
-          हमारे बारे में
-        </h1>
-      </div>
-
-      {/* Image Slider */}
+      
       <div className="relative w-full">
         {loading ? (
           <div className="flex justify-center items-center h-[50vh]">

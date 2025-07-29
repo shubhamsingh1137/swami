@@ -4,8 +4,8 @@ import { CircularProgress } from "@mui/material";
 
 const First = () => {
   const [data, setData] = useState([]);
-  const [currentIndex1, setCurrentIndex1] = useState(0); // left
-  const [currentIndex2, setCurrentIndex2] = useState(1); // right
+  const [currentIndex1, setCurrentIndex1] = useState(0); 
+  const [currentIndex2, setCurrentIndex2] = useState(1); 
   const [loading, setLoading] = useState(true);
 
   const fetchapi = async () => {
@@ -58,9 +58,9 @@ const First = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-[#FEFDE5]">
+    <div className="flex flex-col md:flex-row h-screen bg-[#FEFDE5] lg:mb-40 mb-10 ">
       {/* Left Slider */}
-      <div className="relative mt-2 w-full lg:h-190 md:w-1/2 h-1/2 md:h-full overflow-hidden">
+      <div className="relative mt-2 w-full lg:h-190 md:w-1/2 h-1/2 md:h-full overflow-hidden ">
         <img
           src={data[currentIndex1]?.image}
           alt={data[currentIndex1]?.title || `Slide ${currentIndex1}`}

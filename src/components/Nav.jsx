@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import logo from "../assets/Images/logoswami.png";
 import swamiPic5 from "../assets/Images/swami_pic5.jpg";
+import { motion } from "framer-motion";
 const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -141,20 +142,54 @@ const Nav = () => {
     <div className="w-full">
       {/* Top Bar */}
       <div className="bg-orange-500 text-white flex justify-between items-center gap-4 px-4 py-2 text-sm md:text-base lg:text-lg font-bold shadow-2xl shadow-orange-800">
-        <p>Email: swamiabhyanand@gmail.com</p>
-        <p>Call Now! 8881810100</p>
+        <motion.p
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 25,
+            delay: 0.5,
+            duration: 1.2,
+          }}
+        >
+          Email: swamiabhyanand@gmail.com
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 80,
+            damping: 25,
+            delay: 0.6,
+            duration: 1.3,
+          }}
+        >
+          Call Now! 8881810100
+        </motion.p>
       </div>
 
       {/* Main Nav */}
       <div className="bg-yellow-50 px-4 py-4 flex flex-col lg:flex-row lg:items-center justify-between lg:justify-around relative">
         {/* Logo */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 80,
+            damping: 25,
+            delay: 1.3,
+            duration: 1.5,
+          }}
+        >
           <img
             src={logo}
             alt="Swami Logo"
             className="mx-auto mb-4 w-16 h-16 lg:w-20 lg:h-20 hover:scale-105 transition-transform duration-500 ease-in-out  border-5 border-orange-500 rounded-full"
           />
-        </div>
+        </motion.div>
 
         {/* Hamburger (Mobile) */}
         <div className="lg:hidden absolute top-8 right-4 z-50 border border-black p-1 rounded">
@@ -174,7 +209,10 @@ const Nav = () => {
           } flex-col lg:flex lg:flex-row lg:items-center gap-5 lg:gap-10 text-gray-700 font-medium text-lg lg:text-xl transition-all duration-300 ease-in-out z-40 bg-yellow-50 w-full lg:w-auto absolute lg:static top-full left-0 px-6 py-4 lg:py-0 shadow-md lg:shadow-none`}
         >
           {navItems.map((item, index) => (
-            <li
+            <motion.li
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               key={index}
               onClick={() => {
                 navigate(item.path);
@@ -185,7 +223,7 @@ const Nav = () => {
               }`}
             >
               {item.label}
-            </li>
+            </motion.li>
           ))}
 
           {/* Profile Login Trigger */}
@@ -225,9 +263,7 @@ const Nav = () => {
                 <div className="w-2/3 p-6 space-y-4 flex flex-col justify-center">
                   <div>
                     <h2 className="text-xl font-bold text-gray-800">Welcome</h2>
-                    <p className="text-sm text-gray-500">
-                      Sign in 
-                    </p>
+                    <p className="text-sm text-gray-500">Sign in</p>
                   </div>
 
                   {!otpSent || editMode ? (

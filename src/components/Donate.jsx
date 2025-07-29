@@ -101,25 +101,9 @@ const Donate = () => {
   };
 
   return (
-    <div className="bg-white relative">
-      {/* Logo */}
-      <div className="flex justify-center pt-5">
-        <img
-          src={logo}
-          alt="logo"
-          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-      </div>
-
-      {/* Page Heading */}
-      <div className="text-center mt-2">
-        <h1 className="text-center text-3xl lg:text-4xl font-bold hover:scale-105 transition-transform duration-500 ease-in-out">
-          Donate
-        </h1>
-      </div>
-
-      {/* Main Section */}
-      <div className="bg-[#fcfce9] py-16 px-4 md:px-10 mt-10">
+    <>
+    
+      <div className="bg-[#fcfce9] py-16 px-4 md:px-10 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Left Image */}
           <div className="flex justify-center">
@@ -259,7 +243,7 @@ const Donate = () => {
       )}
 
       <ToastContainer position="top-right" autoClose={3000} />
-    </div>
+    </>
   );
 };
 

@@ -89,17 +89,8 @@ const Event = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center mb-2">
-        <img
-          src={logo}
-          alt="logo"
-          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-      </div>
-      <div className="text-center text-3xl lg:text-4xl font-bold mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
-        Events
-      </div>
-      <div className="flex items-center justify-center">
+      
+      <div className="flex items-center justify-center mt-10">
         <div className="bg-yellow-50 px-4 py-8 min-h-screen shadow-2xl shadow-gray-600 w-full max-w-[1400px]">
           {/* Filter Section */}
           <div className="w-full mb-6">

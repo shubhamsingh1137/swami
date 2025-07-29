@@ -8,7 +8,7 @@ const Eighth = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-wrap justify-center items-stretch gap-4 mt-2  ">
-      <div className="flex-1 lg:min-w-[450px] lg:max-w-[880px] hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
+      <div className="flex-1 lg:min-w-[380px]  hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer bg-white shadow-2xl shadow-orange-400 p-5">
         <div className="flex justify-center mt-4">
           <img
             src={logo}

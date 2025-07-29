@@ -68,8 +68,8 @@ const Profile = () => {
   }
 
   return (
-    <div className="w-full flex justify-center p-4 sm:p-6 lg:p-10">
-      <div className="w-full max-w-5xl space-y-8">
+    <div className="w-full min-h-screen overflow-x-hidden flex justify-center p-4 sm:p-6  ">
+      <div className="w-full max-w-4xl space-y-8 lg:mx-40">
         <h1 className="text-3xl sm:text-4xl font-bold text-center text-orange-700 underline underline-offset-4 hover:scale-105 transition-transform duration-500 ease-in-out">
           My Profile
         </h1>
@@ -115,7 +115,7 @@ const Profile = () => {
         </div>
 
         {/* Personal Details */}
-        <div className="bg-orange-300 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-500 ease-in-out">
+        <div className="bg-orange-300 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-500 ease-in-out mb-20">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-800">
               Personal Details

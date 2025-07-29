@@ -19,34 +19,43 @@ const KycView = ({ kycData, onEdit }) => (
 
     {kycData?.adhar_front_image && (
       <div>
-        <strong>Aadhaar Front:</strong>
-        <img
-          src={kycData.adhar_front_image}
-          alt="Aadhaar Front"
-          className="w-40 h-auto border rounded mt-2"
-        />
+        <strong className="underline">Aadhaar Front:</strong>
+        <div className="flex items-center justify-center">
+          {" "}
+          <img
+            src={kycData.adhar_front_image}
+            alt="Aadhaar Front"
+            className="w-40 h-auto border rounded mt-2"
+          />
+        </div>
       </div>
     )}
 
     {kycData?.adhar_back_image && (
       <div>
         <strong>Aadhaar Back:</strong>
-        <img
-          src={kycData.adhar_back_image}
-          alt="Aadhaar Back"
-          className="w-40 h-auto border rounded mt-2"
-        />
+        <div className="flex items-center justify-center">
+          {" "}
+          <img
+            src={kycData.adhar_back_image}
+            alt="Aadhaar Back"
+            className="w-40 h-auto border rounded mt-2"
+          />
+        </div>
       </div>
     )}
 
     {kycData?.pan_image && (
       <div>
         <strong>PAN Card:</strong>
-        <img
-          src={kycData.pan_image}
-          alt="PAN Card"
-          className="w-40 h-auto border rounded mt-2"
-        />
+        <div className="flex items-center justify-center">
+          {" "}
+          <img
+            src={kycData.pan_image}
+            alt="PAN Card"
+            className="w-40 h-auto border rounded mt-2"
+          />
+        </div>
       </div>
     )}
 

@@ -7,7 +7,7 @@ const Gallery = () => {
   const [folders, setFolders] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState("Select All");
   const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState(null); // 🔍 Zoom-in modal state
+  const [selectedImage, setSelectedImage] = useState(null); 
 
   useEffect(() => {
     const fetchGallery = async () => {
@@ -48,19 +48,8 @@ const Gallery = () => {
 
   return (
     <>
-      {/* Logo */}
-      <div className="flex justify-center items-center mb-2">
-        <img
-          src={logo}
-          alt="logo"
-          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-      </div>
-
-      {/* Title */}
-      <div className="text-center text-3xl lg:text-4xl font-bold mb-6">
-        Gallery
-      </div>
+      
+     
 
       {/* Buttons + Gallery */}
       <div className="p-4">

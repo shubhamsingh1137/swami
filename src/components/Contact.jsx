@@ -98,17 +98,8 @@ export default function Contact() {
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center items-center gap-10 ">
-        <img
-          src={logo}
-          className="h-16 sm:h-20 lg:h-30 w-auto mb-2 border-5 border-orange-500 rounded-full hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-      </div>
-      <div className="text-center text-3xl lg:text-4xl font-bold mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
-        <p>Contact Us</p>
-      </div>
-
-      <div className="max-w-8xl min-h-100 mt-10 p-4">
+     
+      <div className="max-w-8xl min-h-100  p-4">
         <div className="flex flex-col lg:flex-row gap-10 bg-yellow-50 p-6 rounded-xl shadow-xl text-3xl">
           {/* Form Section */}
           <Formik

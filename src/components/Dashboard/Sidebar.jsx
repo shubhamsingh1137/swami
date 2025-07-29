@@ -1,4 +1,3 @@
-// Sidebar.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -11,6 +10,7 @@ import {
   FaPhone,
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const Sidebar = ({ activeTab, setActiveTab, setShowLogoutConfirm }) => {
   const NavButton = ({ tab, icon, label }) => (
@@ -28,7 +28,7 @@ const Sidebar = ({ activeTab, setActiveTab, setShowLogoutConfirm }) => {
   );
 
   return (
-    <div className="hidden lg:flex w-93 h-240 bg-gradient-to-br from-orange-400 via-yellow-200 to-pink-300 text-gray-800 flex-col justify-between py-6 shadow-5xl">
+    <div className="hidden lg:flex w-93 h-screen bg-gradient-to-br from-orange-400 via-yellow-200 to-pink-300 text-gray-800 flex-col justify-between py-6 shadow-5xl">
       <div className="px-6">
         <div className="text-center mb-6">
           <Link to="/" className="group inline-block relative">
