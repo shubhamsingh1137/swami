@@ -187,7 +187,7 @@ const Nav = () => {
           <img
             src={logo}
             alt="Swami Logo"
-            className="mx-auto mb-4 w-16 h-16 lg:w-20 lg:h-20 hover:scale-105 transition-transform duration-500 ease-in-out  border-5 border-orange-500 rounded-full"
+            className="mx-auto  w-16 h-16 lg:w-20 lg:h-20 hover:scale-105 transition-transform duration-500 ease-in-out  border-5 border-orange-500 rounded-full"
           />
         </motion.div>
 
@@ -249,9 +249,9 @@ const Nav = () => {
               )}
             </div>
             {showLogin && !isVerified && (
-              <div className="absolute top-10 right-4 w-[520px] bg-white rounded-xl shadow-2xl z-50 flex overflow-hidden border border-gray-300">
+              <div className="absolute top-12 right-2 sm:right-4 w-[95vw] sm:w-[420px] md:w-[480px] lg:w-[520px] bg-white rounded-xl shadow-2xl z-50 flex flex-col sm:flex-row overflow-hidden border border-gray-300">
                 {/* Left Small Image */}
-                <div className="w-1/3 bg-gray-100 flex items-center justify-center p-3">
+                <div className="hidden sm:flex sm:w-1/3 bg-gray-100 items-center justify-center p-4">
                   <img
                     src={swamiPic5}
                     alt="Swami"
@@ -260,7 +260,7 @@ const Nav = () => {
                 </div>
 
                 {/* Right Form */}
-                <div className="w-2/3 p-6 space-y-4 flex flex-col justify-center">
+                <div className="sm:w-2/3 w-full p-4 sm:p-6 space-y-4 flex flex-col justify-center">
                   <div>
                     <h2 className="text-xl font-bold text-gray-800">
                       🙏 आपका हार्दिक स्वागत है 🙏
@@ -291,7 +291,7 @@ const Nav = () => {
                           placeholder="Mobile Number"
                           value={mobile}
                           onChange={(e) => setMobile(e.target.value)}
-                          className="flex-1 border px-3 py-2 rounded-md text-sm"
+                          className="flex-1 border px-1 py-2 rounded-md text-sm"
                         />
                       </div>
 

@@ -102,8 +102,7 @@ const Donate = () => {
 
   return (
     <>
-    
-      <div className="bg-[#fcfce9] py-16 px-4 md:px-10 ">
+      <div className="bg-[#fcfce9] py-3 px-4 md:px-10 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Left Image */}
           <div className="flex justify-center">
@@ -143,7 +142,7 @@ const Donate = () => {
 
         {/* Section 2 */}
         {donationData?.["❤️ कैसे करें दान?"] && (
-          <div className="mt-20 max-w-5xl mx-auto hover:scale-105 transition-transform duration-500 ease-in-out">
+          <div className="mt-10 max-w-5xl mx-auto hover:scale-105 transition-transform duration-500 ease-in-out">
             <h2 className="text-2xl md:text-3xl font-semibold text-red-600 mb-4 text-center md:text-left">
               ❤️ कैसे करें दान?
             </h2>

@@ -4,8 +4,8 @@ import { CircularProgress } from "@mui/material";
 
 const First = () => {
   const [data, setData] = useState([]);
-  const [currentIndex1, setCurrentIndex1] = useState(0); 
-  const [currentIndex2, setCurrentIndex2] = useState(1); 
+  const [currentIndex1, setCurrentIndex1] = useState(0);
+  const [currentIndex2, setCurrentIndex2] = useState(1);
   const [loading, setLoading] = useState(true);
 
   const fetchapi = async () => {
@@ -29,6 +29,22 @@ const First = () => {
   useEffect(() => {
     fetchapi();
   }, []);
+
+  // Auto slide for left image (every 4 seconds)
+  useEffect(() => {
+    const interval1 = setInterval(() => {
+      setCurrentIndex1((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval1);
+  }, [data]);
+
+  // Auto slide for right image (every 6 seconds)
+  useEffect(() => {
+    const interval2 = setInterval(() => {
+      setCurrentIndex2((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+    }, 6000);
+    return () => clearInterval(interval2);
+  }, [data]);
 
   const prevSlide1 = () => {
     setCurrentIndex1((prev) => (prev === 0 ? data.length - 1 : prev - 1));
@@ -58,13 +74,13 @@ const First = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-[#FEFDE5] lg:mb-40 mb-10 ">
+    <div className="flex flex-col md:flex-row h-screen bg-[#FEFDE5] lg:mb-40 mb-10">
       {/* Left Slider */}
-      <div className="relative mt-2 w-full lg:h-190 md:w-1/2 h-1/2 md:h-full overflow-hidden ">
+      <div className="relative mt-2 w-full lg:h-190 md:w-1/2 h-1/2 md:h-full overflow-hidden">
         <img
           src={data[currentIndex1]?.image}
           alt={data[currentIndex1]?.title || `Slide ${currentIndex1}`}
-          className="w-full h-full  object-cover transition duration-500"
+          className="w-full h-full object-cover transition duration-500"
         />
 
         <div

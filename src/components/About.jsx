@@ -89,6 +89,16 @@ const About = () => {
     );
   }, []);
 
+  // Auto-slide every 3 seconds
+  useEffect(() => {
+    if (!loading && data.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [loading, data]);
+
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
   };
@@ -109,8 +119,9 @@ const About = () => {
             <CircularProgressWithLabel value={progress} />
           </div>
         ) : (
-          <div className="relative w-full h-[calc(100vh-160px)] min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] overflow-hidden hover:scale-105 transition-transform duration-500 ease-in-out">
+          <div className="relative w-full h-[calc(100vh-160px)] min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out">
             <img
+              key={currentIndex}
               src={data[currentIndex]?.image}
               alt={data[currentIndex]?.title || `Slide ${currentIndex}`}
               className="w-full h-full object-cover transition duration-500"
@@ -147,7 +158,7 @@ const About = () => {
       </div>
 
       {/* About Content */}
-      <div className="max-w-6xl mx-auto px-4  text-sm sm:text-base md:text-lg leading-relaxed hover:scale-105 transition-transform duration-500 ease-in-out">
+      <div className="max-w-6xl mx-auto px-4 text-sm sm:text-base md:text-lg leading-relaxed hover:scale-105 transition-transform duration-500 ease-in-out">
         <div
           className="text-gray-800"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
@@ -155,7 +166,7 @@ const About = () => {
       </div>
 
       {/* Video Section */}
-      <div className=" px-4">
+      <div className="px-4">
         <Vidioimage group="About" />
       </div>
     </div>

@@ -128,16 +128,14 @@ const Ebooks = () => {
 
   return (
     <>
-      
-     
-      <div className="bg-[#f9fcd1] min-h-screen flex flex-col items-center px-4">
+      <div className="bg-[#f9fcd1] min-h-screen flex flex-col items-center px-4 lg:-mb-40">
         {loading ? (
           <div className="flex justify-center items-center h-screen">
             <CircularProgressWithLabel value={progress} />
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5 ">
               {data.map((book, index) => (
                 <div key={index} className="p-4 bg-white  rounded-lg shadow-md">
                   <div className="flex items-center justify-center">
@@ -205,8 +203,8 @@ const Ebooks = () => {
             </div>
           </div>
         )}
-        <Vidioimage group="ebook" />
       </div>
+      <Vidioimage group="ebook" />
     </>
   );
 };

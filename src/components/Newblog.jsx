@@ -46,57 +46,78 @@ const Newblog = () => {
     );
 
   return (
-    <div className="bg-[#f7f7dc] min-h-screen text-[#222] px-4 py-10">
-      {/* Blog Header */}
-      <div className="flex flex-col items-center">
-        <img
-          src="https://swamiabhyanand.com/images/cropped-logo.png"
-          alt="Logo"
-          className="h-20 mb-2"
-        />
-        <h1 className="text-5xl font-bold">Blog</h1>
-      </div>
-
-      {/* Blog Image */}
-      <div className="flex justify-center mt-10">
+    <div className="">
+      <div className="flex justify-center  hover:scale-105 transition-transform duration-500 ease-in-out ">
         <img
           src={blog.images}
           alt={blog.title}
-          className="rounded shadow-md max-w-full w-[700px]"
+          className="rounded-2xl shadow-md max-w-5xl w-[900px] h-[500px] "
         />
       </div>
 
       {/* Blog Metadata */}
-      <div className="max-w-3xl mx-auto mt-6 text-sm lg:text-2xl text-gray-700  items-center gap-4">
-        <p className="font-bold text-2xl mb-2 text-black">{blog.title}</p>
-        <div className="flex items-center text-xl mb-2 gap-1">
+      <div className="max-w-4xl mx-auto mt-6 text-sm lg:text-2xl text-gray-700  items-center gap-4">
+        <p className="font-bold text-3xl mb-2 text-black  hover:scale-110 transition-transform duration-500 ease-in-out">
+          {blog.title}
+        </p>
+        <div className="flex items-center text-xl mb-2 gap-1  hover:scale-102 transition-transform duration-500 ease-in-out">
           <FaCalendarAlt className="text-orange-500" />
           <span>{new Date(blog.date_created).toLocaleDateString("hi-IN")}</span>
         </div>
-        <div className="flex items-center gap-1 text-xl ">
+        <div className="flex items-center gap-1 text-xl  hover:scale-102 transition-transform duration-500 ease-in-out">
           <FaMapMarkerAlt className="text-orange-500" />
           <span>{blog.category || "N/A"}</span>
         </div>
-        <div className="flex items-center text-xl gap-1 mt-2">
+        <div className="flex items-center text-xl gap-1 mt-2  hover:scale-102 transition-transform duration-500 ease-in-out">
           <FaTags className="text-orange-500" />
           <span>{blog.tags || "General"}</span>
         </div>
-        <div className="flex items-center gap-1 mt-2 text-xl">
+        <div className="flex items-center gap-1 mt-2 text-xl  hover:scale-102 transition-transform duration-500 ease-in-out">
           <FaRegCommentDots className="text-orange-500" />
           <span>(0)</span>
         </div>
       </div>
 
       {/* Social Share */}
-      <div className="max-w-3xl mx-auto mt-6">
-        <p className="font-semibold text-4xl mb-5">
+
+      <div className="max-w-4xl mx-auto mt-6">
+        <div className="border-t-2 mb-3 "></div>
+        <p className="font-semibold text-3xl mb-5 hover:scale-110 transition-transform duration-500 ease-in-out">
           Share This Blog with Others
         </p>
-        <div className="flex gap-2 mt-2 text-4xl text-gray-600">
-          <FaFacebookF className="hover:text-blue-600 cursor-pointer" />
-          <FaInstagram className="hover:text-pink-600 cursor-pointer" />
-          <FaTwitter className="hover:text-sky-500 cursor-pointer" />
-          <FaLinkedinIn className="hover:text-blue-700 cursor-pointer" />
+        <div className="flex gap-3 text-4xl mt-5 text-orange-500 ">
+          <a
+            href="https://www.facebook.com/swamiabhyanandsaraswati/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:scale-180 transition-transform duration-500 ease-in-out"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://www.instagram.com/swamiabhayanandsaraswati"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:scale-180 transition-transform duration-500 ease-in-outr"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://x.com/ShriShaunak/status/1552512925071355904"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:scale-180 transition-transform duration-500 ease-in-out"
+          >
+            <FaTwitter />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/swami-abayananda-saraswathi-0549327a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:scale-180 transition-transform duration-500 ease-in-out"
+          >
+            <FaLinkedinIn />
+          </a>
         </div>
       </div>
 

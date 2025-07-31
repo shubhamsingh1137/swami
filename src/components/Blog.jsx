@@ -65,25 +65,51 @@ const BlogCard = ({
     </h3>
 
     <div className="flex flex-wrap lg:text-xl items-center gap-3 text-gray-500 text-sm hover:scale-105 transition-transform duration-500 ease-in-out">
-      <FaCalendarAlt />
+      <FaCalendarAlt className="text-orange-500" />
       <span>{new Date(date_created).toLocaleDateString("hi-IN")}</span>
     </div>
 
-    <div className="flex text-xl items-center gap-2 text-gray-500 hover:scale-105 transition-transform duration-500 ease-in-out">
+    <div className="flex text-xl items-center gap-2 text-orange-500 hover:scale-105 transition-transform duration-500 ease-in-out">
       <IoChatbubbles />
-      <span>(0)</span>
+      <span className="text-gray-500">(0)</span>
     </div>
-
-    <div className="hover:scale-105 transition-transform duration-500 ease-in-out">
-      <p className="text-2xl font-semibold text-gray-700">
+    <div className="border-t-2 "></div>
+    <div className="">
+      <p className="text-2xl font-semibold text-gray-700 hover:scale-105 transition-transform duration-500 ease-in-out">
         Share This Blog with Others
       </p>
-      <div className="flex gap-3 text-4xl mt-5 text-gray-600 ">
-        <FaWhatsappSquare />
-        <FaFacebook />
-        <FaInstagram />
-        <FaTwitter />
-        <FaLinkedin />
+      <div className="flex gap-3 text-4xl mt-5 text-orange-500  ">
+        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
+          <FaWhatsappSquare className="hover:scale-180 transition-transform duration-500 ease-in-out" />
+        </a>
+        <a
+          href="https://www.facebook.com/swamiabhyanandsaraswati/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaFacebook className="hover:scale-180 transition-transform duration-500 ease-in-out" />
+        </a>
+        <a
+          href="https://www.instagram.com/swamiabhayanandsaraswati"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaInstagram className="hover:scale-180 transition-transform duration-500 ease-in-out" />
+        </a>
+        <a
+          href="https://x.com/ShriShaunak/status/1552512925071355904"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaTwitter className="hover:scale-180 transition-transform duration-500 ease-in-out" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/swami-abayananda-saraswathi-0549327a/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin className="hover:scale-180 transition-transform duration-500 ease-in-out" />
+        </a>
       </div>
     </div>
 
@@ -160,13 +186,13 @@ const Blog = () => {
         </div>
       ) : (
         <>
-          <div className="grid md:grid-cols-2 gap-10 mt-12">
+          <div className="grid md:grid-cols-2 gap-10 ">
             {paginatedBlogs?.map((blog) => (
               <BlogCard key={blog?.id} {...blog} navigate={navigate} />
             ))}
           </div>
 
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-5 lg:-mb-20">
             <Pagination
               count={Math.ceil(data.length / itemsPerPage)}
               page={page}

@@ -76,6 +76,7 @@ const LatestEvents = () => {
                     <th className="p-3 border">प्रारंभ तिथि</th>
                     <th className="p-3 border">समाप्ति तिथि</th>
                     <th className="p-3 border">वक्ता</th>
+                    <th className="p-3 border">कार्यक्रम</th>
                     <th className="p-3 border">स्थान</th>
                   </tr>
                 </thead>
@@ -87,7 +88,7 @@ const LatestEvents = () => {
                         navigate(`/navilatest/${event?.id}`);
                         setOpen(false);
                       }}
-                      className="text-center text-black text-md cursor-pointer hover:bg-orange-300"
+                      className="text-center text-black text-md cursor-pointer hover:bg-orange-300 hover:scale-102 transition-transform duration-500 ease-in-out"
                     >
                       <td className="p-3 border">{event.date}</td>
                       <td className="p-3 border">{event.created_at}</td>
@@ -95,6 +96,7 @@ const LatestEvents = () => {
                         {event.speaker ||
                           "आचार्य महामंडलेश्वर स्वामी अभयानन्द सरस्वती जी महाराज"}
                       </td>
+                      <td className="p-3 border">{event.Title}</td>
                       <td className="p-3 border">{event.location}</td>
                     </tr>
                   ))}
@@ -104,7 +106,12 @@ const LatestEvents = () => {
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button
+            onClick={handleClose}
+            color="primary"
+            autoFocus
+            className="hover:scale-120 transition-transform duration-500 ease-in-out"
+          >
             बंद करें
           </Button>
         </DialogActions>

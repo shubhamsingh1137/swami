@@ -13,7 +13,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Imageformat } from "../Utilis/Imageformat/Index";
-import logo from "../assets/Images/logoswami.png";
+
 const Navilatest = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -53,9 +53,9 @@ const Navilatest = () => {
   }
 
   return (
-    <div className="min-h-screen bg-yellow-50 py-10 px-4">
+    <div className="min-h-screen bg-yellow-50 py-10 px-4 lg:-mt-10">
       {/* Banner */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-6 hover:scale-105 transition-transform duration-500 ease-in-out">
         <img
           src={
             event.images ||
@@ -68,23 +68,23 @@ const Navilatest = () => {
 
       {/* Event Details */}
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-4xl font-bold text-gray-800 mb-8">
+        <h2 className="text-4xl font-bold text-gray-800 mb-8 hover:scale-105 transition-transform duration-500 ease-in-out">
           {event.Title || "कार्यक्रम"}
         </h2>
 
-        <div className="flex items-center text-xl font-semibold text-gray-700 mb-5">
+        <div className="flex items-center text-xl font-semibold text-gray-700 mb-5 hover:scale-105 transition-transform duration-500 ease-in-out">
           <FaCalendarAlt className="mr-2 text-orange-500" />
           <span>
             {event.date} to {event.created_at?.slice(0, 10)}
           </span>
         </div>
 
-        <div className="flex items-center text-xl font-semibold text-gray-700 mb-5">
+        <div className="flex items-center text-xl font-semibold text-gray-700 mb-5 hover:scale-105 transition-transform duration-500 ease-in-out">
           <FaMapMarkerAlt className="mr-2 text-orange-500" />
           <span>{event.location || "स्थान नहीं मिला"}</span>
         </div>
 
-        <div className="flex items-center text-xl font-semibold text-gray-700 mb-4">
+        <div className="flex items-center text-xl font-semibold text-gray-700 mb-4 hover:scale-105 transition-transform duration-500 ease-in-out">
           <FaMicrophone className="mr-2 text-orange-500" />
           <span>
             {event.speaker ||
@@ -94,44 +94,44 @@ const Navilatest = () => {
 
         {/* Social Icons */}
         <div className="border-t pt-4 mt-4">
-          <p className="text-gray-600  text-2xl  mb-5 font-semibold">
+          <p className="text-gray-600  text-2xl  mb-5 font-semibold hover:scale-105 transition-transform duration-500 ease-in-out">
             Share This Event with Others
           </p>
           <div className="flex gap-4 text-orange-500 text-2xl">
             <FaShareAlt />
             <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-              <FaWhatsapp />
+              <FaWhatsapp className="hover:scale-180 transition-transform duration-500 ease-in-out" />
             </a>
             <a
               href="https://www.facebook.com/swamiabhyanandsaraswati/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaFacebookF />
+              <FaFacebookF className="hover:scale-180 transition-transform duration-500 ease-in-out" />
             </a>
             <a
               href="https://www.instagram.com/swamiabhayanandsaraswati"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaInstagram />
+              <FaInstagram className="hover:scale-180 transition-transform duration-500 ease-in-out" />
             </a>
             <a
               href="https://x.com/ShriShaunak/status/1552512925071355904"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaXTwitter />
+              <FaXTwitter className="hover:scale-180 transition-transform duration-500 ease-in-out" />
             </a>
             <a
               href="https://www.linkedin.com/in/swami-abayananda-saraswathi-0549327a/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaLinkedin />
+              <FaLinkedin className="hover:scale-180 transition-transform duration-500 ease-in-out" />
             </a>
           </div>
-          <p className="text-gray-800 font-semibold mt-10 ml-10 text-xl">
+          <p className="text-gray-800 font-semibold mt-10 ml-10 text-xl hover:scale-105 transition-transform duration-500 ease-in-out ">
             संपर्क सूत्र : 7982855378, 7703877425, 8178826341, 9818076037 ...
           </p>
         </div>

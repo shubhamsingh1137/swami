@@ -98,8 +98,7 @@ export default function Contact() {
 
   return (
     <div>
-     
-      <div className="max-w-8xl min-h-100  p-4">
+      <div className="max-w-8xl min-h-100  ">
         <div className="flex flex-col lg:flex-row gap-10 bg-yellow-50 p-6 rounded-xl shadow-xl text-3xl">
           {/* Form Section */}
           <Formik

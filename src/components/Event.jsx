@@ -98,10 +98,9 @@ const Event = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex items-center justify-center ">
         <div className="bg-yellow-50 px-4 py-8 min-h-screen shadow-2xl shadow-gray-600 w-full max-w-[1400px]">
-          {/* Search + Filters */}
-          <div className="w-full mb-6">
+          <div className="w-full mb-3">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
               <input
                 type="text"
@@ -149,7 +148,7 @@ const Event = () => {
                     NOW ONWARDS
                   </button>
                 </div>
-                <div className="text-xl md:text-3xl font-semibold text-center mt-16 mb-5 hover:scale-105 transition-transform duration-500 ease-in-out">
+                <div className="text-xl md:text-3xl font-semibold text-center mt-5 mb-5 hover:scale-105 transition-transform duration-500 ease-in-out">
                   Latest Past Events
                 </div>
 
